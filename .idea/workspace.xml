@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb9d0d42-e5d0-4358-8ad0-feec29a66376" name="Changes" comment="update classes">
+    <list default="true" id="eb9d0d42-e5d0-4358-8ad0-feec29a66376" name="Changes" comment="Updated Claim, Customer and InsuranceCard classes">
+      <change afterPath="$PROJECT_DIR$/hs_err_pid20056.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid23932.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Claim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/FileHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Implement.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,20 +31,23 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2eP9qyqf3XgyYpbe76XWW6ID0Qy" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -93,12 +96,22 @@
       <option name="project" value="LOCAL" />
       <updated>1711821040310</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Updated Claim, Customer and InsuranceCard classes">
+      <option name="closed" value="true" />
+      <created>1711909834210</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711909834210</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="push files" />
     <MESSAGE value="update classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="update classes" />
+    <MESSAGE value="Updated Claim, Customer and InsuranceCard classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Claim, Customer and InsuranceCard classes" />
   </component>
 </project>
