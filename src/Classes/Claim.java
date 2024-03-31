@@ -2,41 +2,44 @@
  * @author <Nguyen Vo Truong Toan - s3979056>
  */
 package Classes;
-import java.util.ArrayList;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 public class Claim {
     private String claimID;
-    private String claimDate;
+    private Date claimDate;
     private String insuredPerson;
     private String cardNumber;
     private Date examDate;
+    private List<String> documents;
     private double amount;
     private String status;
     private String receiverBankingInfo;
-    private List<Claim> claimList = new ArrayList<>();
 
     public Claim() {
     }
 
-    public Claim(String claimID, String claimDate, String insuredPerson, String cardNumber, Date examDate,
-                 double amount, String status, String receiverBankingInfo, List<Claim> claimList) {
+    public Claim(String claimID, Date claimDate, String insuredPerson, String cardNumber, Date examDate,
+                 List<String> documents, double amount, String status, String receiverBankingInfo) {
         this.claimID = claimID;
         this.claimDate = claimDate;
         this.insuredPerson = insuredPerson;
         this.cardNumber = cardNumber;
         this.examDate = examDate;
+        this.documents = documents;
         this.amount = amount;
         this.status = status;
         this.receiverBankingInfo = receiverBankingInfo;
-        this.claimList = claimList;
     }
 
+    //Getters
     public String getClaimID() {
         return claimID;
     }
 
-    public String getClaimDate() {
+    public Date getClaimDate() {
         return claimDate;
     }
 
@@ -52,6 +55,10 @@ public class Claim {
         return examDate;
     }
 
+    public List<String> getDocuments() {
+        return documents;
+    }
+
     public double getAmount() {
         return amount;
     }
@@ -64,16 +71,12 @@ public class Claim {
         return receiverBankingInfo;
     }
 
-    public List<Claim> getClaimList() {
-        return claimList;
-    }
-
-    //Setter
+    //Setters
     public void setClaimID(String claimID) {
         this.claimID = claimID;
     }
 
-    public void setClaimDate(String claimDate) {
+    public void setClaimDate(Date claimDate) {
         this.claimDate = claimDate;
     }
 
@@ -101,7 +104,22 @@ public class Claim {
         this.receiverBankingInfo = receiverBankingInfo;
     }
 
-    public void setClaimList(List<Claim> claimList) {
-        this.claimList = claimList;
+    public void setDocuments(List<String> documents) {
+        this.documents = documents;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return "Clam Info:" + "\n" +
+                "{Claim ID: " + claimID + ", " +
+                "Claim Date: " + dateFormat.format(claimDate) + ", " +
+                "Insured Person: " + insuredPerson + ", " +
+                "Card Number: " + cardNumber + ", " +
+                "Exam Date: " + dateFormat.format(examDate) + ", " +
+                "Documents: " + documents + ", " +
+                "Amount: " + amount + ", " +
+                "Status: " + status + ", " +
+                "Receiver Banking Info: " + receiverBankingInfo + "}";
     }
 }

@@ -25,8 +25,7 @@ public abstract class Customer {
         this.insuranceCard = insuranceCard;
     }
 
-    //Getter() methods for each attributes
-
+    //Getters
     public String getCustomerID() {
         return customerID;
     }
@@ -43,5 +42,22 @@ public abstract class Customer {
         return claimList;
     }
 
+    //Setters
 
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setInsuranceCard(String insuranceCard) {
+        this.insuranceCard = insuranceCard;
+    }
+
+    public void setClaimList(List<Claim> claimList) {
+        this.claimList = claimList;
+    }
 }
