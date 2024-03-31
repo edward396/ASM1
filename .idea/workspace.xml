@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb9d0d42-e5d0-4358-8ad0-feec29a66376" name="Changes" comment="Updated Claim, Customer and InsuranceCard classes">
-      <change afterPath="$PROJECT_DIR$/hs_err_pid20056.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid23932.log" afterDir="false" />
+    <list default="true" id="eb9d0d42-e5d0-4358-8ad0-feec29a66376" name="Changes" comment="Delete Implement and FileHandler classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/FileHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Implement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Dependent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +103,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711909834210</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Delete Implement and FileHandler classes">
+      <option name="closed" value="true" />
+      <created>1711910384449</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711910384449</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -112,6 +119,7 @@
     <MESSAGE value="push files" />
     <MESSAGE value="update classes" />
     <MESSAGE value="Updated Claim, Customer and InsuranceCard classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Claim, Customer and InsuranceCard classes" />
+    <MESSAGE value="Delete Implement and FileHandler classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete Implement and FileHandler classes" />
   </component>
 </project>

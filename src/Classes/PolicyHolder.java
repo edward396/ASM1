@@ -5,15 +5,31 @@ package Classes;
 
 import java.util.ArrayList;
 import java.util.List;
-public class PolicyHolder extends Customer{
-    private List<Dependent> dependentList = new ArrayList<>();
+class PolicyHolder extends Customer {
+    private List<Customer> dependents;
 
-    public PolicyHolder(List<Dependent> dependentList) {
-        this.dependentList = dependentList;
+    public PolicyHolder(String id, String fullName, String insuranceCard) {
+        super(id, fullName, insuranceCard);
+        this.dependents = new ArrayList<>();
     }
 
-    public PolicyHolder(String customerID, String fullName, String insuranceCard, List<Dependent> dependentList) {
-        super(customerID, fullName, insuranceCard);
-        this.dependentList = dependentList;
+    public void addDependent(Customer dependent) {
+        if (dependents.contains(dependent)) {
+            throw new IllegalArgumentException("Dependent already exists.");
+        }
+        this.dependents.add(dependent);
+    }
+
+    public void removeDependent(Customer dependent) {
+        this.dependents.remove(dependent);
+    }
+    @Override
+    public String toString() {
+        return "Clam Info:" + "\n" +
+                "{Policy Holder ID: " + getCustomerID() + ", " +
+                "Full Name: " + getFullName() + ", " +
+                "Insurance Card: " + getInsuranceCard() + ", " +
+                "Dependent List: " + dependents +
+                "}";
     }
 }

@@ -60,4 +60,5 @@ public abstract class Customer {
     public void setClaimList(List<Claim> claimList) {
         this.claimList = claimList;
     }
+
 }
