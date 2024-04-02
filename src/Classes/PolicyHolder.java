@@ -5,22 +5,22 @@ package Classes;
 
 import java.util.ArrayList;
 import java.util.List;
-class PolicyHolder extends Customer {
-    private List<Customer> dependents;
+public class PolicyHolder extends Customer {
+    private List<Dependent> dependents;
 
     public PolicyHolder(String id, String fullName, String insuranceCard) {
         super(id, fullName, insuranceCard);
         this.dependents = new ArrayList<>();
     }
 
-    public void addDependent(Customer dependent) {
+    public void addDependent(Dependent dependent) {
         if (dependents.contains(dependent)) {
             throw new IllegalArgumentException("Dependent already exists.");
         }
         this.dependents.add(dependent);
     }
 
-    public void removeDependent(Customer dependent) {
+    public void removeDependent(Dependent dependent) {
         this.dependents.remove(dependent);
     }
     @Override
