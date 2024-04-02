@@ -10,19 +10,19 @@ import java.util.List;
 public class Claim {
     private String claimID;
     private Date claimDate;
-    private String insuredPerson;
+    private Customer insuredPerson; //not unique, using ID, store customer objects
     private String cardNumber;
     private Date examDate;
-    private List<String> documents;
+    private List<String> documents; //claimid_cardNumber_docname.pdf (one string)
     private double amount;
-    private String status;
-    private String receiverBankingInfo;
+    private String status; //extend use enum
+    private BankingInfo receiverBankingInfo; //3 attributes, make BankingInfo class
 
     public Claim() {
     }
 
-    public Claim(String claimID, Date claimDate, String insuredPerson, String cardNumber, Date examDate,
-                 List<String> documents, double amount, String status, String receiverBankingInfo) {
+    public Claim(String claimID, Date claimDate, Customer insuredPerson, String cardNumber, Date examDate,
+                 List<String> documents, double amount, String status, BankingInfo receiverBankingInfo) {
         this.claimID = claimID;
         this.claimDate = claimDate;
         this.insuredPerson = insuredPerson;
@@ -43,7 +43,7 @@ public class Claim {
         return claimDate;
     }
 
-    public String getInsuredPerson() {
+    public Customer getInsuredPerson() {
         return insuredPerson;
     }
 
@@ -67,7 +67,7 @@ public class Claim {
         return status;
     }
 
-    public String getReceiverBankingInfo() {
+    public BankingInfo getReceiverBankingInfo() {
         return receiverBankingInfo;
     }
 
@@ -80,7 +80,7 @@ public class Claim {
         this.claimDate = claimDate;
     }
 
-    public void setInsuredPerson(String insuredPerson) {
+    public void setInsuredPerson(Customer insuredPerson) {
         this.insuredPerson = insuredPerson;
     }
 
@@ -100,7 +100,7 @@ public class Claim {
         this.status = status;
     }
 
-    public void setReceiverBankingInfo(String receiverBankingInfo) {
+    public void setReceiverBankingInfo(BankingInfo receiverBankingInfo) {
         this.receiverBankingInfo = receiverBankingInfo;
     }
 

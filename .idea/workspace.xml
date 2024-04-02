@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb9d0d42-e5d0-4358-8ad0-feec29a66376" name="Changes" comment="separate TUI into menuDisplay &amp; userInterface">
-      <change afterPath="$PROJECT_DIR$/src/TUI/Main.java" afterDir="false" />
+    <list default="true" id="eb9d0d42-e5d0-4358-8ad0-feec29a66376" name="Changes" comment="update claimData.txt">
+      <change afterPath="$PROJECT_DIR$/src/Classes/BankingInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Claim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/File/claimData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/claimData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Manager/ClaimProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager/ClaimProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Manager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager/ClaimProcessManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TUI/menuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/menuDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TUI/userInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/userInterface.java" afterDir="false" />
     </list>
@@ -235,7 +240,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712038127067</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="update menuDisplay,userInterface &amp; add Main to test">
+      <option name="closed" value="true" />
+      <created>1712043499415</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1712043499415</updated>
+    </task>
+    <task id="LOCAL-00023" summary="update claimData.txt">
+      <option name="closed" value="true" />
+      <created>1712043526206</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1712043526206</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -259,6 +280,8 @@
     <MESSAGE value="add error handler for wrong input choice" />
     <MESSAGE value="make dateFormat final" />
     <MESSAGE value="separate TUI into menuDisplay &amp; userInterface" />
-    <option name="LAST_COMMIT_MESSAGE" value="separate TUI into menuDisplay &amp; userInterface" />
+    <MESSAGE value="update menuDisplay,userInterface &amp; add Main to test" />
+    <MESSAGE value="update claimData.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="update claimData.txt" />
   </component>
 </project>
