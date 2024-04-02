@@ -72,7 +72,7 @@ Java Threads: ( => current thread )
 
 Other Threads:
   0x00000156d8175b60 GCTaskThread "GC Thread#0" [stack: 0x0000004f3ff00000,0x0000004f40000000] [id=27424]
-  0x00000156d8185690 ConcurrentGCThread "G1 Main Marker" [stack: 0x0000004f40000000,0x0000004f40100000] [id=26236]
+  0x00000156d8185690 ConcurrentGCThread "G1 MainTest Marker" [stack: 0x0000004f40000000,0x0000004f40100000] [id=26236]
   0x00000156d8187670 ConcurrentGCThread "G1 Conc#0" [stack: 0x0000004f40100000,0x0000004f40200000] [id=15312]
 
 [error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ff97fb03187]

@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb9d0d42-e5d0-4358-8ad0-feec29a66376" name="Changes" comment="Delete Implement and FileHandler classes">
+    <list default="true" id="eb9d0d42-e5d0-4358-8ad0-feec29a66376" name="Changes" comment="Update InsuranceCard class">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Dependent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid20056.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid20056.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid23932.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid23932.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +41,12 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Main.executor": "Run",
+    "Application.TUI.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "settings.editor.selected.configurable": "preferences.fileTypes"
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -111,7 +113,55 @@
       <option name="project" value="LOCAL" />
       <updated>1711910384449</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update Customer, Dependent and PolicyHolder classes">
+      <option name="closed" value="true" />
+      <created>1711911853657</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711911853657</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update Claim class">
+      <option name="closed" value="true" />
+      <created>1712031803772</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712031803772</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Update ClaimProcess interface">
+      <option name="closed" value="true" />
+      <created>1712031848904</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712031848904</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add TUI package/ class, delete Main &amp; ClaimProcessManager class">
+      <option name="closed" value="true" />
+      <created>1712031927836</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1712031927836</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Delete ClaimProcessManager class">
+      <option name="closed" value="true" />
+      <created>1712031948079</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1712031948079</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Update InsuranceCard class">
+      <option name="closed" value="true" />
+      <created>1712031974705</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1712031974705</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -120,6 +170,12 @@
     <MESSAGE value="update classes" />
     <MESSAGE value="Updated Claim, Customer and InsuranceCard classes" />
     <MESSAGE value="Delete Implement and FileHandler classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete Implement and FileHandler classes" />
+    <MESSAGE value="Update Customer, Dependent and PolicyHolder classes" />
+    <MESSAGE value="Update Claim class" />
+    <MESSAGE value="Update ClaimProcess interface" />
+    <MESSAGE value="Add TUI package/ class, delete Main &amp; ClaimProcessManager class" />
+    <MESSAGE value="Delete ClaimProcessManager class" />
+    <MESSAGE value="Update InsuranceCard class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update InsuranceCard class" />
   </component>
 </project>
