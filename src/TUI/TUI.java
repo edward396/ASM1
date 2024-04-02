@@ -8,10 +8,7 @@ import Manager.ClaimProcessManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class TUI {
     private static final ClaimProcessManager claimManager = new ClaimProcessManager();
@@ -21,6 +18,7 @@ public class TUI {
 
         Scanner scanner = new Scanner(System.in);
 
+        //Menu
         while (true) {
             System.out.println("Welcome to Insurance Claims Management System");
             System.out.println("1. Add a Claim");
@@ -31,9 +29,20 @@ public class TUI {
             System.out.println("6. Save and Exit");
             System.out.print("Enter your choice: ");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = 0;
 
+            //Handle invalid input
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                System.out.println("-------------------------------------------");
+                scanner.nextLine();
+                continue;
+            }
+
+            //Call the method relative to the user's input
             switch (choice) {
                 case 1:
                     addClaim(scanner);
@@ -55,6 +64,7 @@ public class TUI {
                     return;
                 default:
                     System.out.println("Invalid choice. Try again.");
+                    System.out.println("-------------------------------------------");
             }
         }
     }
