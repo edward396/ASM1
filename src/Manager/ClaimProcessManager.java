@@ -9,6 +9,7 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -72,24 +73,31 @@ import java.util.List;
 
         @Override
         public void loadFromFile(String fileName) {
-            try (BufferedReader reader = new BufferedReader(new FileReader("sampleClaims.txt"))) {
+            claims.clear();  // Clear existing claims before loading from file
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
                 String line;
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 while ((line = reader.readLine()) != null) {
-                    String claimID = line;
-                    Date claimDate = dateFormat.parse(reader.readLine());
-                    String insuredPerson = reader.readLine();
-                    String cardNumber = reader.readLine();
-                    Date examDate = dateFormat.parse(reader.readLine());
-                    List<String> documents = List.of(reader.readLine().split(","));
-                    double amount = Double.parseDouble(reader.readLine());
-                    String status = reader.readLine();
-                    String receiverBankingInfo = reader.readLine();
+                    String[] parts = line.split(": ", 2);  // Split into two parts
+                    if (parts.length > 1) {
+                        String value = parts[1].trim();
 
-                    Claim claim = new Claim(claimID, claimDate, insuredPerson, cardNumber, examDate, documents, amount, status, receiverBankingInfo);
-                    claims.add(claim);
+                        String claimID = value;
+                        Date claimDate = dateFormat.parse(reader.readLine().split(": ")[1].trim());
+                        String insuredPerson = reader.readLine().split(": ")[1].trim();
+                        String cardNumber = reader.readLine().split(": ")[1].trim();
+                        Date examDate = dateFormat.parse(reader.readLine().split(": ")[1].trim());
+                        List<String> documents = Arrays.asList(reader.readLine().split(": ")[1].trim().split(","));
+                        double amount = Double.parseDouble(reader.readLine().split(": ")[1].trim());
+                        String status = reader.readLine().split(": ")[1].trim();
+                        String receiverBankingInfo = reader.readLine().split(": ")[1].trim();
 
-                    reader.readLine();
+                        Claim claim = new Claim(claimID, claimDate, insuredPerson, cardNumber, examDate, documents, amount, status, receiverBankingInfo);
+                        claims.add(claim);
+
+                        // Read separator between claims
+                        reader.readLine();
+                    }
                 }
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
