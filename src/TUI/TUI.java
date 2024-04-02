@@ -17,7 +17,7 @@ public class TUI {
     private static final ClaimProcessManager claimManager = new ClaimProcessManager();
 
     public static void main(String[] args) {
-        claimManager.loadFromFile("sampleClaims.txt");
+        claimManager.loadFromFile("claimData.txt");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -60,24 +60,8 @@ public class TUI {
     }
 
     private static void loadSampleData() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date claimDate1 = dateFormat.parse("2022-01-15");
-            Date examDate1 = dateFormat.parse("2022-01-20");
-            Date claimDate2 = dateFormat.parse("2022-02-10");
-            Date examDate2 = dateFormat.parse("2022-02-15");
-
-            Claim claim1 = new Claim("f-000001", claimDate1, "John Doe", "1234567890", examDate1,
-                    Arrays.asList("f-000001_1234567890_Document1.pdf"), 500.0, "New", "BankName - Name - 12345");
-            Claim claim2 = new Claim("f-000002", claimDate2, "Jane Doe", "0987654321", examDate2,
-                    Arrays.asList("f-000002_0987654321_Document1.pdf"), 700.0, "Processing", "BankName - Name - 67890");
-
-            claimManager.add(claim1);
-            claimManager.add(claim2);
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        claimManager.loadFromFile("src/resources/claimData.txt");
+        System.out.println("Sample data loaded successfully.");
     }
 
     private static void addClaim(Scanner scanner) {
@@ -108,8 +92,8 @@ public class TUI {
             e.printStackTrace();
         }
 
-        System.out.print("Enter Document Names (comma-separated): ");
-        String[] documentArray = scanner.nextLine().split(",");
+        System.out.print("Enter Document Names (seperate by underscore): ");
+        String[] documentArray = scanner.nextLine().split("_");
         List<String> documents = Arrays.asList(documentArray);
 
         System.out.print("Enter Claim Amount: ");
@@ -134,7 +118,7 @@ public class TUI {
         Claim existingClaim = claimManager.getOne(claimID);
 
         if (existingClaim != null) {
-            System.out.print("Enter Claim Date (yyyy-MM-dd): ");
+            System.out.print("Enter Claim Date (dd-MM-yyyy): ");
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             try {
                 Date claimDate = dateFormat.parse(scanner.nextLine());
@@ -149,7 +133,7 @@ public class TUI {
             System.out.print("Enter Card Number: ");
             existingClaim.setCardNumber(scanner.nextLine());
 
-            System.out.print("Enter Exam Date (yyyy-MM-dd): ");
+            System.out.print("Enter Exam Date (dd-MM-yyyy): ");
             try {
                 Date examDate = dateFormat.parse(scanner.nextLine());
                 existingClaim.setExamDate(examDate);
@@ -207,11 +191,18 @@ public class TUI {
     }
 
     private static void viewAllClaims() {
-        claimManager.getAll().forEach(System.out::println);
+        List<Claim> allClaims = claimManager.getAll();
+        if (!allClaims.isEmpty()) {
+            for (Claim claim : allClaims) {
+                System.out.println(claim);
+            }
+        } else {
+            System.out.println("No claims found.");
+        }
     }
 
     private static void saveAndExit() {
-        claimManager.saveToFile("sampleClaims.txt");
+        claimManager.saveToFile("src/File/claimData.txt");
         System.out.println("Data saved successfully. Exiting...");
     }
 }
