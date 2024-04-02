@@ -3,22 +3,10 @@
  */
 package TUI;
 
-import Classes.Claim;
-import Manager.ClaimProcessManager;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import static TUI.userInterface.*;
+import java.util.Scanner;
 
 public class menuDisplay {
-    static final ClaimProcessManager claimManager = new ClaimProcessManager();
-    static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-    public static void main(String[] args) {
-        claimManager.loadFromFile("claimData.txt");
-
+        public void displayMenu() {
         Scanner scanner = new Scanner(System.in);
 
         //Menu
@@ -38,32 +26,33 @@ public class menuDisplay {
             try {
                 choice = scanner.nextInt();
                 scanner.nextLine();
-            } catch (InputMismatchException e) {
+            } catch (Exception e) {
                 System.out.println("Invalid input. Please enter a number.");
-                System.out.println("-------------------------------------------");
                 scanner.nextLine();
                 continue;
             }
 
+            userInterface claimProcessUI = new userInterface();
+
             //Call the method relative to the user's input
             switch (choice) {
                 case 1:
-                    addClaim(scanner);
+                    claimProcessUI.addClaim(scanner);
                     break;
                 case 2:
-                    updateClaim(scanner);
+                    claimProcessUI.updateClaim(scanner);
                     break;
                 case 3:
-                    deleteClaim(scanner);
+                    claimProcessUI.deleteClaim(scanner);
                     break;
                 case 4:
-                    viewClaim(scanner);
+                    claimProcessUI.viewClaim(scanner);
                     break;
                 case 5:
-                    viewAllClaims();
+                    claimProcessUI.viewAllClaims();
                     break;
                 case 6:
-                    saveAndExit();
+                    claimProcessUI.saveAndExit();
                     return;
                 default:
                     System.out.println("Invalid choice. Try again.");
