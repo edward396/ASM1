@@ -1,81 +1,26 @@
-/**
- * @author <Nguyen Vo Truong Toan - s3979056>
- */
 package TUI;
 
 import Classes.Claim;
+import Manager.ClaimProcess;
 import Manager.ClaimProcessManager;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
 
-public class TUI {
-    private static final ClaimProcessManager claimManager = new ClaimProcessManager();
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+import static TUI.menuDisplay.claimManager;
+import static TUI.menuDisplay.dateFormat;
 
-    public static void main(String[] args) {
-        claimManager.loadFromFile("claimData.txt");
+public class userInterface {
 
-        Scanner scanner = new Scanner(System.in);
+//    private static void loadSampleData() {
+//        claimManager.loadFromFile("src/File/claimData.txt");
+//        System.out.println("Sample data loaded successfully.");
+//    }
 
-        //Menu
-        while (true) {
-            System.out.println("Welcome to Insurance Claims Management System");
-            System.out.println("1. Add a Claim");
-            System.out.println("2. Update a Claim");
-            System.out.println("3. Delete a Claim");
-            System.out.println("4. View a Claim");
-            System.out.println("5. View all Claims");
-            System.out.println("6. Save and Exit");
-            System.out.print("Enter your choice: ");
-
-            int choice = 0;
-
-            //Handle invalid input
-            try {
-                choice = scanner.nextInt();
-                scanner.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a number.");
-                System.out.println("-------------------------------------------");
-                scanner.nextLine();
-                continue;
-            }
-
-            //Call the method relative to the user's input
-            switch (choice) {
-                case 1:
-                    addClaim(scanner);
-                    break;
-                case 2:
-                    updateClaim(scanner);
-                    break;
-                case 3:
-                    deleteClaim(scanner);
-                    break;
-                case 4:
-                    viewClaim(scanner);
-                    break;
-                case 5:
-                    viewAllClaims();
-                    break;
-                case 6:
-                    saveAndExit();
-                    return;
-                default:
-                    System.out.println("Invalid choice. Try again.");
-                    System.out.println("-------------------------------------------");
-            }
-        }
-    }
-
-    private static void loadSampleData() {
-        claimManager.loadFromFile("src/File/claimData.txt");
-        System.out.println("Sample data loaded successfully.");
-    }
-
-    private static void addClaim(Scanner scanner) {
+    static void addClaim(Scanner scanner) {
         System.out.print("Enter Claim ID: ");
         String claimID = scanner.nextLine();
 
@@ -116,14 +61,16 @@ public class TUI {
         String receiverBankingInfo = scanner.nextLine();
 
         Claim newClaim = new Claim(claimID, claimDate, insuredPerson, cardNumber, examDate, documents, amount, status, receiverBankingInfo);
+        ClaimProcess claimManager = null;
         claimManager.add(newClaim);
         System.out.println("Claim added successfully.");
     }
 
-    private static void updateClaim(Scanner scanner) {
+    static void updateClaim(Scanner scanner) {
         System.out.print("Enter claim ID to update: ");
         String claimID = scanner.nextLine();
 
+        ClaimProcess claimManager = null;
         Claim existingClaim = claimManager.getOne(claimID);
 
         if (existingClaim != null) {
@@ -171,7 +118,7 @@ public class TUI {
         }
     }
 
-    private static void deleteClaim(Scanner scanner) {
+    static void deleteClaim(Scanner scanner) {
         System.out.print("Enter claim ID to delete: ");
         String claimID = scanner.nextLine();
 
@@ -185,7 +132,7 @@ public class TUI {
         }
     }
 
-    private static void viewClaim(Scanner scanner) {
+    static void viewClaim(Scanner scanner) {
         System.out.print("Enter claim ID to view: ");
         String claimId = scanner.nextLine();
 
@@ -198,7 +145,7 @@ public class TUI {
         }
     }
 
-    private static void viewAllClaims() {
+    static void viewAllClaims() {
         List<Claim> allClaims = claimManager.getAll();
         if (!allClaims.isEmpty()) {
             for (Claim claim : allClaims) {
@@ -209,8 +156,9 @@ public class TUI {
         }
     }
 
-    private static void saveAndExit() {
+    static void saveAndExit() {
         claimManager.saveToFile("src/File/claimData.txt");
         System.out.println("Data saved successfully. Exiting...");
     }
 }
+
