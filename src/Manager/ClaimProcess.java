@@ -4,6 +4,7 @@
 package Manager;
 
 import Classes.Claim;
+import Classes.Customer;
 
 import java.util.List;
 
@@ -15,4 +16,8 @@ public interface ClaimProcess {
     List<Claim> getAll();
     void saveToFile(String fileName);
     void loadFromFile(String fileName);
+
+    List<Customer> getAllCustomers();
+
+    void addCustomer(Customer insuredPerson);
 }
