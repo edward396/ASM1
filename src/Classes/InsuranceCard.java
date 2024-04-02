@@ -3,6 +3,7 @@
  */
 package Classes;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class InsuranceCard {
@@ -55,11 +56,12 @@ public class InsuranceCard {
     }
     @Override
     public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return "InsuranceCard: " +
                 "{Card Number:'" + cardNumber + '\'' +
                 ", Card Holder:'" + cardHolder + '\'' +
                 ", Policy Owner:'" + policyOwner + '\'' +
-                ", Expiration Date:" + expirationDate +
+                ", Expiration Date:" + dateFormat.format(expirationDate) +
                 '}';
     }
 }
