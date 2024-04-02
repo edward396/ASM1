@@ -110,7 +110,7 @@ public class Claim {
 
     @Override
     public String toString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return "Clam Info:" + "\n" +
                 "{Claim ID: " + claimID + ", " +
                 "Claim Date: " + dateFormat.format(claimDate) + ", " +
