@@ -12,6 +12,7 @@ import java.util.*;
 
 public class TUI {
     private static final ClaimProcessManager claimManager = new ClaimProcessManager();
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     public static void main(String[] args) {
         claimManager.loadFromFile("claimData.txt");
@@ -70,13 +71,11 @@ public class TUI {
     }
 
     private static void loadSampleData() {
-        claimManager.loadFromFile("src/resources/claimData.txt");
+        claimManager.loadFromFile("src/File/claimData.txt");
         System.out.println("Sample data loaded successfully.");
     }
 
     private static void addClaim(Scanner scanner) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
         System.out.print("Enter Claim ID: ");
         String claimID = scanner.nextLine();
 
@@ -102,7 +101,7 @@ public class TUI {
             e.printStackTrace();
         }
 
-        System.out.print("Enter Document Names (seperate by underscore): ");
+        System.out.print("Enter Document Names (ClaimId_CardNumber_DocumentName.pdf): ");
         String[] documentArray = scanner.nextLine().split("_");
         List<String> documents = Arrays.asList(documentArray);
 
@@ -129,7 +128,6 @@ public class TUI {
 
         if (existingClaim != null) {
             System.out.print("Enter Claim Date (dd-MM-yyyy): ");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             try {
                 Date claimDate = dateFormat.parse(scanner.nextLine());
                 existingClaim.setClaimDate(claimDate);
@@ -151,8 +149,8 @@ public class TUI {
                 e.printStackTrace();
             }
 
-            System.out.print("Enter Document Names (comma-separated): ");
-            String[] documentArray = scanner.nextLine().split(",");
+            System.out.print("Enter Document Names (ClaimId_CardNumber_DocumentName.pdf): ");
+            String[] documentArray = scanner.nextLine().split("_");
             existingClaim.setDocuments(Arrays.asList(documentArray));
 
             System.out.print("Enter Claim Amount: ");
