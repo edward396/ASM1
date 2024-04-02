@@ -51,17 +51,17 @@ import java.util.List;
         @Override
         public void saveToFile(String fileName) {
             try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 for (Claim claim : claims) {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                    writer.println(claim.getClaimID());
-                    writer.println(dateFormat.format(claim.getClaimDate()));
-                    writer.println(claim.getInsuredPerson());
-                    writer.println(claim.getCardNumber());
-                    writer.println(dateFormat.format(claim.getExamDate()));
-                    writer.println(String.join(",", claim.getDocuments()));
-                    writer.println(claim.getAmount());
-                    writer.println(claim.getStatus());
-                    writer.println(claim.getReceiverBankingInfo());
+                    writer.println("Claim ID: " + claim.getClaimID());
+                    writer.println("Claim Date: " + dateFormat.format(claim.getClaimDate()));
+                    writer.println("Insured Person: " + claim.getInsuredPerson());
+                    writer.println("Card Number: " + claim.getCardNumber());
+                    writer.println("Exam Date: " + dateFormat.format(claim.getExamDate()));
+                    writer.println("Documents: " + String.join(",", claim.getDocuments()));
+                    writer.println("Claim Amount: " + claim.getAmount());
+                    writer.println("Status: " + claim.getStatus());
+                    writer.println("Receiver Banking Info: " + claim.getReceiverBankingInfo());
                     writer.println("-----");  // Separator between claims
                 }
             } catch (IOException e) {
@@ -72,7 +72,7 @@ import java.util.List;
 
         @Override
         public void loadFromFile(String fileName) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            try (BufferedReader reader = new BufferedReader(new FileReader("sampleClaims.txt"))) {
                 String line;
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 while ((line = reader.readLine()) != null) {
@@ -89,7 +89,6 @@ import java.util.List;
                     Claim claim = new Claim(claimID, claimDate, insuredPerson, cardNumber, examDate, documents, amount, status, receiverBankingInfo);
                     claims.add(claim);
 
-                    // Read separator between claims
                     reader.readLine();
                 }
             } catch (IOException | ParseException e) {
