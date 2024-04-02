@@ -3,7 +3,9 @@
  */
 package Manager;
 
+import Classes.BankingInfo;
 import Classes.Claim;
+import Classes.Customer;
 
 import java.io.*;
 import java.text.ParseException;
@@ -15,6 +17,7 @@ import java.util.List;
 
     public class ClaimProcessManager implements ClaimProcess {
         private List<Claim> claims = new ArrayList<>();
+        private List<Customer> customers = new ArrayList<>();
 
         @Override
         public void add(Claim claim) {
@@ -51,19 +54,19 @@ import java.util.List;
 
         @Override
         public void saveToFile(String fileName) {
-            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName, true))) {
                 for (Claim claim : claims) {
-                    writer.println("Claim ID: " + claim.getClaimID());
-                    writer.println("Claim Date: " + dateFormat.format(claim.getClaimDate()));
-                    writer.println("Insured Person: " + claim.getInsuredPerson());
-                    writer.println("Card Number: " + claim.getCardNumber());
-                    writer.println("Exam Date: " + dateFormat.format(claim.getExamDate()));
-                    writer.println("Documents: " + String.join(",", claim.getDocuments()));
-                    writer.println("Claim Amount: " + claim.getAmount());
-                    writer.println("Status: " + claim.getStatus());
-                    writer.println("Receiver Banking Info: " + claim.getReceiverBankingInfo());
-                    writer.println("-----");  // Separator between claims
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    writer.println(claim.getClaimID());
+                    writer.println(dateFormat.format(claim.getClaimDate()));
+                    writer.println(claim.getInsuredPerson().getCustomerID());
+                    writer.println(claim.getCardNumber());
+                    writer.println(dateFormat.format(claim.getExamDate()));
+                    writer.println(String.join(",", claim.getDocuments()));
+                    writer.println(claim.getAmount());
+                    writer.println(claim.getStatus());
+                    writer.println(claim.getReceiverBankingInfo());
+                    writer.println("------------------------------------------------------");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -83,14 +86,32 @@ import java.util.List;
                         String value = parts[1].trim();
 
                         String claimID = value;
-                        Date claimDate = dateFormat.parse(reader.readLine().split(": ")[1].trim());
-                        String insuredPerson = reader.readLine().split(": ")[1].trim();
-                        String cardNumber = reader.readLine().split(": ")[1].trim();
-                        Date examDate = dateFormat.parse(reader.readLine().split(": ")[1].trim());
-                        List<String> documents = Arrays.asList(reader.readLine().split(": ")[1].trim().split(","));
-                        double amount = Double.parseDouble(reader.readLine().split(": ")[1].trim());
-                        String status = reader.readLine().split(": ")[1].trim();
-                        String receiverBankingInfo = reader.readLine().split(": ")[1].trim();
+
+                        line = reader.readLine();
+                        Date claimDate = dateFormat.parse(line.split(": ")[1].trim());
+
+                        line = reader.readLine();
+                        String insuredPersonID = line.split(": ")[1].trim();
+                        Customer insuredPerson = getCustomer(insuredPersonID);
+
+                        line = reader.readLine();
+                        String cardNumber = line.split(": ")[1].trim();
+
+                        line = reader.readLine();
+                        Date examDate = dateFormat.parse(line.split(": ")[1].trim());
+
+                        line = reader.readLine();
+                        List<String> documents = Arrays.asList(line.split(": ")[1].trim().split("_"));
+
+                        line = reader.readLine();
+                        double amount = Double.parseDouble(line.split(": ")[1].trim());
+
+                        line = reader.readLine();
+                        String status = line.split(": ")[1].trim();
+
+                        line = reader.readLine();
+                        String[] bankingInfoArray = line.split(": ")[1].trim().split(" - ");
+                        BankingInfo receiverBankingInfo = new BankingInfo(bankingInfoArray[0], bankingInfoArray[1], bankingInfoArray[2]);
 
                         Claim claim = new Claim(claimID, claimDate, insuredPerson, cardNumber, examDate, documents, amount, status, receiverBankingInfo);
                         claims.add(claim);
@@ -102,5 +123,23 @@ import java.util.List;
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
+        }
+
+        public void addCustomer(Customer customer) {
+            customers.add(customer);
+        }
+
+        private Customer getCustomer(String customerID) {
+            List<Customer> allCustomers = getAllCustomers();
+            for (Customer customer : allCustomers) {
+                if (customer.getCustomerID().equals(customerID)) {
+                    return customer;
+                }
+            }
+            return null;
+        }
+
+        public List<Customer> getAllCustomers() {
+            return customers;
         }
     }
