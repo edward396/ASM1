@@ -13,7 +13,6 @@ public interface ClaimProcess {
     void delete(String claimId);
     Claim getOne(String claimId);
     List<Claim> getAll();
-
     void saveToFile(String fileName);
     void loadFromFile(String fileName);
 }
