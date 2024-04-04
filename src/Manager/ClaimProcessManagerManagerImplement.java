@@ -71,7 +71,7 @@ public class ClaimProcessManagerManagerImplement implements ClaimProcessManager 
                 writer.print(claim.getInsuredPerson() + ", ");
                 writer.print(claim.getCardNumber() + ", ");
                 writer.print(dateFormat.format(claim.getExamDate()) + ", ");
-                writer.print(String.join(", ", claim.getDocuments()) + ", ");
+                writer.print(String.join("_", claim.getDocuments()) + ", ");
                 writer.print(claim.getAmount() + ", ");
                 writer.print(claim.getStatus() + ", ");
                 writer.print(claim.getBankName() + ", ");
