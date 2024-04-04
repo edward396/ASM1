@@ -1,4 +1,4 @@
-package TUI;
+package Handler;
 
 /**
  * @author Nguyen Vo Truong Toan
@@ -6,8 +6,8 @@ package TUI;
  * version JDK21
  */
 import Classes.Claim;
-import Manager.ClaimProcessManager;
-import Manager.ClaimProcessManagerManagerImplement;
+import ClaimManager.ClaimProcessManager;
+import ClaimManager.ClaimProcessManagerImplement;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -19,9 +19,9 @@ public class ClaimInputHandler {
     private static ClaimProcessManager claimManager;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-    static {
+    public ClaimInputHandler() {
         try {
-            claimManager = new ClaimProcessManagerManagerImplement("src/File/claimData.txt");
+            this.claimManager = new ClaimProcessManagerImplement("src/File/claimData.txt");
         } catch (Exception e) {
             System.out.println("Error initializing ClaimProcessManager: " + e.getMessage());
             System.exit(1);  // Exit the program if there's an error
@@ -87,26 +87,9 @@ public class ClaimInputHandler {
             Claim existingClaim = claimManager.getOne(claimID);
 
             if (existingClaim != null) {
-                System.out.println("Enter Claim Date (dd-MM-yyyy): ");
-                String stringClaimDate = scanner.next();
-
-                Date claimDate = dateFormat.parse(stringClaimDate);
-
-                System.out.print("Enter Insured Person: ");
-                String insuredPerson = scanner.nextLine();
-
-                System.out.print("Enter Card Number: ");
-                String cardNumber = scanner.nextLine();
-
-                Date examDate = InputValidator.getDateInput(scanner, "Enter Exam Date (dd-MM-yyyy): ");
-
-                System.out.print("Enter Document Names (claimId_cardNumber_documentName.pdf): ");
-                String[] documentArray = scanner.nextLine().split("_");
-                List<String> documents = Arrays.asList(documentArray);
-
-                double amount = InputValidator.getDoubleInput(scanner, "Enter Claim Amount: ");
-
+                System.out.println("Enter Status (New, Processing, Done): ");
                 String status = InputValidator.getStringInput(scanner, "Enter Status (New, Processing, Done): ");
+
                 System.out.print("Enter Receiver Banking Info (Bank Name): ");
                 String bankName = scanner.nextLine();
 
@@ -116,20 +99,21 @@ public class ClaimInputHandler {
                 System.out.print("Enter Receiver Banking Info (Account Number): ");
                 String accountNumber = scanner.nextLine();
 
-                Claim claim = new Claim.Builder()
+                Claim updatedClaim = new Claim.Builder()
                         .claimID(claimID)
-                        .claimDate(claimDate)
-                        .insuredPerson(insuredPerson)
-                        .cardNumber(cardNumber)
-                        .examDate(examDate)
-                        .documents(documents)
-                        .amount(amount)
-                        .status(status)
-                        .bankName(bankName)
-                        .accountOwner(accountOwner)
-                        .accountNumber(accountNumber)
+                        .claimDate(existingClaim.getClaimDate())  // Keep the original date
+                        .insuredPerson(existingClaim.getInsuredPerson())  // Keep the original insured person
+                        .cardNumber(existingClaim.getCardNumber())  // Keep the original card number
+                        .examDate(existingClaim.getExamDate())  // Keep the original exam date
+                        .documents(existingClaim.getDocuments())  // Keep the original documents
+                        .amount(existingClaim.getAmount())  // Keep the original amount
+                        .status(status)  // Update the status
+                        .bankName(bankName)  // Update the bank name
+                        .accountOwner(accountOwner)  // Update the account owner
+                        .accountNumber(accountNumber)  // Update the account number
                         .build();
-                claimManager.update(claim);
+
+                claimManager.update(updatedClaim);
                 System.out.println("Claim updated successfully.");
 
             } else {
