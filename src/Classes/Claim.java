@@ -131,10 +131,10 @@ public class Claim {
     public String toString() {
         return "Claim{" +
                 "claimID='" + claimID + '\'' +
-                ", claimDate=" + claimDate +
+                ", claimDate=" + dateFormat.format(claimDate) +
                 ", insuredPerson='" + insuredPerson + '\'' +
                 ", cardNumber='" + cardNumber + '\'' +
-                ", examDate=" + examDate +
+                ", examDate=" + dateFormat.format(examDate) +
                 ", documents=" + documents +
                 ", amount=" + amount +
                 ", status='" + status + '\'' +
@@ -143,4 +143,6 @@ public class Claim {
                 ", accountNumber='" + accountNumber + '\'' +
                 '}';
     }
+
+
 }
