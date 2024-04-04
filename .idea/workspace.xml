@@ -4,25 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/intellij-javadocs-4.0.1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Manager/ClaimProcessManagerManagerImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Formatted the Date reference objects">
+      <change afterPath="$PROJECT_DIR$/src/TUI/ClaimInputHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TUI/InputValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/BankingInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/ReceiverBankingInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Claim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Dependent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/File/claimData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/claimData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Manager/ClaimProcess.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Manager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager/ClaimProcessManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/MainClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/menuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/MenuDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/userInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/InputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Manager/ClaimProcessManagerManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager/ClaimProcessManagerManagerImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TUI/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/InputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TUI/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/MainClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TUI/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/MenuDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,27 +33,27 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2ecxqKfqVUBVmT2wnQG1IkXI5q5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MainClass.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Global Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "fileTemplates"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MainClass.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -79,6 +70,37 @@
       <option name="presentableId" value="Default" />
       <updated>1712217858540</updated>
     </task>
+    <task id="LOCAL-00001" summary="Decorate the menu pattern">
+      <option name="closed" value="true" />
+      <created>1712234906554</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712234906554</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Change the format to save Documents">
+      <option name="closed" value="true" />
+      <created>1712234962926</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712234962926</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Formatted the Date reference objects">
+      <option name="closed" value="true" />
+      <created>1712234990515</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712234990515</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Decorate the menu pattern" />
+    <MESSAGE value="Change the format to save Documents" />
+    <MESSAGE value="Formatted the Date reference objects" />
+    <option name="LAST_COMMIT_MESSAGE" value="Formatted the Date reference objects" />
   </component>
 </project>
