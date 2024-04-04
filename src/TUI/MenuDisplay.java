@@ -3,12 +3,16 @@
  */
 package TUI;
 
+import TUI.ClaimInputHandler;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class MenuDisplay {
-        public static void displayMenu() {
+
+    private final ClaimInputHandler inputHandler = new ClaimInputHandler();
+
+    public void displayMenu() {
         Scanner scanner = new Scanner(System.in);
 
         //Menu
@@ -25,10 +29,6 @@ public class MenuDisplay {
             System.out.println("| 6. Save and Exit                           |");
             System.out.println("==============================================");
             System.out.print("Enter your choice: ");
-            //Option to add and delete customer
-            // ... claim
-            // ... insuranceCard
-            //Relationship between entities (delete one => the other be deleted also)
 
             int choice = 0;
 
@@ -46,27 +46,25 @@ public class MenuDisplay {
                 continue;
             }
 
-            InputHandler claimProcessUI = new InputHandler();
-
             //Call the method relative to the user's input
             switch (choice) {
                 case 1:
-                    claimProcessUI.addClaim(scanner);
+                    inputHandler.addClaim(scanner);
                     break;
                 case 2:
-                    claimProcessUI.updateClaim(scanner);
+                    inputHandler.updateClaim(scanner);
                     break;
                 case 3:
-                    claimProcessUI.deleteClaim(scanner);
+                    inputHandler.deleteClaim(scanner);
                     break;
                 case 4:
-                    claimProcessUI.viewClaim(scanner);
+                    inputHandler.viewClaim(scanner);
                     break;
                 case 5:
-                    claimProcessUI.viewAllClaims();
+                    inputHandler.viewAllClaims();
                     break;
                 case 6:
-                    claimProcessUI.saveAndExit();
+                    inputHandler.saveAndExit();
                     return;
                 default:
                     System.out.println("Invalid choice. Try again.");

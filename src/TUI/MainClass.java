@@ -5,7 +5,7 @@ package TUI;
 
 public class MainClass {
     public static void main(String[] args) {
-        InputHandler menu = new InputHandler();
-        MenuDisplay.displayMenu();
+        MenuDisplay menuDisplay = new MenuDisplay();
+        menuDisplay.displayMenu();
     }
 }
