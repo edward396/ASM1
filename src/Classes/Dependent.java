@@ -3,14 +3,16 @@
  */
 package Classes;
 
+import java.util.ArrayList;
+
 public class Dependent extends Customer {
 
-    public Dependent(String customerID, String fullName, String insuranceCard) {
-        super(customerID, fullName, insuranceCard);
+    public Dependent(String customerID, String fullName, String insuranceCard, ArrayList<Claim> claimList) {
+        super(customerID, fullName, insuranceCard, claimList);
     }
 
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "Clam Info:" + "\n" +
                 "{Dependent ID: " + getCustomerID() + ", " +
                 "Full Name: " + getFullName() + ", " +

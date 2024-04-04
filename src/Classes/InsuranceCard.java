@@ -11,9 +11,8 @@ public class InsuranceCard {
     private String cardHolder;
     private String policyOwner;
     private Date expirationDate;
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-    public InsuranceCard() {
-    }
     public InsuranceCard(String cardNumber, String cardHolder, String policyOwner, Date expirationDate) {
         this.cardNumber = cardNumber;
         this.cardHolder = cardHolder;
@@ -21,42 +20,40 @@ public class InsuranceCard {
         this.expirationDate = expirationDate;
     }
 
-    //Getters
     public String getCardNumber() {
         return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     public String getCardHolder() {
         return cardHolder;
     }
 
-    public String getPolicyOwner() {
-        return policyOwner;
-    }
-
-    public Date getExpirationDate() {
-        return expirationDate;
-    }
-
-    //Setters
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
-
     public void setCardHolder(String cardHolder) {
         this.cardHolder = cardHolder;
+    }
+
+    public String getPolicyOwner() {
+        return policyOwner;
     }
 
     public void setPolicyOwner(String policyOwner) {
         this.policyOwner = policyOwner;
     }
 
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
+
     @Override
     public String toString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return "InsuranceCard: " +
                 "{Card Number:'" + cardNumber + '\'' +
                 ", Card Holder:'" + cardHolder + '\'' +

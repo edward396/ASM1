@@ -1,10 +1,2 @@
-Claim ID: f-1123214213
-Claim Date: 12-09-2324
-Insured Person: JKs
-Card Number: 13213214324
-Exam Date: 12-11-2324
-Documents: q24,12,doc1.pdf
-Claim Amount: 324124.0
-Status: New
-Receiver Banking Info: AS - JKas = 214124
------
+f-1234567890, 12-11-2134, 213123, 2132142141, 12-12-2311, nadsflfnl.pdf, 213213.0, New, fsd, qd, 123
+f-1234567890, 12-12-3232, JNjn, 213123, 12-08-2315, dsff, asddfa, dffa.pdf, 2.13412412E8, P, KNLJnsa, JNLJndlja, 2	3213

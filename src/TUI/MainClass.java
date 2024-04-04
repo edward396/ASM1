@@ -3,9 +3,9 @@
  */
 package TUI;
 
-public class Main {
+public class MainClass {
     public static void main(String[] args) {
-        menuDisplay menuDisplay = new menuDisplay();
-        menuDisplay.displayMenu();
+        InputHandler menu = new InputHandler();
+        MenuDisplay.displayMenu();
     }
 }

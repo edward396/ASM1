@@ -3,10 +3,12 @@
  */
 package TUI;
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class menuDisplay {
-        public void displayMenu() {
+public class MenuDisplay {
+        public static void displayMenu() {
         Scanner scanner = new Scanner(System.in);
 
         //Menu
@@ -16,9 +18,13 @@ public class menuDisplay {
             System.out.println("2. Update a Claim");
             System.out.println("3. Delete a Claim");
             System.out.println("4. View a Claim");
-            System.out.println("5. View all Claims");
+            System.out.println("5. View all Claims"); //all claims of one customer or the whole system
             System.out.println("6. Save and Exit");
             System.out.print("Enter your choice: ");
+            //Option to add and delete customer
+            // ... claim
+            // ... insuranceCard
+            //Relationship between entities (delete one => the other be deleted also)
 
             int choice = 0;
 
@@ -26,13 +32,17 @@ public class menuDisplay {
             try {
                 choice = scanner.nextInt();
                 scanner.nextLine();
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine();
+                continue;
+            } catch (NoSuchElementException e) {
+                System.out.println("No line found. Please enter a number.");
                 scanner.nextLine();
                 continue;
             }
 
-            userInterface claimProcessUI = new userInterface();
+            InputHandler claimProcessUI = new InputHandler();
 
             //Call the method relative to the user's input
             switch (choice) {

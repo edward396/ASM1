@@ -3,13 +3,9 @@
  */
 package TUI;
 
-import Classes.BankingInfo;
-import Classes.Claim;
-import Classes.Customer;
-import Classes.Dependent;
-import Classes.PolicyHolder;
-import Manager.ClaimProcess;
+import Classes.*;
 import Manager.ClaimProcessManager;
+import Manager.ClaimProcessManagerManagerImplement;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -18,9 +14,18 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class userInterface {
-    private static final ClaimProcess claimManager = new ClaimProcessManager();
+public class InputHandler {
+    private static ClaimProcessManager claimManager;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+    static {
+        try {
+            claimManager = new ClaimProcessManagerManagerImplement("src/File/claimData.txt");
+        } catch (Exception e) {
+            System.out.println("Error initializing ClaimProcessManager: " + e.getMessage());
+            System.exit(1);  // Exit the program if there's an error
+        }
+    }
 
     public void addClaim(Scanner scanner) {
         try {
@@ -28,38 +33,8 @@ public class userInterface {
 
             Date claimDate = getDateInput(scanner, "Enter Claim Date (dd-MM-yyyy): ");
 
-            System.out.print("Enter Insured Person ID: ");
-            String insuredPersonID = scanner.nextLine();
-            Customer insuredPerson = getCustomer(insuredPersonID);
-
-            // Start of the while loop to handle incorrect person type
-            while (insuredPerson == null) {
-                System.out.print("Enter Insured Person Name: ");
-                String insuredPersonName = scanner.nextLine();
-
-                System.out.print("Enter Insured Person Email: ");
-                String insuredPersonEmail = scanner.nextLine();
-
-
-                String type;
-                while (true) {
-                    System.out.print("Enter Insured Person Type (Dependent/PolicyHolder): ");
-                    type = scanner.nextLine();
-
-                    if ("Dependent".equalsIgnoreCase(type)) {
-                        insuredPerson = new Dependent(insuredPersonID, insuredPersonName, insuredPersonEmail);
-                        claimManager.addCustomer(insuredPerson);
-                        break;
-                    } else if ("PolicyHolder".equalsIgnoreCase(type)) {
-                        insuredPerson = new PolicyHolder(insuredPersonID, insuredPersonName, insuredPersonEmail);
-                        claimManager.addCustomer(insuredPerson);
-                        break;
-                    } else {
-                        System.out.println("Invalid person type. Please enter either Dependent or PolicyHolder.");
-                    }
-                }
-            }
-            // End of the while loop
+            System.out.print("Enter Insured Person: ");
+            String insuredPerson = scanner.nextLine();
 
             System.out.print("Enter Card Number: ");
             String cardNumber = scanner.nextLine();
@@ -72,43 +47,17 @@ public class userInterface {
 
             double amount = getDoubleInput(scanner, "Enter Claim Amount: ");
 
-            // Loop for incorrect status
-            String status;
-            while (true) {
-                status = getStringInput(scanner, "Enter Status (New, Processing, Done): ");
-                if ("New".equalsIgnoreCase(status) || "Processing".equalsIgnoreCase(status) || "Done".equalsIgnoreCase(status)) {
-                    break;
-                } else {
-                    System.out.println("Invalid status. Please enter either New, Processing, or Done.");
-                }
-            }
-            // End loop
+            String status = getStringInput(scanner, "Enter Status (New, Processing, Done): ");
+            System.out.print("Enter Receiver Banking Info (Bank Name): ");
+            String bankName = scanner.nextLine();
 
-            // Loop for Receiver Banking Info
-            String bank = "";
-            String name = "";
-            String number = "";
-            while (true) {
-                System.out.print("Enter Receiver Banking Info - Bank: ");
-                bank = scanner.nextLine();
+            System.out.print("Enter Receiver Banking Info (Account Owner): ");
+            String accountOwner = scanner.nextLine();
 
-                System.out.print("Enter Receiver Banking Info - Name: ");
-                name = scanner.nextLine();
+            System.out.print("Enter Receiver Banking Info (Account Number): ");
+            String accountNumber = scanner.nextLine();
 
-                System.out.print("Enter Receiver Banking Info - Number: ");
-                number = scanner.nextLine();
-
-                if (!bank.isEmpty() && !name.isEmpty() && !number.isEmpty()) {
-                    break;
-                } else {
-                    System.out.println("Please enter all banking info (Bank, Name, Number).");
-                }
-            }
-            // End loop
-
-            BankingInfo receiverBankingInfo = new BankingInfo(bank, name, number);
-
-            Claim newClaim = new Claim(claimID, claimDate, insuredPerson, cardNumber, examDate, documents, amount, status, receiverBankingInfo);
+            Claim newClaim = new Claim(claimID, claimDate, insuredPerson, cardNumber, examDate, documents, amount, status, bankName, accountOwner, accountNumber);
             claimManager.add(newClaim);
             System.out.println("Claim added successfully.");
         } catch (Exception e) {
@@ -124,31 +73,40 @@ public class userInterface {
             Claim existingClaim = claimManager.getOne(claimID);
 
             if (existingClaim != null) {
-                Date claimDate = getDateInput(scanner, "Enter Claim Date (dd-MM-yyyy): ");
+                System.out.println("Enter Claim Date (dd-MM-yyyy): ");
+                String stringClaimDate = scanner.next();
+
+                Date claimDate = dateFormat.parse(stringClaimDate);
+
 
                 System.out.print("Enter Insured Person: ");
-                String insuredPersonID = scanner.nextLine();
-                Customer insuredPerson = getCustomer(insuredPersonID);
+                String insuredPerson = scanner.nextLine();
 
                 System.out.print("Enter Card Number: ");
-                existingClaim.setCardNumber(scanner.nextLine());
+                String cardNumber = scanner.nextLine();
 
                 Date examDate = getDateInput(scanner, "Enter Exam Date (dd-MM-yyyy): ");
 
                 System.out.print("Enter Document Names (claimId_cardNumber_documentName.pdf): ");
                 String[] documentArray = scanner.nextLine().split("_");
-                existingClaim.setDocuments(Arrays.asList(documentArray));
+                List<String> documents = Arrays.asList(documentArray);
 
                 double amount = getDoubleInput(scanner, "Enter Claim Amount: ");
 
                 String status = getStringInput(scanner, "Enter Status (New, Processing, Done): ");
+                System.out.print("Enter Receiver Banking Info (Bank Name): ");
+                String bankName = scanner.nextLine();
 
-                System.out.print("Enter Receiver Banking Info (Bank - Name - Number): ");
-                String[] bankingInfoArray = scanner.nextLine().split(" - ");
-                existingClaim.setReceiverBankingInfo(new BankingInfo(bankingInfoArray[0], bankingInfoArray[1], bankingInfoArray[2]));
+                System.out.print("Enter Receiver Banking Info (Account Owner): ");
+                String accountOwner = scanner.nextLine();
 
-                claimManager.update(existingClaim);
+                System.out.print("Enter Receiver Banking Info (Account Number): ");
+                String accountNumber = scanner.nextLine();
+
+                Claim newClaim = new Claim(claimID, claimDate, insuredPerson, cardNumber, examDate, documents, amount, status, bankName, accountOwner, accountNumber);
+                claimManager.update(newClaim);
                 System.out.println("Claim updated successfully.");
+
             } else {
                 System.out.println("Claim not found.");
             }
@@ -213,6 +171,15 @@ public class userInterface {
 
     public void saveAndExit() {
         try {
+            // Check and set insuredPersonID if it's null
+            List<Claim> allClaims = claimManager.getAll();
+            for (Claim claim : allClaims) {
+                if (claim.getInsuredPerson() == null || claim.getClaimID() == null) {
+                    System.out.println("Error saving claims: Insured Person ID cannot be null.");
+                    return;
+                }
+            }
+
             claimManager.saveToFile("src/File/claimData.txt");
             System.out.println("Data saved. Exiting program...");
         } catch (Exception e) {
@@ -222,22 +189,22 @@ public class userInterface {
     }
 
     //Make sure format input handler for ID (must be "f-..." followed by 10 numbers)
-    private String getFormattedClaimID(Scanner scanner) {
+    private java.lang.String getFormattedClaimID(Scanner scanner) {
         while (true) {
             System.out.print("Enter Claim ID (f-followed by 10 numbers): ");
-            String input = scanner.nextLine();
-            String claimID = formatClaimID(input);
+            java.lang.String input = scanner.nextLine();
+            java.lang.String claimID = formatClaimID(input);
             if (claimID != null) {
                 return claimID;
             }
         }
     }
 
-    private String formatClaimID(String input) {
+    private java.lang.String formatClaimID(java.lang.String input) {
         if (input.matches("^f-\\d{10}$")) {
             return input;
         } else if (input.matches("^\\d{1,9}$")) {
-            String paddedNumber = String.format("%010d", Long.parseLong(input));
+            java.lang.String paddedNumber = java.lang.String.format("%010d", Long.parseLong(input));
             return "f-" + paddedNumber;
         } else {
             System.out.println("Invalid Claim ID format. Please enter the Claim ID in the correct format.");
@@ -245,18 +212,8 @@ public class userInterface {
         }
     }
 
-    private Customer getCustomer(String customerID) {
-        List<Customer> allCustomers = claimManager.getAllCustomers();
-        for (Customer customer : allCustomers) {
-            if (customer.getCustomerID().equals(customerID)) {
-                return customer;
-            }
-        }
-        return null;
-    }
-
     //Error format input handler for Date
-    private Date getDateInput(Scanner scanner, String prompt) {
+    private Date getDateInput(Scanner scanner, java.lang.String prompt) {
         while (true) {
             try {
                 System.out.print(prompt);
@@ -268,7 +225,7 @@ public class userInterface {
     }
 
     //Error format input handler for Amount
-    private double getDoubleInput(Scanner scanner, String prompt) {
+    private double getDoubleInput(Scanner scanner, java.lang.String prompt) {
         while (true) {
             try {
                 System.out.print(prompt);
@@ -282,7 +239,7 @@ public class userInterface {
         }
     }
 
-    private String getStringInput(Scanner scanner, String prompt) {
+    private java.lang.String getStringInput(Scanner scanner, java.lang.String prompt) {
         System.out.print(prompt);
         return scanner.nextLine();
     }
