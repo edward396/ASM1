@@ -129,8 +129,7 @@ public class Claim {
 
     @Override
     public String toString() {
-        return "Claim{" +
-                "claimID='" + claimID + '\'' +
+        return "{claimID='" + claimID + '\'' +
                 ", claimDate=" + dateFormat.format(claimDate) +
                 ", insuredPerson='" + insuredPerson + '\'' +
                 ", cardNumber='" + cardNumber + '\'' +

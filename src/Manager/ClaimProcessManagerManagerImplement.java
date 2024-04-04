@@ -86,12 +86,12 @@ public class ClaimProcessManagerManagerImplement implements ClaimProcessManager 
 
 
     @Override
-    public void loadFromFile(java.lang.String fileName) {
+    public void loadFromFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             java.lang.String line;
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             while ((line = reader.readLine()) != null) {
-                java.lang.String[] parts = line.split(", ");
+                String[] parts = line.split(", ");
 
                 String claimID = parts[0].trim();
                 Date claimDate = dateFormat.parse(parts[1].trim());
