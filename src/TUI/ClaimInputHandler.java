@@ -58,8 +58,21 @@ public class ClaimInputHandler {
             System.out.print("Enter Receiver Banking Info (Account Number): ");
             String accountNumber = scanner.nextLine();
 
-            Claim newClaim = new Claim(claimID, claimDate, insuredPerson, cardNumber, examDate, documents, amount, status, bankName, accountOwner, accountNumber);
-            claimManager.add(newClaim);
+            Claim claim = new Claim.Builder()
+                    .claimID(claimID)
+                    .claimDate(claimDate)
+                    .insuredPerson(insuredPerson)
+                    .cardNumber(cardNumber)
+                    .examDate(examDate)
+                    .documents(documents)
+                    .amount(amount)
+                    .status(status)
+                    .bankName(bankName)
+                    .accountOwner(accountOwner)
+                    .accountNumber(accountNumber)
+                    .build();
+
+            claimManager.add(claim);
             System.out.println("Claim added successfully.");
         } catch (Exception e) {
             System.out.println("Error adding claim: " + e.getMessage());
@@ -103,8 +116,20 @@ public class ClaimInputHandler {
                 System.out.print("Enter Receiver Banking Info (Account Number): ");
                 String accountNumber = scanner.nextLine();
 
-                Claim newClaim = new Claim(claimID, claimDate, insuredPerson, cardNumber, examDate, documents, amount, status, bankName, accountOwner, accountNumber);
-                claimManager.update(newClaim);
+                Claim claim = new Claim.Builder()
+                        .claimID(claimID)
+                        .claimDate(claimDate)
+                        .insuredPerson(insuredPerson)
+                        .cardNumber(cardNumber)
+                        .examDate(examDate)
+                        .documents(documents)
+                        .amount(amount)
+                        .status(status)
+                        .bankName(bankName)
+                        .accountOwner(accountOwner)
+                        .accountNumber(accountNumber)
+                        .build();
+                claimManager.update(claim);
                 System.out.println("Claim updated successfully.");
 
             } else {
@@ -181,6 +206,7 @@ public class ClaimInputHandler {
 
             claimManager.saveToFile("src/File/claimData.txt");
             System.out.println("Data saved. Exiting program...");
+            System.exit(0);  // Exit the program
         } catch (Exception e) {
             System.out.println("Error saving claims: " + e.getMessage());
             System.out.println("-------------------------------------------");

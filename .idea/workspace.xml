@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Formatted the Date reference objects">
-      <change afterPath="$PROJECT_DIR$/src/TUI/ClaimInputHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TUI/InputValidator.java" afterDir="false" />
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Add Builder Pattern for the Claim class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Claim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/File/claimData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/claimData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Manager/ClaimProcessManagerManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager/ClaimProcessManagerManagerImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/InputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/MainClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/MenuDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TUI/ClaimInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/ClaimInputHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,13 +89,59 @@
       <option name="project" value="LOCAL" />
       <updated>1712234990515</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add SOLID design pattern">
+      <option name="closed" value="true" />
+      <created>1712236605865</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1712236605865</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Adjust to the SOLID design pattern">
+      <option name="closed" value="true" />
+      <created>1712236635386</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712236635386</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Format Updated">
+      <option name="closed" value="true" />
+      <created>1712236653154</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712236653154</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add more data">
+      <option name="closed" value="true" />
+      <created>1712236671468</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712236671468</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Updated">
+      <option name="closed" value="true" />
+      <created>1712236679592</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712236679592</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Decorate the menu pattern" />
     <MESSAGE value="Change the format to save Documents" />
     <MESSAGE value="Formatted the Date reference objects" />
-    <option name="LAST_COMMIT_MESSAGE" value="Formatted the Date reference objects" />
+    <MESSAGE value="Add SOLID design pattern" />
+    <MESSAGE value="Adjust to the SOLID design pattern" />
+    <MESSAGE value="Format Updated" />
+    <MESSAGE value="Add more data" />
+    <MESSAGE value="Updated" />
+    <MESSAGE value="Add Builder Pattern for the Claim class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Builder Pattern for the Claim class" />
   </component>
 </project>

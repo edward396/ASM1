@@ -23,108 +23,137 @@ public class Claim {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     public Claim(){
-    };
+    }
 
-    public Claim(String claimID, Date claimDate, String insuredPerson, String cardNumber, Date examDate, List<String> documents, double amount, String status, String bankName, String accountOwner, String accountNumber) {
-        this.claimID = claimID;
-        this.claimDate = claimDate;
-        this.insuredPerson = insuredPerson;
-        this.cardNumber = cardNumber;
-        this.examDate = examDate;
-        this.documents = documents;
-        this.amount = amount;
-        this.status = status;
-        this.bankName = bankName;
-        this.accountOwner = accountOwner;
-        this.accountNumber = accountNumber;
+    private Claim(Builder builder) {
+        this.claimID = builder.claimID;
+        this.claimDate = builder.claimDate;
+        this.insuredPerson = builder.insuredPerson;
+        this.cardNumber = builder.cardNumber;
+        this.examDate = builder.examDate;
+        this.documents = builder.documents;
+        this.amount = builder.amount;
+        this.status = builder.status;
+        this.bankName = builder.bankName;
+        this.accountOwner = builder.accountOwner;
+        this.accountNumber = builder.accountNumber;
     }
 
     public String getClaimID() {
         return claimID;
     }
 
-    public void setClaimID(String claimID) {
-        this.claimID = claimID;
-    }
-
-    public Date getClaimDate() {
-        return claimDate;
-    }
-
-    public void setClaimDate(Date claimDate) {
-        this.claimDate = claimDate;
-    }
-
     public String getInsuredPerson() {
         return insuredPerson;
-    }
-
-    public void setInsuredPerson(String insuredPerson) {
-        this.insuredPerson = insuredPerson;
     }
 
     public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
+    public Date getClaimDate() {
+        return claimDate;
     }
 
     public Date getExamDate() {
         return examDate;
     }
 
-    public void setExamDate(Date examDate) {
-        this.examDate = examDate;
-    }
-
     public List<String> getDocuments() {
         return documents;
-    }
-
-    public void setDocuments(List<String> documents) {
-        this.documents = documents;
     }
 
     public double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getBankName() {
         return bankName;
     }
 
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
-    }
-
     public String getAccountOwner() {
         return accountOwner;
-    }
-
-    public void setAccountOwner(String accountOwner) {
-        this.accountOwner = accountOwner;
     }
 
     public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
+    public static class Builder {
+        private String claimID;
+        private Date claimDate;
+        private String insuredPerson;
+        private String cardNumber;
+        private Date examDate;
+        private List<String> documents;
+        private double amount;
+        private String status;
+        private String bankName;
+        private String accountOwner;
+        private String accountNumber;
+
+        public Builder claimID(String claimID) {
+            this.claimID = claimID;
+            return this;
+        }
+
+        public Builder claimDate(Date claimDate) {
+            this.claimDate = claimDate;
+            return this;
+        }
+
+        public Builder insuredPerson(String insuredPerson) {
+            this.insuredPerson = insuredPerson;
+            return this;
+        }
+
+        public Builder cardNumber(String cardNumber) {
+            this.cardNumber = cardNumber;
+            return this;
+        }
+
+        public Builder examDate(Date examDate) {
+            this.examDate = examDate;
+            return this;
+        }
+
+        public Builder documents(List<String> documents) {
+            this.documents = documents;
+            return this;
+        }
+
+        public Builder amount(double amount) {
+            this.amount = amount;
+            return this;
+        }
+
+        public Builder status(String status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder bankName(String bankName) {
+            this.bankName = bankName;
+            return this;
+        }
+
+        public Builder accountOwner(String accountOwner) {
+            this.accountOwner = accountOwner;
+            return this;
+        }
+
+        public Builder accountNumber(String accountNumber) {
+            this.accountNumber = accountNumber;
+            return this;
+        }
+
+        public Claim build() {
+            return new Claim(this);
+        }
     }
 
     @Override
@@ -142,6 +171,4 @@ public class Claim {
                 ", accountNumber='" + accountNumber + '\'' +
                 '}';
     }
-
-
 }

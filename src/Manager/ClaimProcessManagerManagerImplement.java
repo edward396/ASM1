@@ -109,7 +109,19 @@ public class ClaimProcessManagerManagerImplement implements ClaimProcessManager 
                 String accountOwner = parts[9].trim();
                 String accountNumber = parts[10].trim();
 
-                Claim claim = new Claim(claimID, claimDate, insuredPerson, cardNumber, examDate, documents, amount, status, bankName, accountOwner, accountNumber);
+                Claim claim = new Claim.Builder()
+                        .claimID(claimID)
+                        .claimDate(claimDate)
+                        .insuredPerson(insuredPerson)
+                        .cardNumber(cardNumber)
+                        .examDate(examDate)
+                        .documents(documents)
+                        .amount(amount)
+                        .status(status)
+                        .bankName(bankName)
+                        .accountOwner(accountOwner)
+                        .accountNumber(accountNumber)
+                        .build();
                 claims.add(claim);
             }
         } catch (IOException | ParseException e) {
