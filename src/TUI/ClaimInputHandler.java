@@ -1,20 +1,21 @@
-/**
- * @author <Nguyen Vo Truong Toan - s3979056>
- */
 package TUI;
 
-import Classes.*;
+/**
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * version JDK21
+ */
+import Classes.Claim;
 import Manager.ClaimProcessManager;
 import Manager.ClaimProcessManagerManagerImplement;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class InputHandler {
+public class ClaimInputHandler {
     private static ClaimProcessManager claimManager;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -29,9 +30,9 @@ public class InputHandler {
 
     public void addClaim(Scanner scanner) {
         try {
-            String claimID = getFormattedClaimID(scanner);
+            String claimID = InputValidator.getFormattedClaimID(scanner);
 
-            Date claimDate = getDateInput(scanner, "Enter Claim Date (dd-MM-yyyy): ");
+            Date claimDate = InputValidator.getDateInput(scanner, "Enter Claim Date (dd-MM-yyyy): ");
 
             System.out.print("Enter Insured Person: ");
             String insuredPerson = scanner.nextLine();
@@ -39,15 +40,15 @@ public class InputHandler {
             System.out.print("Enter Card Number: ");
             String cardNumber = scanner.nextLine();
 
-            Date examDate = getDateInput(scanner, "Enter Exam Date (dd-MM-yyyy): ");
+            Date examDate = InputValidator.getDateInput(scanner, "Enter Exam Date (dd-MM-yyyy): ");
 
             System.out.print("Enter Document Names (claimId_cardNumber_documentName.pdf): ");
             String[] documentArray = scanner.nextLine().split("_");
             List<String> documents = Arrays.asList(documentArray);
 
-            double amount = getDoubleInput(scanner, "Enter Claim Amount: ");
+            double amount = InputValidator.getDoubleInput(scanner, "Enter Claim Amount: ");
 
-            String status = getStringInput(scanner, "Enter Status (New, Processing, Done): ");
+            String status = InputValidator.getStringInput(scanner, "Enter Status (New, Processing, Done): ");
             System.out.print("Enter Receiver Banking Info (Bank Name): ");
             String bankName = scanner.nextLine();
 
@@ -68,7 +69,7 @@ public class InputHandler {
 
     public void updateClaim(Scanner scanner) {
         try {
-            String claimID = getFormattedClaimID(scanner);
+            String claimID = InputValidator.getFormattedClaimID(scanner);
 
             Claim existingClaim = claimManager.getOne(claimID);
 
@@ -78,22 +79,21 @@ public class InputHandler {
 
                 Date claimDate = dateFormat.parse(stringClaimDate);
 
-
                 System.out.print("Enter Insured Person: ");
                 String insuredPerson = scanner.nextLine();
 
                 System.out.print("Enter Card Number: ");
                 String cardNumber = scanner.nextLine();
 
-                Date examDate = getDateInput(scanner, "Enter Exam Date (dd-MM-yyyy): ");
+                Date examDate = InputValidator.getDateInput(scanner, "Enter Exam Date (dd-MM-yyyy): ");
 
                 System.out.print("Enter Document Names (claimId_cardNumber_documentName.pdf): ");
                 String[] documentArray = scanner.nextLine().split("_");
                 List<String> documents = Arrays.asList(documentArray);
 
-                double amount = getDoubleInput(scanner, "Enter Claim Amount: ");
+                double amount = InputValidator.getDoubleInput(scanner, "Enter Claim Amount: ");
 
-                String status = getStringInput(scanner, "Enter Status (New, Processing, Done): ");
+                String status = InputValidator.getStringInput(scanner, "Enter Status (New, Processing, Done): ");
                 System.out.print("Enter Receiver Banking Info (Bank Name): ");
                 String bankName = scanner.nextLine();
 
@@ -171,7 +171,6 @@ public class InputHandler {
 
     public void saveAndExit() {
         try {
-            // Check and set insuredPersonID if it's null
             List<Claim> allClaims = claimManager.getAll();
             for (Claim claim : allClaims) {
                 if (claim.getInsuredPerson() == null || claim.getClaimID() == null) {
@@ -186,61 +185,5 @@ public class InputHandler {
             System.out.println("Error saving claims: " + e.getMessage());
             System.out.println("-------------------------------------------");
         }
-    }
-
-    //Make sure format input handler for ID (must be "f-..." followed by 10 numbers)
-    private java.lang.String getFormattedClaimID(Scanner scanner) {
-        while (true) {
-            System.out.print("Enter Claim ID (f-followed by 10 numbers): ");
-            java.lang.String input = scanner.nextLine();
-            java.lang.String claimID = formatClaimID(input);
-            if (claimID != null) {
-                return claimID;
-            }
-        }
-    }
-
-    private java.lang.String formatClaimID(java.lang.String input) {
-        if (input.matches("^f-\\d{10}$")) {
-            return input;
-        } else if (input.matches("^\\d{1,9}$")) {
-            java.lang.String paddedNumber = java.lang.String.format("%010d", Long.parseLong(input));
-            return "f-" + paddedNumber;
-        } else {
-            System.out.println("Invalid Claim ID format. Please enter the Claim ID in the correct format.");
-            return null;
-        }
-    }
-
-    //Error format input handler for Date
-    private Date getDateInput(Scanner scanner, java.lang.String prompt) {
-        while (true) {
-            try {
-                System.out.print(prompt);
-                return dateFormat.parse(scanner.nextLine());
-            } catch (Exception e) {
-                System.out.println("Invalid date format. Please enter the date in dd-MM-yyyy format.");
-            }
-        }
-    }
-
-    //Error format input handler for Amount
-    private double getDoubleInput(Scanner scanner, java.lang.String prompt) {
-        while (true) {
-            try {
-                System.out.print(prompt);
-                double value = scanner.nextDouble();
-                scanner.nextLine(); // Consume newline character
-                return value;
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-                scanner.nextLine(); // Consume newline character
-            }
-        }
-    }
-
-    private java.lang.String getStringInput(Scanner scanner, java.lang.String prompt) {
-        System.out.print(prompt);
-        return scanner.nextLine();
     }
 }
