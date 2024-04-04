@@ -13,13 +13,17 @@ public class MenuDisplay {
 
         //Menu
         while (true) {
-            System.out.println("Welcome to Insurance Claims Management System");
-            System.out.println("1. Add a Claim");
-            System.out.println("2. Update a Claim");
-            System.out.println("3. Delete a Claim");
-            System.out.println("4. View a Claim");
-            System.out.println("5. View all Claims"); //all claims of one customer or the whole system
-            System.out.println("6. Save and Exit");
+            System.out.println("==============================================");
+            System.out.println("|        Welcome to Insurance Claims         |");
+            System.out.println("|            Management System               |");
+            System.out.println("==============================================");
+            System.out.println("| 1. Add a Claim                             |");
+            System.out.println("| 2. Update a Claim                          |");
+            System.out.println("| 3. Delete a Claim                          |");
+            System.out.println("| 4. View a Claim                            |");
+            System.out.println("| 5. View all Claims                         |");
+            System.out.println("| 6. Save and Exit                           |");
+            System.out.println("==============================================");
             System.out.print("Enter your choice: ");
             //Option to add and delete customer
             // ... claim
