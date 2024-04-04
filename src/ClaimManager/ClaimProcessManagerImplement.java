@@ -1,7 +1,7 @@
 /**
  * @author <Nguyen Vo Truong Toan - s3979056>
  */
-package Manager;
+package ClaimManager;
 
 import Classes.*;
 
@@ -13,12 +13,12 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-public class ClaimProcessManagerManagerImplement implements ClaimProcessManager {
+public class ClaimProcessManagerImplement implements ClaimProcessManager {
     private List<Claim> claims;
     private List<Customer> customers;
     private String filename;
 
-    public ClaimProcessManagerManagerImplement(String filename) throws Exception {
+    public ClaimProcessManagerImplement(String filename) throws Exception {
         this.filename = filename;
         this.claims = new ArrayList<>();
         this.customers = new ArrayList<>();

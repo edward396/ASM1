@@ -1,10 +1,9 @@
 /**
  * @author <Nguyen Vo Truong Toan - s3979056>
  */
-package Manager;
+package ClaimManager;
 
 import Classes.Claim;
-import Classes.Customer;
 
 import java.util.List;
 

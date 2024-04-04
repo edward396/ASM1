@@ -1,7 +1,7 @@
 /**
  * @author <Nguyen Vo Truong Toan - s3979056>
  */
-package TUI;
+package Menu;
 
 public class MainClass {
     public static void main(String[] args) {
