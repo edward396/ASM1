@@ -6,24 +6,20 @@ package Classes;
 import java.util.ArrayList;
 import java.util.List;
 public class PolicyHolder extends Customer {
-    private String insuranceCard;
 
     private List<Dependent> dependentList;
 
     public PolicyHolder(String customerID, String fullName, String insuranceCard, ArrayList<Claim> claimList,
                         String insuranceCard1, List<Dependent> dependentList) {
         super(customerID, fullName, insuranceCard, claimList);
-        this.insuranceCard = insuranceCard1;
         this.dependentList = dependentList;
     }
 
-    public String getInsuranceCard() {
-        return insuranceCard;
+    public List<Dependent> getDependents() {
+        return dependentList;
     }
 
-    public void setInsuranceCard(String string) {
-        this.insuranceCard = string;
-    }
+
     public void addDependent(Dependent dependent) {
         if (dependentList.contains(dependent)) {
             throw new IllegalArgumentException("Dependent already exists.");

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Customer {
-    private String customerID;
+    private String customerID; //c- with 7 numbers
     private String fullName;
     private String insuranceCard;
     private List<Claim> claimList;

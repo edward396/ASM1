@@ -12,7 +12,7 @@ public class Dependent extends Customer {
     }
 
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return "Clam Info:" + "\n" +
                 "{Dependent ID: " + getCustomerID() + ", " +
                 "Full Name: " + getFullName() + ", " +
