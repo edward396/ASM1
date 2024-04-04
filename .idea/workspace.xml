@@ -5,10 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Add Builder Pattern for the Claim class">
+      <change afterPath="$PROJECT_DIR$/src/CustomerManager/CustomerManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/File/customerData.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Handler/ManagerInputHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Claim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Manager/ClaimProcessManagerManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager/ClaimProcessManagerManagerImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/ClaimInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TUI/ClaimInputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Dependent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/File/claimData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/claimData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Manager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Manager/ClaimProcessManagerManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManagerImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TUI/ClaimInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TUI/InputValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/InputValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TUI/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MainClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TUI/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712236679592</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add Builder Pattern for the Claim class">
+      <option name="closed" value="true" />
+      <created>1712237903589</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712237903589</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
