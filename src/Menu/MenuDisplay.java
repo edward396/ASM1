@@ -5,6 +5,15 @@
  */
 package Menu;
 
+import Classes.Claim;
+import Handler.ClaimInputHandler;
+import Handler.CustomerInputHandler;
+import ProcessManager.ClaimProcessManagerImplement;
+
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+
 import Handler.ClaimInputHandler;
 import Handler.CustomerInputHandler;
 

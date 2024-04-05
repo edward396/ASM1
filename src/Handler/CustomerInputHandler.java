@@ -14,10 +14,6 @@ import ProcessManager.CustomerProcessManagerImplement;
 import java.util.List;
 import java.util.Scanner;
 
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-
 public class CustomerInputHandler {
     private final CustomerProcessManagerImplement customerProcessManager;
 
@@ -87,6 +83,11 @@ public class CustomerInputHandler {
             System.out.print("Enter the customer ID: ");
             String id = scanner.nextLine();
 
+            if (!customerProcessManager.exists(id)) {
+                System.out.println("Customer not found.");
+                return;
+            }
+
             Customer existingCustomer = customerProcessManager.getOne(id);
             if (existingCustomer != null) {
                 System.out.println(existingCustomer.toString());
@@ -118,6 +119,18 @@ public class CustomerInputHandler {
             System.out.println("Error viewing all customers: " + e.getMessage());
             System.out.println("-------------------------------------------");
         }
+    }
+
+    public boolean exists(String customerID) {
+        return customerProcessManager.exists(customerID);
+    }
+
+    public String getCustomerName(String customerID) {
+        Customer customer = customerProcessManager.getOne(customerID);
+        if (customer != null) {
+            return customer.getFullName();
+        }
+        return null;
     }
 
     public void saveAndExit() {

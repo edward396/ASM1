@@ -13,7 +13,7 @@ import java.util.*;
 
 public class InputValidator {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    private static final String[] VALID_STATUSES = {"New", "Processing", "Done"};
+    private static final String[] VALID_STATUSES = {"new", "processing", "done"};
 
     /**
      * Validates and returns a formatted Claim ID.
@@ -146,26 +146,5 @@ public class InputValidator {
             }
         } while (!id.matches("^c-\\d{7}$"));
         return id;
-    }
-
-    /**
-     * Combines the functionality of formatting the claim ID and ensuring it is unique among the existing claims.
-     *
-     * @param scanner        Scanner object for user input.
-     * @param existingClaims List of existing Claim objects.
-     * @return Unique and formatted Claim ID.
-     */
-    public static String getFormattedAndUniqueClaimID(Scanner scanner, List<Claim> existingClaims) {
-        String formattedClaimID;
-        while (true) {
-            formattedClaimID = getFormattedClaimID(scanner);
-            final String finalFormattedClaimID = formattedClaimID; // make it effectively final
-            boolean isUnique = existingClaims.stream().noneMatch(claim -> claim.getClaimID().equals(finalFormattedClaimID));
-            if (isUnique) {
-                return formattedClaimID;
-            } else {
-                System.out.println("Claim ID already exists. Please enter a unique Claim ID.");
-            }
-        }
     }
 }

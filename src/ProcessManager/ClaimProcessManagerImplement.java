@@ -76,7 +76,6 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         return new ArrayList<>(claims);
     }
 
-
     @Override
     public void saveToFile(String fileName) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {

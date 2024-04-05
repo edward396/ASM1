@@ -9,10 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
 public class Claim {
     private String claimID;
     private Date claimDate;
@@ -27,8 +23,6 @@ public class Claim {
     private String accountNumber;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-    public Claim() {}
 
     private Claim(Builder builder) {
         this.claimID = builder.claimID;
@@ -100,6 +94,8 @@ public class Claim {
         private String bankName;
         private String accountOwner;
         private String accountNumber;
+
+        public Builder() {}
 
         public Builder claimID(String claimID) {
             this.claimID = claimID;

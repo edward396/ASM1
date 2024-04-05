@@ -80,6 +80,11 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
     }
 
     @Override
+    public boolean exists(String customerID) {
+        return customers.stream().anyMatch(customer -> customer.getCustomerID().equals(customerID));
+    }
+
+    @Override
     public List<Customer> getAll() {
         return customers;
     }

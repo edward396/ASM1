@@ -5,8 +5,6 @@
  */
 package Classes;
 
-import Classes.InsuranceCard;
-
 public class Dependent extends Customer {
     private String policyHolderID;
 

@@ -10,11 +10,11 @@ import Classes.Claim;
 import java.util.List;
 
 public interface ClaimProcessManager {
-    void add(Claim claim);
-    void update(Claim claim);
-    void delete(String claimId);
-    Claim getOne(String claimId);
-    List<Claim> getAll();
-    void saveToFile(String fileName);
-    void loadFromFile(String fileName);
+    void add(Claim claim) throws Exception;
+    void update(Claim claim) throws Exception;
+    void delete(String claimID) throws Exception;
+    Claim getOne(String claimID) throws Exception;
+    List<Claim> getAll() throws Exception;
+    void saveToFile(String claimFilePath) throws Exception;
+    void loadFromFile(String claimFilePath) throws Exception;
 }

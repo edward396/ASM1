@@ -17,10 +17,13 @@ import java.util.Scanner;
 
 public class ClaimInputHandler {
     private ClaimProcessManager claimManager;
+    private CustomerInputHandler customerInputHandler;
 
     public ClaimInputHandler() {
+        this.claimManager = new ClaimProcessManagerImplement("src/File/claimData.txt");  // Added filename parameter
+        this.customerInputHandler = new CustomerInputHandler();
         try {
-            this.claimManager = new ClaimProcessManagerImplement("src/File/claimData.txt");
+            claimManager.loadFromFile("src/File/claimData.txt");
         } catch (Exception e) {
             System.out.println("Error initializing ClaimProcessManager: " + e.getMessage());
             System.exit(1);  // Exit the program if there's an error
@@ -29,12 +32,19 @@ public class ClaimInputHandler {
 
     public void addClaim(Scanner scanner) {
         try {
-            String claimID = InputValidator.getFormattedClaimID(scanner);
+            System.out.print("Enter Customer ID (Policy Holder or Dependant): ");
+            String customerID = scanner.nextLine();
+
+            if (!customerInputHandler.exists(customerID)) {
+                System.out.println("Customer not found.");
+                return;
+            }
+
+            String insuredPerson = customerInputHandler.getCustomerName(customerID); // Fetch customer name based on ID
+
+            String claimID = generateClaimID();
 
             Date claimDate = InputValidator.getDateInput(scanner, "Enter Claim Date (dd-MM-yyyy): ");
-
-            System.out.print("Enter Insured Person: ");
-            String insuredPerson = InputValidator.getStringInput(scanner, "");
 
             System.out.print("Enter Card Number: ");
             String cardNumber = InputValidator.getStringInput(scanner, "");
@@ -66,7 +76,7 @@ public class ClaimInputHandler {
             Claim claim = new Claim.Builder()
                     .claimID(claimID)
                     .claimDate(claimDate)
-                    .insuredPerson(insuredPerson)
+                    .insuredPerson(insuredPerson)  // Set the insured person with the fetched customer name
                     .cardNumber(cardNumber)
                     .examDate(examDate)
                     .documents(documents)
@@ -83,6 +93,18 @@ public class ClaimInputHandler {
             System.out.println("Error adding claim: " + e.getClass().getSimpleName() + " - " + e.getMessage());
             System.out.println("-------------------------------------------");
         }
+    }
+
+    private String generateClaimID() {
+        // Generate a unique claim ID with the format "f-" followed by 10 numbers
+        StringBuilder sb = new StringBuilder();
+        sb.append("f-");
+        String numbers = "0123456789";
+        for (int i = 0; i < 10; i++) {
+            int index = (int) (numbers.length() * Math.random());
+            sb.append(numbers.charAt(index));
+        }
+        return sb.toString();
     }
 
     public void updateClaim(Scanner scanner) {
