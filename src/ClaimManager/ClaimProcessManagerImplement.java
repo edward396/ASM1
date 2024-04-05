@@ -29,22 +29,31 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
 
     @Override
     public void add(Claim claim) {
+        if (getOne(claim.getClaimID()) != null) {
+            System.out.println("Claim with ID " + claim.getClaimID() + " already exists.");
+            return;
+        }
         claims.add(claim);
     }
+
 
     @Override
     public void update(Claim claim) {
         for (int i = 0; i < claims.size(); i++) {
             if (claims.get(i).getClaimID().equals(claim.getClaimID())) {
                 claims.set(i, claim);
-                break;
+                return;
             }
         }
+        System.out.println("Claim with ID " + claim.getClaimID() + " not found.");
     }
 
     @Override
-    public void delete(java.lang.String claimId) {
-        claims.removeIf(claim -> claim.getClaimID().equals(claimId));
+    public void delete(String claimId) {
+        boolean removed = claims.removeIf(claim -> claim.getClaimID().equals(claimId));
+        if (!removed) {
+            System.out.println("Claim with ID " + claimId + " not found.");
+        }
     }
 
     @Override
@@ -59,7 +68,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
 
     @Override
     public List<Claim> getAll() {
-        return claims;
+        return new ArrayList<>(claims);
     }
 
 
@@ -82,10 +91,9 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                 writer.println();
             }
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            System.out.println("Error saving file: " + e.getMessage());
         }
     }
-
 
     @Override
     public void loadFromFile(String fileName) {
@@ -137,4 +145,3 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         }
     }
 }
-

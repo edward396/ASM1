@@ -161,10 +161,10 @@ public class Claim {
     @Override
     public String toString() {
         return "{claimID='" + claimID + '\'' +
-                ", claimDate=" + (dateFormat.format(claimDate) == null ? dateFormat.format(claimDate) : "no date") +
+                ", claimDate=" + (claimDate != null ? dateFormat.format(claimDate) : "No date") +
                 ", insuredPerson='" + insuredPerson + '\'' +
                 ", cardNumber='" + cardNumber + '\'' +
-                ", examDate=" + (dateFormat.format(examDate) == null ? dateFormat.format(examDate) : "no date") + //same
+                ", examDate=" + (examDate != null ? dateFormat.format(examDate) : "No date") +
                 ", documents=" + documents +
                 ", amount=" + amount +
                 ", status='" + status + '\'' +

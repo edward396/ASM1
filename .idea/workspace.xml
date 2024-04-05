@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Update more options, fixing adding and viewing customers">
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Remove unnecessary setters">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManagerImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Claim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CustomerManager/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerManager/CustomerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CustomerManager/ICustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerManager/ICustomerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MainClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/File/customerData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/customerData.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +234,39 @@
       <option name="project" value="LOCAL" />
       <updated>1712315380214</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Update Header">
+      <option name="closed" value="true" />
+      <created>1712315864646</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1712315864646</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Update null date handle">
+      <option name="closed" value="true" />
+      <created>1712315895024</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1712315895024</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Update interface methods">
+      <option name="closed" value="true" />
+      <created>1712315981868</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1712315981868</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Remove unnecessary setters">
+      <option name="closed" value="true" />
+      <created>1712316011407</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1712316011407</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -260,6 +289,10 @@
     <MESSAGE value="Update methods" />
     <MESSAGE value="Small updates" />
     <MESSAGE value="Update more options, fixing adding and viewing customers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update more options, fixing adding and viewing customers" />
+    <MESSAGE value="Update Header" />
+    <MESSAGE value="Update null date handle" />
+    <MESSAGE value="Update interface methods" />
+    <MESSAGE value="Remove unnecessary setters" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unnecessary setters" />
   </component>
 </project>
