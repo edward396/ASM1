@@ -4,7 +4,7 @@
 package Menu;
 
 import Handler.ClaimInputHandler;
-import Handler.ManagerInputHandler;
+import Handler.CustomerInputHandler;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -13,13 +13,14 @@ import java.util.Scanner;
 public class MenuDisplay {
 
     private final ClaimInputHandler claimInputHandler = new ClaimInputHandler();
-    private final ManagerInputHandler managerInputHandler = new ManagerInputHandler();
+    private final CustomerInputHandler customerInputHandler = new CustomerInputHandler();
 
     public void displayMenu() {
         Scanner scanner = new Scanner(System.in);
 
         //Menu
-        while (true) {
+        boolean continueProgram = true;
+        while (continueProgram) {
             System.out.println("==============================================");
             System.out.println("|        Welcome to Insurance Claims         |");
             System.out.println("|            Management System               |");
@@ -71,20 +72,20 @@ public class MenuDisplay {
                     claimInputHandler.viewAllClaims();
                     break;
                 case 6:
-                    managerInputHandler.addCustomer(scanner);
+                    customerInputHandler.addCustomer(scanner);
                     break;
                 case 7:
-                    managerInputHandler.deleteCustomer(scanner);
+                    customerInputHandler.deleteCustomer(scanner);
                     break;
                 case 8:
-                    managerInputHandler.viewCustomer(scanner);
+                    customerInputHandler.viewCustomer(scanner);
                     break;
                 case 9:
-                    managerInputHandler.viewAllCustomers();
+                    customerInputHandler.viewAllCustomers();
                     break;
                 case 10:
                     claimInputHandler.saveAndExit();
-                    managerInputHandler.saveAndExit();
+                    customerInputHandler.saveAndExit();
                     return;
                 default:
                     System.out.println("Invalid choice. Try again.");
@@ -93,22 +94,18 @@ public class MenuDisplay {
 
 
             // Prompt to ask the user if they want to continue or exit
-            String continueChoice;
-            do {
-                System.out.print("Do you want to continue? (yes/no): ");
-                continueChoice = scanner.nextLine().toLowerCase();  // Convert input to lowercase
-
-                if (!continueChoice.equals("yes") && !continueChoice.equals("no")) {
-                    System.out.println("Invalid input. Please enter 'yes' or 'no'.");
+            if (continueProgram) {
+                System.out.println("Do you want to continue? (yes/no)");
+                String continueChoice = scanner.nextLine();
+                while (!continueChoice.equalsIgnoreCase("yes") && !continueChoice.equalsIgnoreCase("no")) {
+                    System.out.println("Invalid choice. Please enter 'yes' or 'no'.");
+                    continueChoice = scanner.nextLine();
                 }
-
-            } while (!continueChoice.equals("yes") && !continueChoice.equals("no"));
-
-            if (continueChoice.equals("no")) {
-                claimInputHandler.saveAndExit();
-                managerInputHandler.saveAndExit();
-                System.out.println("Data saved. Exiting program...");
-                return;  // Return to the main menu instead of breaking the loop
+                if (continueChoice.equalsIgnoreCase("no")) {
+                    claimInputHandler.saveAndExit();
+                    customerInputHandler.saveAndExit();
+                    continueProgram = false;
+                }
             }
         }
     }
