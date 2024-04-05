@@ -12,7 +12,9 @@ import Classes.InsuranceCard;
 import Classes.PolicyHolder;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CustomerProcessManagerImplement implements CustomerProcessManager {
     private List<Customer> customers = new ArrayList<>();
@@ -90,7 +92,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
             for (Customer customer : customers) {
                 if (customer instanceof PolicyHolder) {
                     String dependentIDs = ((PolicyHolder) customer).getDependentIDs().isEmpty() ? "null" :
-                            ((PolicyHolder) customer).getDependentIDs().toString().replace("[", "").replace("]", "");
+                            String.join(", ", ((PolicyHolder) customer).getDependentIDs());
                     customerWriter.println(customer.getCustomerID() + ", " +
                             customer.getFullName() + ", " +
                             ((PolicyHolder) customer).getInsuranceCard().getCardNumber() + ", " +
@@ -109,6 +111,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
+
     @Override
     public void loadFromFile(String customerFilename, String dependentFilename) {
         try (BufferedReader customerReader = new BufferedReader(new FileReader(customerFilename));
@@ -121,7 +124,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
                 String fullName = parts[1].trim();
                 String cardNumber = parts[2].trim();
 
-                List<String> dependentIDs = new ArrayList<>();
+                Set<String> dependentIDs = new HashSet<>();
                 if (!parts[4].trim().equals("null")) {
                     String[] depIDs = parts[4].split(", ");
                     for (String depID : depIDs) {
@@ -154,4 +157,4 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
             System.out.println("Error reading from file: " + e.getMessage());
         }
     }
-    }
+}

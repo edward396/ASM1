@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Update Add and View Policy Holders">
-      <change afterPath="$PROJECT_DIR$/src/File/dependentData.txt" afterDir="false" />
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Update Save and Load customer data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Claim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Dependent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/File/customerData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/customerData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/CustomerInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/CustomerInputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -302,12 +293,19 @@
       <option name="project" value="LOCAL" />
       <updated>1712327799946</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Update Save and Load customer data">
+      <option name="closed" value="true" />
+      <created>1712340339411</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1712340339411</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Change the format to save Documents" />
     <MESSAGE value="Formatted the Date reference objects" />
     <MESSAGE value="Add SOLID design pattern" />
     <MESSAGE value="Adjust to the SOLID design pattern" />
@@ -332,6 +330,7 @@
     <MESSAGE value="Fixing date attributes in Claim" />
     <MESSAGE value="Merge into 1 package" />
     <MESSAGE value="Update Add and View Policy Holders" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Add and View Policy Holders" />
+    <MESSAGE value="Update Save and Load customer data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Save and Load customer data" />
   </component>
 </project>
