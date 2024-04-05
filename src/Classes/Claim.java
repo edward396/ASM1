@@ -164,7 +164,7 @@ public class Claim {
                 ", claimDate=" + (dateFormat.format(claimDate) == null ? dateFormat.format(claimDate) : "no date") +
                 ", insuredPerson='" + insuredPerson + '\'' +
                 ", cardNumber='" + cardNumber + '\'' +
-                ", examDate=" + dateFormat.format(examDate) + //same
+                ", examDate=" + (dateFormat.format(examDate) == null ? dateFormat.format(examDate) : "no date") + //same
                 ", documents=" + documents +
                 ", amount=" + amount +
                 ", status='" + status + '\'' +
