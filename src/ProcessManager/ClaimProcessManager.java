@@ -3,7 +3,7 @@
  * @sID s3979056
  * version JDK21
  */
-package ClaimManager;
+package ProcessManager;
 
 import Classes.Claim;
 
@@ -17,6 +17,4 @@ public interface ClaimProcessManager {
     List<Claim> getAll();
     void saveToFile(String fileName);
     void loadFromFile(String fileName);
-
-
 }

@@ -1,4 +1,4 @@
-package CustomerManager;
+package ProcessManager;
 
 /**
  * @author Nguyen Vo Truong Toan
@@ -15,7 +15,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerManager implements ICustomerManager {
+public class CustomerProcessProcessManagerImplement implements CustomerProcessManagerImplement {
     private List<Customer> customers = new ArrayList<>();
 
 

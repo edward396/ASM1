@@ -3,7 +3,7 @@
  * @sID s3979056
  * version JDK21
  */
-package ClaimManager;
+package ProcessManager;
 
 import Classes.*;
 
@@ -29,9 +29,12 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
 
     @Override
     public void add(Claim claim) {
-        if (getOne(claim.getClaimID()) != null) {
-            System.out.println("Claim with ID " + claim.getClaimID() + " already exists.");
-            return;
+        // Check if the claimID already exists
+        for (Claim existingClaim : claims) {
+            if (existingClaim.getClaimID().equals(claim.getClaimID())) {
+                System.out.println("Claim ID already exists. Please enter a unique Claim ID.");
+                return;
+            }
         }
         claims.add(claim);
     }
@@ -132,7 +135,8 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                                 .accountOwner(accountOwner)
                                 .accountNumber(accountNumber)
                                 .build();
-                        claims.add(claim);
+                        add(claim);
+
                     } catch (ParseException | NumberFormatException e) {
                         System.out.println("Error parsing line: " + line + ". Error: " + e.getMessage());
                     }

@@ -1,4 +1,4 @@
-package CustomerManager;
+package ProcessManager;
 
 /**
  * @author Nguyen Vo Truong Toan
@@ -10,7 +10,7 @@ import Classes.Customer;
 
 import java.util.List;
 
-public interface ICustomerManager {
+public interface CustomerProcessManagerImplement {
     void addPolicyHolder(String id, String fullName, String insuranceCard, List<Claim> claims);
     void addDependent(String id, String fullName, String insuranceCard, String policyHolderId);
     void delete(String customerID);
