@@ -18,6 +18,7 @@ public class MenuDisplay {
     private final CustomerInputHandler customerInputHandler = new CustomerInputHandler();
     private final Scanner scanner = new Scanner(System.in);
 
+
     public void displayMenu() {
 
         //Menu

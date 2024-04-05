@@ -8,7 +8,7 @@ package Classes;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Customer {
+public class Customer {
     private String customerID;
     private String fullName;
     private String insuranceCard;

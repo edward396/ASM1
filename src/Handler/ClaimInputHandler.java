@@ -6,8 +6,8 @@ package Handler;
  * version JDK21
  */
 import Classes.Claim;
-import ClaimManager.ClaimProcessManager;
-import ClaimManager.ClaimProcessManagerImplement;
+import ProcessManager.ClaimProcessManager;
+import ProcessManager.ClaimProcessManagerImplement;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -17,7 +17,6 @@ import java.util.Scanner;
 
 public class ClaimInputHandler {
     public static ClaimProcessManager claimManager;
-    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     public ClaimInputHandler() {
         try {

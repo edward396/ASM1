@@ -13,7 +13,14 @@ import java.util.*;
 
 public class InputValidator {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private static final String[] VALID_STATUSES = {"New", "Processing", "Done"};
 
+    /**
+     * Validates and returns a formatted Claim ID.
+     *
+     * @param scanner Scanner object for user input.
+     * @return Formatted Claim ID.
+     */
     public static String getFormattedClaimID(Scanner scanner) {
         while (true) {
             System.out.print("Enter Claim ID (f-followed by 10 numbers): ");
@@ -25,6 +32,12 @@ public class InputValidator {
         }
     }
 
+    /**
+     * Formats the input to match the required Claim ID format.
+     *
+     * @param input User input for Claim ID.
+     * @return Formatted Claim ID or null if the input is invalid.
+     */
     private static String formatClaimID(String input) {
         if (input.matches("^f-\\d{10}$")) {
             return input;
@@ -37,6 +50,13 @@ public class InputValidator {
         }
     }
 
+    /**
+     * Validates and returns a Date object from the user input.
+     *
+     * @param scanner Scanner object for user input.
+     * @param prompt  Prompt message for the user.
+     * @return Validated Date object.
+     */
     public static Date getDateInput(Scanner scanner, String prompt) {
         while (true) {
             try {
@@ -48,6 +68,13 @@ public class InputValidator {
         }
     }
 
+    /**
+     * Validates and returns a non-negative double value from the user input.
+     *
+     * @param scanner Scanner object for user input.
+     * @param prompt  Prompt message for the user.
+     * @return Validated non-negative double value.
+     */
     public static double getDoubleInput(Scanner scanner, String prompt) {
         while (true) {
             try {
@@ -67,6 +94,13 @@ public class InputValidator {
         }
     }
 
+    /**
+     * Validates and returns a non-empty string from the user input.
+     *
+     * @param scanner Scanner object for user input.
+     * @param prompt  Prompt message for the user.
+     * @return Validated non-empty string.
+     */
     public static String getStringInput(Scanner scanner, String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -79,34 +113,29 @@ public class InputValidator {
         }
     }
 
+    /**
+     * Ensures that the claim status entered by the user is valid.
+     *
+     * @param scanner Scanner object for user input.
+     * @return Valid claim status.
+     */
     public static String getClaimStatus(Scanner scanner) {
-            String status;
-            do {
-                status = getStringInput(scanner, "Enter Status (New, Processing, Done): ").toLowerCase();
-                if (!Arrays.asList("new", "processing", "done").contains(status)) {
-                    System.out.println("Invalid status. Status must be New, Processing, or Done. Please try again.");
-                }
-            } while (!Arrays.asList("new", "processing", "done").contains(status));
-            return status;
-        }
-
-    public static String getUniqueClaimID(Scanner scanner, List<Claim> existingClaims) {
-        String claimID;
-        boolean isUnique;
+        String status;
         do {
-            isUnique = true;
-            System.out.print("Enter the Claim ID: ");
-            claimID = scanner.nextLine();
-            for (Claim claim : existingClaims) {
-                if (claim.getClaimID().equals(claimID)) {
-                    isUnique = false;
-                    System.out.println("Claim ID already exists. Please enter a unique Claim ID.");
-                    break;
-                }
+            status = getStringInput(scanner, "Enter Status (New, Processing, Done): ").toLowerCase();
+            if (!Arrays.asList(VALID_STATUSES).contains(status)) {
+                System.out.println("Invalid status. Status must be New, Processing, or Done. Please try again.");
             }
-        } while (!isUnique);
-        return claimID;
+        } while (!Arrays.asList(VALID_STATUSES).contains(status));
+        return status;
     }
+
+    /**
+     * Ensures that the customer ID entered by the user matches the specified format.
+     *
+     * @param scanner Scanner object for user input.
+     * @return Validated Customer ID.
+     */
     public static String getCustomerID(Scanner scanner) {
         String id;
         do {
@@ -117,5 +146,26 @@ public class InputValidator {
             }
         } while (!id.matches("^c-\\d{7}$"));
         return id;
+    }
+
+    /**
+     * Combines the functionality of formatting the claim ID and ensuring it is unique among the existing claims.
+     *
+     * @param scanner        Scanner object for user input.
+     * @param existingClaims List of existing Claim objects.
+     * @return Unique and formatted Claim ID.
+     */
+    public static String getFormattedAndUniqueClaimID(Scanner scanner, List<Claim> existingClaims) {
+        String formattedClaimID;
+        while (true) {
+            formattedClaimID = getFormattedClaimID(scanner);
+            final String finalFormattedClaimID = formattedClaimID; // make it effectively final
+            boolean isUnique = existingClaims.stream().noneMatch(claim -> claim.getClaimID().equals(finalFormattedClaimID));
+            if (isUnique) {
+                return formattedClaimID;
+            } else {
+                System.out.println("Claim ID already exists. Please enter a unique Claim ID.");
+            }
+        }
     }
 }

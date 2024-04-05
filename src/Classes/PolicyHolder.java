@@ -20,10 +20,6 @@ public class PolicyHolder extends Customer {
         return dependents;
     }
 
-    public void setDependents(List<Dependent> dependents) {
-        this.dependents = dependents;
-    }
-
     @Override
     public String toString() {
         return "PolicyHolder{" +

@@ -20,7 +20,8 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
     private List<Customer> customers;
     private String filename;
 
-    public ClaimProcessManagerImplement(String filename) throws Exception {
+
+    public ClaimProcessManagerImplement(String filename) {
         this.filename = filename;
         this.claims = new ArrayList<>();
         this.customers = new ArrayList<>();
@@ -37,6 +38,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
             }
         }
         claims.add(claim);
+        saveToFile(filename);  // Saving to file after adding
     }
 
 
