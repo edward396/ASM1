@@ -6,46 +6,67 @@ package CustomerManager;
  * version JDK21
  */
 
+import Classes.Claim;
 import Classes.Customer;
 import Classes.Dependent;
 import Classes.PolicyHolder;
-import Classes.Claim;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerManager {
-    private List<Customer> customers;
-    private String filename;
+public class CustomerManager implements ICustomerManager {
+    private List<Customer> customers = new ArrayList<>();
 
-    public CustomerManager(String filename) throws IOException {
-        this.filename = filename;
-        this.customers = new ArrayList<>();
-        loadFromFile(filename);
-    }
-
+    @Override
     public void add(Customer customer) {
         customers.add(customer);
+        saveToFile("src/File/customerData.txt");
     }
 
-    public void delete(String customerID) {
-        customers.removeIf(customer -> customer.getCustomerID().equals(customerID));
+    public void addPolicyHolder(String id, String fullName, String insuranceCard, List<Claim> claims) {
+        customers.add(new PolicyHolder(id, fullName, insuranceCard, claims, new ArrayList<>()));
+        saveToFile("src/File/customerData.txt");
     }
 
-    public Customer getOne(String customerID) {
+    public void addDependent(String id, String fullName, String insuranceCard, String policyHolderId) {
+        PolicyHolder policyHolder = (PolicyHolder) getOne(policyHolderId);
+
+        if (policyHolder != null) {
+            policyHolder.getDependents().add(new Dependent(id, fullName, insuranceCard, new ArrayList<>()));
+            saveToFile("src/File/customerData.txt");
+        } else {
+            System.out.println("Invalid PolicyHolder ID. Please enter a valid PolicyHolder ID.");
+        }
+    }
+
+    @Override
+    public void delete(String id) {
+        Customer existingCustomer = getOne(id);
+        if (existingCustomer != null) {
+            customers.remove(existingCustomer);
+            saveToFile("src/File/customerData.txt");
+        } else {
+            System.out.println("Customer not found.");
+        }
+    }
+
+    @Override
+    public Customer getOne(String id) {
         for (Customer customer : customers) {
-            if (customer.getCustomerID().equals(customerID)) {
+            if (customer.getCustomerID().equals(id)) {
                 return customer;
             }
         }
         return null;
     }
 
+    @Override
     public List<Customer> getAll() {
         return customers;
     }
 
+    @Override
     public void saveToFile(String filename) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
             for (Customer customer : customers) {
@@ -60,11 +81,19 @@ public class CustomerManager {
                 writer.print(String.join("_", claimIDs) + ", ");
 
                 if (customer instanceof PolicyHolder) {
-                    writer.print("PolicyHolder, ");
-                    writer.println(String.join("_", ((PolicyHolder) customer).getDependents().toString()));
+                    List<String> dependentInfo = new ArrayList<>();
+                    for (Dependent dependent : ((PolicyHolder) customer).getDependents()) {
+                        dependentInfo.add("{Dependent ID:" + dependent.getCustomerID() +
+                                ", Full Name:" + dependent.getFullName() +
+                                ", Insurance Card:" + dependent.getInsuranceCard() + "}");
+                    }
+                    if (dependentInfo.isEmpty()) {
+                        writer.println("PolicyHolder, None");
+                    } else {
+                        writer.println("PolicyHolder, " + String.join(", ", dependentInfo));
+                    }
                 } else if (customer instanceof Dependent) {
-                    writer.print("Dependent, ");
-                    writer.println("None");
+                    writer.println("Dependent, None");
                 } else {
                     writer.println("None");
                 }
@@ -74,11 +103,16 @@ public class CustomerManager {
         }
     }
 
-    private void loadFromFile(String fileName) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+    public void loadFromFile(String filename) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(", ");
+
+                if (parts.length < 4) {
+                    System.out.println("Incomplete data for customer: " + line);
+                    continue;
+                }
 
                 String id = parts[0].trim();
                 String fullName = parts[1].trim();
@@ -86,34 +120,38 @@ public class CustomerManager {
                 ArrayList<Claim> claims = new ArrayList<>();
                 ArrayList<Dependent> dependents = new ArrayList<>();
 
-                String[] claimIDs = parts[3].trim().split("_");
-                for (String claimId : claimIDs) {
-                    Claim claim = new Claim.Builder().claimID(claimId).build();
-                    claims.add(claim);
-                }
+                if (parts.length > 4 && parts[4].trim().equals("PolicyHolder")) {
+                    String[] claimIDs = parts[3].trim().split("_");
+                    for (String claimId : claimIDs) {
+                        Claim claim = new Claim.Builder().claimID(claimId).build();
+                        claims.add(claim);
+                    }
 
-                if ("PolicyHolder".equals(parts[4].trim())) {
-                    String[] depParts = parts[5].trim().split("_");
-                    for (String depId : depParts) {
-                        Dependent dependent = (Dependent) getOne(depId);
-                        if (dependent != null) {
+                    String[] depInfo = parts[5].trim().split(", ");
+                    for (String info : depInfo) {
+                        if (!info.equals("None")) {
+                            String[] depData = info.split(": ");
+                            Dependent dependent = new Dependent(depData[1], depData[3], depData[5], new ArrayList<>());
                             dependents.add(dependent);
                         }
                     }
+
+                    Customer customer = new PolicyHolder(id, fullName, insuranceCard, claims, dependents);
+                    customers.add(customer);
+
+                } else if (parts[4].trim().equals("Dependent")) {
+                    String[] claimIDs = parts[3].trim().split("_");
+                    for (String claimId : claimIDs) {
+                        Claim claim = new Claim.Builder().claimID(claimId).build();
+                        claims.add(claim);
+                    }
+
+                    Customer customer = new Dependent(id, fullName, insuranceCard, claims);
+                    customers.add(customer);
                 }
-
-                Customer customer = null;
-
-                if ("PolicyHolder".equals(parts[4].trim())) {
-                    customer = new PolicyHolder(id, fullName, insuranceCard, claims, insuranceCard, dependents);
-                } else if ("Dependent".equals(parts[4].trim())) {
-                    customer = new Dependent(id, fullName, insuranceCard, claims);
-                }
-
-                customers.add(customer);
             }
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            System.out.println("Error reading from file: " + e.getMessage());
         }
     }
 }

@@ -1,5 +1,7 @@
 /**
- * @author <Nguyen Vo Truong Toan - s3979056>
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * version JDK21
  */
 package ClaimManager;
 
@@ -88,47 +90,49 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
     @Override
     public void loadFromFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            java.lang.String line;
+            String line;
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(", ");
 
                 if (parts.length == 11) {
-                String claimID = parts[0].trim();
-                Date claimDate = dateFormat.parse(parts[1].trim());
-                String insuredPerson = parts[2].trim();
+                    try {
+                        String claimID = parts[0].trim();
+                        Date claimDate = dateFormat.parse(parts[1].trim());
+                        String insuredPerson = parts[2].trim();
+                        String cardNumber = parts[3].trim();
+                        Date examDate = dateFormat.parse(parts[4].trim());
 
-                String cardNumber = parts[3].trim();
-                Date examDate = dateFormat.parse(parts[4].trim());
+                        List<String> documents = Arrays.asList(parts[5].trim().split("_"));
 
-                List<String> documents = Arrays.asList(parts[5].trim().split(" "));
+                        double amount = Double.parseDouble(parts[6].trim());
+                        String status = parts[7].trim();
+                        String bankName = parts[8].trim();
+                        String accountOwner = parts[9].trim();
+                        String accountNumber = parts[10].trim();
 
-                double amount = Double.parseDouble(parts[6].trim());
-                String status = parts[7].trim();
-
-                String bankName = parts[8].trim();
-                String accountOwner = parts[9].trim();
-                String accountNumber = parts[10].trim();
-
-                Claim claim = new Claim.Builder()
-                        .claimID(claimID)
-                        .claimDate(claimDate)
-                        .insuredPerson(insuredPerson)
-                        .cardNumber(cardNumber)
-                        .examDate(examDate)
-                        .documents(documents)
-                        .amount(amount)
-                        .status(status)
-                        .bankName(bankName)
-                        .accountOwner(accountOwner)
-                        .accountNumber(accountNumber)
-                        .build();
-                claims.add(claim);
+                        Claim claim = new Claim.Builder()
+                                .claimID(claimID)
+                                .claimDate(claimDate)
+                                .insuredPerson(insuredPerson)
+                                .cardNumber(cardNumber)
+                                .examDate(examDate)
+                                .documents(documents)
+                                .amount(amount)
+                                .status(status)
+                                .bankName(bankName)
+                                .accountOwner(accountOwner)
+                                .accountNumber(accountNumber)
+                                .build();
+                        claims.add(claim);
+                    } catch (ParseException | NumberFormatException e) {
+                        System.out.println("Error parsing line: " + line + ". Error: " + e.getMessage());
+                    }
                 } else {
                     System.out.println("Invalid line format: " + line);
                 }
             }
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
     }

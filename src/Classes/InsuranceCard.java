@@ -1,5 +1,7 @@
 /**
- * @author <Nguyen Vo Truong Toan - s3979056>
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * version JDK21
  */
 package Classes;
 

@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ClaimInputHandler {
-    private static ClaimProcessManager claimManager;
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    public static ClaimProcessManager claimManager;
+    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     public ClaimInputHandler() {
         try {
@@ -35,10 +35,10 @@ public class ClaimInputHandler {
             Date claimDate = InputValidator.getDateInput(scanner, "Enter Claim Date (dd-MM-yyyy): ");
 
             System.out.print("Enter Insured Person: ");
-            String insuredPerson = scanner.nextLine();
+            String insuredPerson = InputValidator.getStringInput(scanner, "");
 
             System.out.print("Enter Card Number: ");
-            String cardNumber = scanner.nextLine();
+            String cardNumber = InputValidator.getStringInput(scanner, "");
 
             Date examDate = InputValidator.getDateInput(scanner, "Enter Exam Date (dd-MM-yyyy): ");
 
@@ -48,15 +48,16 @@ public class ClaimInputHandler {
 
             double amount = InputValidator.getDoubleInput(scanner, "Enter Claim Amount: ");
 
-            String status = InputValidator.getStringInput(scanner, "Enter Status (New, Processing, Done): ");
+            String status = InputValidator.getClaimStatus(scanner);
+
             System.out.print("Enter Receiver Banking Info (Bank Name): ");
-            String bankName = scanner.nextLine();
+            String bankName = InputValidator.getStringInput(scanner, "");
 
             System.out.print("Enter Receiver Banking Info (Account Owner): ");
-            String accountOwner = scanner.nextLine();
+            String accountOwner = InputValidator.getStringInput(scanner, "");
 
             System.out.print("Enter Receiver Banking Info (Account Number): ");
-            String accountNumber = scanner.nextLine();
+            String accountNumber = InputValidator.getStringInput(scanner, "");
 
             Claim claim = new Claim.Builder()
                     .claimID(claimID)
@@ -87,8 +88,7 @@ public class ClaimInputHandler {
             Claim existingClaim = claimManager.getOne(claimID);
 
             if (existingClaim != null) {
-                System.out.println("Enter Status (New, Processing, Done): ");
-                String status = InputValidator.getStringInput(scanner, "Enter Status (New, Processing, Done): ");
+                String status = InputValidator.getClaimStatus(scanner);
 
                 System.out.print("Enter Receiver Banking Info (Bank Name): ");
                 String bankName = scanner.nextLine();
@@ -127,7 +127,7 @@ public class ClaimInputHandler {
     public void deleteClaim(Scanner scanner) {
         try {
             System.out.print("Enter claim ID to delete: ");
-            String claimID = scanner.nextLine();
+            String claimID = InputValidator.getFormattedClaimID(scanner);
 
             Claim existingClaim = claimManager.getOne(claimID);
 
@@ -143,15 +143,12 @@ public class ClaimInputHandler {
         }
     }
 
-    public void viewClaim(Scanner scanner) {
+    public void viewClaim(String claimID) {  // Modified to accept String claimID
         try {
-            System.out.print("Enter claim ID to view: ");
-            String claimID = scanner.nextLine();
-
             Claim existingClaim = claimManager.getOne(claimID);
 
             if (existingClaim != null) {
-                System.out.println(existingClaim);
+                System.out.println(existingClaim.toString());
             } else {
                 System.out.println("Claim not found.");
             }
@@ -188,10 +185,10 @@ public class ClaimInputHandler {
             }
 
             claimManager.saveToFile("src/File/claimData.txt");
-            System.out.println("Data saved. Exiting program...");
+            System.out.println("Claim data saved. Exiting program...");
             System.exit(0);  // Exit the program
         } catch (Exception e) {
-            System.out.println("Error saving claims: " + e.getMessage());
+            System.out.println("Error saving claim d: " + e.getMessage());
             System.out.println("-------------------------------------------");
         }
     }

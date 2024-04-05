@@ -1,5 +1,7 @@
 /**
- * @author <Nguyen Vo Truong Toan - s3979056>
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * version JDK21
  */
 package Classes;
 
@@ -159,10 +161,10 @@ public class Claim {
     @Override
     public String toString() {
         return "{claimID='" + claimID + '\'' +
-                ", claimDate=" + dateFormat.format(claimDate) +
+                ", claimDate=" + (dateFormat.format(claimDate) == null ? dateFormat.format(claimDate) : "no date") +
                 ", insuredPerson='" + insuredPerson + '\'' +
                 ", cardNumber='" + cardNumber + '\'' +
-                ", examDate=" + dateFormat.format(examDate) +
+                ", examDate=" + dateFormat.format(examDate) + //same
                 ", documents=" + documents +
                 ", amount=" + amount +
                 ", status='" + status + '\'' +

@@ -4,14 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Update">
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Small updates">
+      <change afterPath="$PROJECT_DIR$/src/CustomerManager/ICustomerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManagerImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Claim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Dependent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/ReceiverBankingInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/ReceiverBankingInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CustomerManager/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerManager/CustomerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/File/claimData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/claimData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/File/customerData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/customerData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/ManagerInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/CustomerInputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handler/CustomerInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/CustomerInputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handler/InputValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/InputValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +32,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -40,19 +50,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.MainClass.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainClass.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "fileTemplates"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -197,7 +207,39 @@
       <option name="project" value="LOCAL" />
       <updated>1712247699598</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Update exiting option">
+      <option name="closed" value="true" />
+      <created>1712288008117</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1712288008117</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Modifying saveToFile">
+      <option name="closed" value="true" />
+      <created>1712288057527</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1712288057527</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Update methods">
+      <option name="closed" value="true" />
+      <created>1712288083834</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1712288083834</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Small updates">
+      <option name="closed" value="true" />
+      <created>1712288247433</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1712288247433</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -212,10 +254,13 @@
     <MESSAGE value="Add Builder Pattern for the Claim class" />
     <MESSAGE value="Modify updateClaim()" />
     <MESSAGE value="Move packages" />
-    <MESSAGE value="Small updates" />
     <MESSAGE value="Created" />
     <MESSAGE value="Add more options" />
     <MESSAGE value="Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update" />
+    <MESSAGE value="Update exiting option" />
+    <MESSAGE value="Modifying saveToFile" />
+    <MESSAGE value="Update methods" />
+    <MESSAGE value="Small updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small updates" />
   </component>
 </project>

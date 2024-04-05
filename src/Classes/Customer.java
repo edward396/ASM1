@@ -1,5 +1,7 @@
 /**
- * @author <Nguyen Vo Truong Toan - s3979056>
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * version JDK21
  */
 package Classes;
 
@@ -7,17 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Customer {
-    private String customerID; //c- with 7 numbers
+    private String customerID;
     private String fullName;
     private String insuranceCard;
     private List<Claim> claimList;
 
-
-    public Customer(String customerID, String fullName, String insuranceCard, ArrayList<Claim> claimList) {
-        this.customerID = (customerID != null && !customerID.isEmpty()) ? customerID : "default";
-        this.fullName = (fullName != null && !fullName.isEmpty()) ? fullName : "default";
-        this.insuranceCard = (insuranceCard != null && !insuranceCard.isEmpty()) ? insuranceCard : "default";
-        this.claimList = (claimList != null && !claimList.isEmpty()) ? claimList : new ArrayList<>();
+    public Customer(String customerID, String fullName, String insuranceCard, List<Claim> claimList) {
+        this.customerID = customerID;
+        this.fullName = fullName;
+        this.insuranceCard = insuranceCard;
+        this.claimList = claimList;
     }
 
     public String getCustomerID() {
@@ -50,5 +51,15 @@ public abstract class Customer {
 
     public void setClaimList(List<Claim> claimList) {
         this.claimList = claimList;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerID='" + customerID + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", insuranceCard='" + insuranceCard + '\'' +
+//                ", claimList=" + claimList +
+                '}';
     }
 }

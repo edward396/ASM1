@@ -1,44 +1,49 @@
-    package Classes;
+/**
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * version JDK21
+ */
+package Classes;
 
-    public class ReceiverBankingInfo {
-        private String bankName;
-        private String receiverName;
-        private String bankNumber;
+public class ReceiverBankingInfo {
+    private String bankName;
+    private String accountOwner;
+    private String accountNumber;
 
-        public ReceiverBankingInfo(String bankName, String receiverName, String bankNumber) {
-            this.bankName = bankName;
-            this.receiverName = receiverName;
-            this.bankNumber = bankNumber;
-        }
-
-        // Getters and Setters
-
-        public String getBankName() {
-            return bankName;
-        }
-
-        public void setBankName(String bankName) {
-            this.bankName = bankName;
-        }
-
-        public String getReceiverName() {
-            return receiverName;
-        }
-
-        public void setReceiverName(String receiverName) {
-            this.receiverName = receiverName;
-        }
-
-        public String getBankNumber() {
-            return bankNumber;
-        }
-
-        public void setBankNumber(String bankNumber) {
-            this.bankNumber = bankNumber;
-        }
-
-        @Override
-        public java.lang.String toString() {
-            return "Banking Info: { Bank: " + bankName + ", Name: " + receiverName + ", Number: " + bankNumber + " }";
-        }
+    public ReceiverBankingInfo(String bankName, String accountOwner, String accountNumber) {
+        this.bankName = bankName;
+        this.accountOwner = accountOwner;
+        this.accountNumber = accountNumber;
     }
+
+    // Getters and Setters
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getAccountOwner() {
+        return accountOwner;
+    }
+
+    public void setAccountOwner(String accountOwner) {
+        this.accountOwner = accountOwner;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Banking Info: { Bank: " + bankName + ", Name: " + accountOwner + ", Number: " + accountNumber + " }";
+    }
+}

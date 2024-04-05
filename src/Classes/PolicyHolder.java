@@ -1,42 +1,37 @@
 /**
- * @author <Nguyen Vo Truong Toan - s3979056>
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * version JDK21
  */
 package Classes;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class PolicyHolder extends Customer {
+    private List<Dependent> dependents;
 
-    private List<Dependent> dependentList;
-
-    public PolicyHolder(String customerID, String fullName, String insuranceCard, ArrayList<Claim> claimList,
-                        String insuranceCard1, List<Dependent> dependentList) {
+    public PolicyHolder(String customerID, String fullName, String insuranceCard, List<Claim> claimList, List<Dependent> dependents) {
         super(customerID, fullName, insuranceCard, claimList);
-        this.dependentList = dependentList;
+        this.dependents = dependents;
     }
 
     public List<Dependent> getDependents() {
-        return dependentList;
+        return dependents;
     }
 
-
-    public void addDependent(Dependent dependent) {
-        if (dependentList.contains(dependent)) {
-            throw new IllegalArgumentException("Dependent already exists.");
-        }
-        this.dependentList.add(dependent);
+    public void setDependents(List<Dependent> dependents) {
+        this.dependents = dependents;
     }
 
-    public void removeDependent(Dependent dependent) {
-        this.dependentList.remove(dependent);
-    }
     @Override
-    public java.lang.String toString() {
-        return "Claim Info:" + "\n" +
-                "{Policy Holder ID: " + getCustomerID() + ", " +
-                "Full Name: " + getFullName() + ", " +
-                "Insurance Card: " + getInsuranceCard() + ", " +
-                "Dependent List: " + dependentList +
-                "}";
+    public String toString() {
+        return "PolicyHolder{" +
+                "customerID='" + getCustomerID() + '\'' +
+                ", fullName='" + getFullName() + '\'' +
+                ", insuranceCard='" + getInsuranceCard() + '\'' +
+//                ", claimList=" + getClaimList() +
+                ", dependents=" + dependents +
+                '}';
     }
 }
