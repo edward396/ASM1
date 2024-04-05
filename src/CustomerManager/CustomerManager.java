@@ -18,11 +18,6 @@ import java.util.List;
 public class CustomerManager implements ICustomerManager {
     private List<Customer> customers = new ArrayList<>();
 
-    @Override
-    public void add(Customer customer) {
-        customers.add(customer);
-        saveToFile("src/File/customerData.txt");
-    }
 
     public void addPolicyHolder(String id, String fullName, String insuranceCard, List<Claim> claims) {
         customers.add(new PolicyHolder(id, fullName, insuranceCard, claims, new ArrayList<>()));
