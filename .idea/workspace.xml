@@ -4,23 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Small updates">
-      <change afterPath="$PROJECT_DIR$/src/CustomerManager/ICustomerManager.java" afterDir="false" />
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Update more options, fixing adding and viewing customers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManagerImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Claim.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Dependent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/ReceiverBankingInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/ReceiverBankingInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CustomerManager/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerManager/CustomerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/File/claimData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/claimData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/File/customerData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/customerData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/CustomerInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/CustomerInputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/InputValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/InputValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CustomerManager/ICustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerManager/ICustomerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MainClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -239,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712288247433</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Update more options, fixing adding and viewing customers">
+      <option name="closed" value="true" />
+      <created>1712315380214</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1712315380214</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -261,6 +259,7 @@
     <MESSAGE value="Modifying saveToFile" />
     <MESSAGE value="Update methods" />
     <MESSAGE value="Small updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small updates" />
+    <MESSAGE value="Update more options, fixing adding and viewing customers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update more options, fixing adding and viewing customers" />
   </component>
 </project>

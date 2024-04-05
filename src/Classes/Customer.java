@@ -25,32 +25,16 @@ public abstract class Customer {
         return customerID;
     }
 
-    public void setCustomerID(String customerID) {
-        this.customerID = customerID;
-    }
-
     public String getFullName() {
         return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getInsuranceCard() {
         return insuranceCard;
     }
 
-    public void setInsuranceCard(String insuranceCard) {
-        this.insuranceCard = insuranceCard;
-    }
-
     public List<Claim> getClaimList() {
         return claimList;
-    }
-
-    public void setClaimList(List<Claim> claimList) {
-        this.claimList = claimList;
     }
 
     @Override
