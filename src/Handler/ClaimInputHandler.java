@@ -112,7 +112,6 @@ public class ClaimInputHandler {
                         .accountOwner(accountOwner)  // Update the account owner
                         .accountNumber(accountNumber)  // Update the account number
                         .build();
-
                 claimManager.update(updatedClaim);
                 System.out.println("Claim updated successfully.");
 

@@ -93,6 +93,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(", ");
 
+                if (parts.length == 11) {
                 String claimID = parts[0].trim();
                 Date claimDate = dateFormat.parse(parts[1].trim());
                 String insuredPerson = parts[2].trim();
@@ -123,6 +124,9 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                         .accountNumber(accountNumber)
                         .build();
                 claims.add(claim);
+                } else {
+                    System.out.println("Invalid line format: " + line);
+                }
             }
         } catch (IOException | ParseException e) {
             System.out.println("Error reading file: " + e.getMessage());

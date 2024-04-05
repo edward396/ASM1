@@ -4,21 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Add Builder Pattern for the Claim class">
-      <change afterPath="$PROJECT_DIR$/src/CustomerManager/CustomerManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/File/customerData.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Handler/ManagerInputHandler.java" afterDir="false" />
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Dependent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManagerImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CustomerManager/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerManager/CustomerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/File/claimData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/claimData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Manager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Manager/ClaimProcessManagerManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClaimManager/ClaimProcessManagerImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/ClaimInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/InputValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/InputValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MainClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TUI/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/File/customerData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/customerData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handler/ManagerInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/CustomerInputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +141,63 @@
       <option name="project" value="LOCAL" />
       <updated>1712237903589</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Modify updateClaim()">
+      <option name="closed" value="true" />
+      <created>1712247517726</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1712247517726</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Move packages">
+      <option name="closed" value="true" />
+      <created>1712247564855</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1712247564855</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Small updates">
+      <option name="closed" value="true" />
+      <created>1712247611326</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1712247611326</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Created">
+      <option name="closed" value="true" />
+      <created>1712247643050</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1712247643050</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Created">
+      <option name="closed" value="true" />
+      <created>1712247657649</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1712247657649</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add more options">
+      <option name="closed" value="true" />
+      <created>1712247684109</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1712247684109</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Update">
+      <option name="closed" value="true" />
+      <created>1712247699598</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1712247699598</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -160,6 +210,12 @@
     <MESSAGE value="Add more data" />
     <MESSAGE value="Updated" />
     <MESSAGE value="Add Builder Pattern for the Claim class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Builder Pattern for the Claim class" />
+    <MESSAGE value="Modify updateClaim()" />
+    <MESSAGE value="Move packages" />
+    <MESSAGE value="Small updates" />
+    <MESSAGE value="Created" />
+    <MESSAGE value="Add more options" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
 </project>
