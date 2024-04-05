@@ -6,13 +6,17 @@ package Handler;
  * version JDK21
  */
 
-import ProcessManager.CustomerProcessManagerImplement;
 import Classes.Customer;
 import Classes.Dependent;
+import Classes.PolicyHolder;
+import ProcessManager.CustomerProcessManagerImplement;
 
-import java.util.Scanner;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Scanner;
+
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class CustomerInputHandler {
     private final CustomerProcessManagerImplement customerProcessManager;
@@ -20,7 +24,7 @@ public class CustomerInputHandler {
     public CustomerInputHandler() {
         this.customerProcessManager = new CustomerProcessManagerImplement();
         try {
-            customerProcessManager.loadFromFile("src/File/customerData.txt");
+            customerProcessManager.loadFromFile("src/File/customerData.txt", "src/File/dependentData.txt");
         } catch (Exception e) {
             System.out.println("Error initializing CustomerManager: " + e.getMessage());
             System.exit(1);  // Exit the program if there's an error
@@ -36,9 +40,9 @@ public class CustomerInputHandler {
             String fullName = scanner.nextLine();
 
             System.out.print("Enter Insurance Card: ");
-            String insuranceCard = scanner.nextLine();
+            String insuranceCardNumber = scanner.nextLine();
 
-            this.customerProcessManager.addPolicyHolder(id, fullName, insuranceCard);
+            customerProcessManager.addPolicyHolder(id, fullName, insuranceCardNumber);
             System.out.println("PolicyHolder added successfully.");
         } catch (Exception e) {
             System.out.println("Error adding PolicyHolder: " + e.getMessage());
@@ -48,19 +52,16 @@ public class CustomerInputHandler {
 
     public void addDependent(Scanner scanner) {
         try {
-            System.out.print("Enter Customer ID: ");
+            System.out.print("Enter Dependent ID: ");
             String id = scanner.nextLine();
 
             System.out.print("Enter Full Name: ");
             String fullName = scanner.nextLine();
 
-            System.out.print("Enter Insurance Card: ");
-            String insuranceCard = scanner.nextLine();
-
             System.out.print("Enter the PolicyHolder ID: ");
             String policyHolderId = scanner.nextLine();
 
-            customerProcessManager.addDependent(id, fullName, insuranceCard, policyHolderId);
+            customerProcessManager.addDependent(id, fullName, policyHolderId);
             System.out.println("Dependent added successfully.");
         } catch (Exception e) {
             System.out.println("Error adding Dependent: " + e.getMessage());
@@ -73,24 +74,20 @@ public class CustomerInputHandler {
             System.out.println("Enter the customer ID to delete: ");
             String id = scanner.nextLine();
 
-            Customer existingCustomer = customerProcessManager.getOne(id);
-
-            if (existingCustomer != null) {
-                customerProcessManager.delete(id);
-                System.out.println("Customer deleted successfully.");
-            } else {
-                System.out.println("Customer not found.");
-            }
+            customerProcessManager.delete(id);
+            System.out.println("Customer deleted successfully.");
         } catch (Exception e) {
             System.out.println("Error deleting customer: " + e.getMessage());
             System.out.println("-------------------------------------------");
         }
     }
 
-    public void viewCustomer(String id) {
+    public void viewCustomer(Scanner scanner) {
         try {
-            Customer existingCustomer = customerProcessManager.getOne(id);
+            System.out.print("Enter the customer ID: ");
+            String id = scanner.nextLine();
 
+            Customer existingCustomer = customerProcessManager.getOne(id);
             if (existingCustomer != null) {
                 System.out.println(existingCustomer.toString());
             } else {
@@ -107,7 +104,11 @@ public class CustomerInputHandler {
             List<Customer> customers = customerProcessManager.getAll();
             if (!customers.isEmpty()) {
                 for (Customer customer : customers) {
-                    System.out.println(customer.toString());
+                    if (customer instanceof PolicyHolder) {
+                        System.out.println("PolicyHolder: " + customer.toString());
+                    } else if (customer instanceof Dependent) {
+                        System.out.println("Dependent: " + customer.toString());
+                    }
                     System.out.println("-------------------------------------------");
                 }
             } else {
@@ -121,7 +122,7 @@ public class CustomerInputHandler {
 
     public void saveAndExit() {
         try {
-            customerProcessManager.saveToFile("src/File/customerData.txt");
+            customerProcessManager.saveToFile("src/File/customerData.txt", "src/File/dependentData.txt");
             System.out.println("Customer data saved. Exiting program...");
             System.exit(0);  // Exit the program
         } catch (Exception e) {

@@ -18,52 +18,12 @@ public class MenuDisplay {
     private final CustomerInputHandler customerInputHandler = new CustomerInputHandler();
     private final Scanner scanner = new Scanner(System.in);
 
-
     public void displayMenu() {
-
-        //Menu
         boolean continueProgram = true;
         while (continueProgram) {
-            System.out.println("==============================================");
-            System.out.println("|        Welcome to Insurance Claims         |");
-            System.out.println("|            Management System               |");
-            System.out.println("==============================================");
-            System.out.println("|               Claim Options                |");
-            System.out.println("| 1. Add a Claim                             |");
-            System.out.println("| 2. Update a Claim                          |");
-            System.out.println("| 3. Delete a Claim                          |");
-            System.out.println("| 4. View a Claim                            |");
-            System.out.println("| 5. View all Claims                         |"); //should have for one customer
-            System.out.println("==============================================");
-            System.out.println("|              Customer Options              |");
-            System.out.println("| 6. Add a PolicyHolder                      |");
-            System.out.println("| 7. Add a Dependent                         |");
-            System.out.println("| 8. Delete a Customer                       |");
-            System.out.println("| 9. View a Customer                         |");
-            System.out.println("| 10. View all Customers                     |"); //View insurance card, one enum to specify the type of customers
-            System.out.println("==============================================");
-            System.out.println("|              System Options                |");
-            System.out.println("| 11. Save and Exit                          |");
-            System.out.println("==============================================");
-            System.out.print("Enter your choice: ");
+            displayOptions();
+            int choice = getChoice();
 
-            int choice = 0;
-
-            //Handle invalid input
-            try {
-                choice = scanner.nextInt();
-                scanner.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a number.");
-                scanner.nextLine();
-                continue;
-            } catch (NoSuchElementException e) {
-                System.out.println("No line found. Please enter a number.");
-                scanner.nextLine();
-                continue;
-            }
-
-            //Call the method relative to the user's input
             switch (choice) {
                 case 1:
                     claimInputHandler.addClaim(scanner);
@@ -92,9 +52,7 @@ public class MenuDisplay {
                     customerInputHandler.deleteCustomer(scanner);
                     break;
                 case 9:
-                    System.out.print("Enter the customer ID to view: ");
-                    String id = scanner.nextLine();
-                    customerInputHandler.viewCustomer(id);
+                    customerInputHandler.viewCustomer(scanner);
                     break;
                 case 10:
                     customerInputHandler.viewAllCustomers();
@@ -109,20 +67,57 @@ public class MenuDisplay {
                     System.out.println("-------------------------------------------");
             }
 
-
-            // Prompt to ask the user if they want to continue or exit
-            System.out.print("Do you want to continue? (yes/no): ");
-            String continueChoice = scanner.nextLine();
-            while (!continueChoice.equalsIgnoreCase("yes") && !continueChoice.equalsIgnoreCase("no")) {
-                System.out.print("Invalid choice. Please enter 'yes' or 'no': ");
-                continueChoice = scanner.nextLine();
-            }
-            if (continueChoice.equalsIgnoreCase("no")) {
-                claimInputHandler.saveAndExit();
-                customerInputHandler.saveAndExit();
-                scanner.close(); // Close the scanner
-                continueProgram = false;
-            }
+            continueProgram = continueOrExit();
         }
+    }
+
+    private void displayOptions() {
+        System.out.println("==============================================");
+        System.out.println("|        Welcome to Insurance Claims         |");
+        System.out.println("|            Management System               |");
+        System.out.println("==============================================");
+        System.out.println("|               Claim Options                |");
+        System.out.println("| 1. Add a Claim                             |");
+        System.out.println("| 2. Update a Claim                          |");
+        System.out.println("| 3. Delete a Claim                          |");
+        System.out.println("| 4. View a Claim                            |");
+        System.out.println("| 5. View all Claims                         |");
+        System.out.println("==============================================");
+        System.out.println("|              Customer Options              |");
+        System.out.println("| 6. Add a PolicyHolder                      |");
+        System.out.println("| 7. Add a Dependent                         |");
+        System.out.println("| 8. Delete a Customer                       |");
+        System.out.println("| 9. View a Customer                         |");
+        System.out.println("| 10. View all Customers                     |");
+        System.out.println("==============================================");
+        System.out.println("|              System Options                |");
+        System.out.println("| 11. Save and Exit                          |");
+        System.out.println("==============================================");
+        System.out.print("Enter your choice: ");
+    }
+
+    private int getChoice() {
+        int choice = 0;
+        try {
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a number.");
+            scanner.nextLine();
+        } catch (NoSuchElementException e) {
+            System.out.println("No line found. Please enter a number.");
+            scanner.nextLine();
+        }
+        return choice;
+    }
+
+    private boolean continueOrExit() {
+        System.out.print("Do you want to continue? (yes/no): ");
+        String continueChoice = scanner.nextLine();
+        while (!continueChoice.equalsIgnoreCase("yes") && !continueChoice.equalsIgnoreCase("no")) {
+            System.out.print("Invalid choice. Please enter 'yes' or 'no': ");
+            continueChoice = scanner.nextLine();
+        }
+        return continueChoice.equalsIgnoreCase("yes");
     }
 }

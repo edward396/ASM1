@@ -6,11 +6,10 @@ package ProcessManager;
  * version JDK21
  */
 
-import Classes.Claim;
 import Classes.Customer;
 import Classes.Dependent;
+import Classes.InsuranceCard;
 import Classes.PolicyHolder;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,47 +17,60 @@ import java.util.List;
 public class CustomerProcessManagerImplement implements CustomerProcessManager {
     private List<Customer> customers = new ArrayList<>();
 
-    public void addPolicyHolder(String id, String fullName, String insuranceCard) {
-        PolicyHolder policyHolder = new PolicyHolder(id, fullName, insuranceCard, new ArrayList<>(), new ArrayList<>());
-        customers.add(policyHolder);
-        saveToFile("src/File/customerData.txt");
-    }
-
-    public void addDependent(String id, String fullName, String insuranceCard, String policyHolderId) {
-        PolicyHolder policyHolder = (PolicyHolder) getOne(policyHolderId);
-
-        if (policyHolder != null) {
-            policyHolder.getDependents().add(new Dependent(id, fullName, insuranceCard, new ArrayList<>()));
-            saveToFile("src/File/customerData.txt");
-        } else {
-            System.out.println("Invalid PolicyHolder ID. Please enter a valid PolicyHolder ID.");
-        }
-    }
-
-    private boolean customerExists(String customerId) {
-        for (Customer customer : customers) {
-            if (customer.getCustomerID().equals(customerId)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void delete(String id) {
-        Customer existingCustomer = getOne(id);
-        if (existingCustomer != null) {
-            customers.remove(existingCustomer);
-            saveToFile("src/File/customerData.txt");
-        } else {
-            System.out.println("Customer not found.");
-        }
-    }
-
-    @Override
-    public Customer getOne(String id) {
+    private boolean isCustomerIDUnique(String id) {
         for (Customer customer : customers) {
             if (customer.getCustomerID().equals(id)) {
+                return false;  // ID already exists
+            }
+        }
+        return true;  // ID is unique
+    }
+
+    @Override
+    public void addPolicyHolder(String id, String fullName, String insuranceCardNumber) throws Exception {
+        if (!isCustomerIDUnique(id)) {
+            throw new Exception("Customer ID already exists. Please enter a unique ID.");
+        }
+
+        InsuranceCard insuranceCard = new InsuranceCard(insuranceCardNumber);
+        PolicyHolder policyHolder = new PolicyHolder(id, fullName, insuranceCard);
+        customers.add(policyHolder);
+        saveToFile("src/File/customerData.txt", "src/File/dependentData.txt"); // Save changes
+    }
+
+    @Override
+    public void addDependent(String id, String fullName, String policyHolderId) throws Exception {
+        if (!isCustomerIDUnique(id)) {
+            throw new Exception("Customer ID already exists. Please enter a unique ID.");
+        }
+
+        Customer policyHolder = getOne(policyHolderId);
+        if (policyHolder == null) {
+            throw new Exception("Invalid PolicyHolder ID. Please enter a valid PolicyHolder ID.");
+        }
+
+        InsuranceCard insuranceCard = new InsuranceCard(policyHolder.getInsuranceCard().getCardNumber());
+        Dependent dependent = new Dependent(id, fullName, insuranceCard, policyHolderId);
+        customers.add(dependent);
+        ((PolicyHolder) policyHolder).getDependentIDs().add(id);
+        saveToFile("src/File/customerData.txt", "src/File/dependentData.txt"); // Save changes
+    }
+
+    @Override
+    public void delete(String customerID) {
+        Customer existingCustomer = getOne(customerID);
+        if (existingCustomer != null) {
+            customers.remove(existingCustomer);
+            saveToFile("src/File/customerData.txt", "src/File/dependentData.txt"); // Save changes
+        } else {
+            throw new IllegalArgumentException("Customer not found.");
+        }
+    }
+
+    @Override
+    public Customer getOne(String customerID) {
+        for (Customer customer : customers) {
+            if (customer.getCustomerID().equals(customerID)) {
                 return customer;
             }
         }
@@ -71,78 +83,75 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
     }
 
     @Override
-    public void saveToFile(String filename) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
-            for (Customer customer : customers) {
-                writer.print(customer.getCustomerID() + ", ");
-                writer.print(customer.getFullName() + ", ");
-                writer.print(customer.getInsuranceCard() + ", ");
+    public void saveToFile(String customerFilename, String dependentFilename) {
+        try (PrintWriter customerWriter = new PrintWriter(new FileWriter(customerFilename));
+             PrintWriter dependentWriter = new PrintWriter(new FileWriter(dependentFilename))) {
 
+            for (Customer customer : customers) {
                 if (customer instanceof PolicyHolder) {
-                    List<String> dependentInfo = new ArrayList<>();
-                    for (Dependent dependent : ((PolicyHolder) customer).getDependents()) {
-                        dependentInfo.add("{Dependent ID: " + dependent.getCustomerID() +
-                                ", Full Name: " + dependent.getFullName() +
-                                ", Insurance Card: " + dependent.getInsuranceCard() + "}");
-                    }
-                    if (dependentInfo.isEmpty()) {
-                        writer.println("PolicyHolder");
-                    } else {
-                        writer.println("PolicyHolder, " + String.join(", ", dependentInfo));
-                    }
+                    String dependentIDs = ((PolicyHolder) customer).getDependentIDs().isEmpty() ? "null" :
+                            ((PolicyHolder) customer).getDependentIDs().toString().replace("[", "").replace("]", "");
+                    customerWriter.println(customer.getCustomerID() + ", " +
+                            customer.getFullName() + ", " +
+                            ((PolicyHolder) customer).getInsuranceCard().getCardNumber() + ", " +
+                            "PolicyHolder, " +
+                            dependentIDs);
                 } else if (customer instanceof Dependent) {
-                    writer.println("Dependent");
-                } else {
-                    writer.println("None");
+                    dependentWriter.println(customer.getCustomerID() + ", " +
+                            customer.getFullName() + ", " +
+                            ((Dependent) customer).getInsuranceCard().getCardNumber() + ", " +
+                            "Dependent, " +
+                            ((Dependent) customer).getPolicyHolderID());
                 }
             }
+
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
+    @Override
+    public void loadFromFile(String customerFilename, String dependentFilename) {
+        try (BufferedReader customerReader = new BufferedReader(new FileReader(customerFilename));
+             BufferedReader dependentReader = new BufferedReader(new FileReader(dependentFilename))) {
 
-    public void loadFromFile(String filename) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = customerReader.readLine()) != null) {
                 String[] parts = line.split(", ");
-
-                if (parts.length < 4) {
-                    System.out.println("Incomplete data for customer: " + line);
-                    continue;
-                }
-
                 String id = parts[0].trim();
                 String fullName = parts[1].trim();
-                String insuranceCard = parts[2].trim();
-                ArrayList<Dependent> dependents = new ArrayList<>();
+                String cardNumber = parts[2].trim();
 
-                if (parts[3].trim().equals("PolicyHolder")) {
-                    if (parts.length > 4 && !parts[4].trim().equals("None")) {
-                        String depInfo = parts[4].trim().substring(13, parts[4].trim().length() - 1);
-                        String[] depData = depInfo.split(", ");
-
-                        for (String info : depData) {
-                            String[] details = info.split(":");
-                            String depId = details[1].trim();
-                            String depName = details[3].trim();
-                            String depCard = details[5].trim();
-
-                            Dependent dependent = new Dependent(depId, depName, depCard, new ArrayList<>());
-                            dependents.add(dependent);
-                        }
+                List<String> dependentIDs = new ArrayList<>();
+                if (!parts[4].trim().equals("null")) {
+                    String[] depIDs = parts[4].split(", ");
+                    for (String depID : depIDs) {
+                        dependentIDs.add(depID);
                     }
+                }
+                InsuranceCard insuranceCard = new InsuranceCard(cardNumber);
+                PolicyHolder policyHolder = new PolicyHolder(id, fullName, insuranceCard, dependentIDs);
+                customers.add(policyHolder);
+            }
 
-                    Customer customer = new PolicyHolder(id, fullName, insuranceCard, new ArrayList<>(), dependents);
-                    customers.add(customer);
+            while ((line = dependentReader.readLine()) != null) {
+                String[] parts = line.split(", ");
+                String id = parts[0].trim();
+                String fullName = parts[1].trim();
+                String cardNumber = parts[2].trim();
+                String policyHolderID = parts[4].trim();
 
-                } else if (parts[3].trim().equals("Dependent")) {
-                    Customer customer = new Dependent(id, fullName, insuranceCard, new ArrayList<>());
-                    customers.add(customer);
+                InsuranceCard insuranceCard = new InsuranceCard(cardNumber);
+                Dependent dependent = new Dependent(id, fullName, insuranceCard, policyHolderID);
+                customers.add(dependent);
+
+                PolicyHolder policyHolder = (PolicyHolder) getOne(policyHolderID);
+                if (policyHolder != null) {
+                    policyHolder.getDependentIDs().add(id);
                 }
             }
+
         } catch (IOException e) {
             System.out.println("Error reading from file: " + e.getMessage());
         }
     }
-}
+    }

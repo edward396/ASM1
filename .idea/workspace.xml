@@ -4,20 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Merge into 1 package">
-      <change afterPath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManager.java" afterDir="false" />
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Update Add and View Policy Holders">
+      <change afterPath="$PROJECT_DIR$/src/File/dependentData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Claim.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Dependent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/File/claimData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/claimData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/File/customerData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/customerData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Handler/CustomerInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/CustomerInputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/InputValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/InputValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManagerImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessProcessManagerImplement.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +41,16 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2ecxqKfqVUBVmT2wnQG1IkXI5q5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.MainClass.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -291,11 +294,19 @@
       <option name="project" value="LOCAL" />
       <updated>1712319655407</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Update Add and View Policy Holders">
+      <option name="closed" value="true" />
+      <created>1712327799946</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1712327799946</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Decorate the menu pattern" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Change the format to save Documents" />
     <MESSAGE value="Formatted the Date reference objects" />
     <MESSAGE value="Add SOLID design pattern" />
@@ -320,6 +331,7 @@
     <MESSAGE value="Remove unnecessary setters" />
     <MESSAGE value="Fixing date attributes in Claim" />
     <MESSAGE value="Merge into 1 package" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge into 1 package" />
+    <MESSAGE value="Update Add and View Policy Holders" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Add and View Policy Holders" />
   </component>
 </project>

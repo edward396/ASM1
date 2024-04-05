@@ -9,15 +9,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PolicyHolder extends Customer {
-    private List<Dependent> dependents;
+    private InsuranceCard insuranceCard;
+    private List<String> dependentIDs;
 
-    public PolicyHolder(String customerID, String fullName, String insuranceCard, List<Claim> claimList, List<Dependent> dependents) {
-        super(customerID, fullName, insuranceCard, claimList);
-        this.dependents = dependents;
+    public PolicyHolder(String customerID, String fullName, InsuranceCard insuranceCard) {
+        super(customerID, fullName, insuranceCard);
+        this.insuranceCard = insuranceCard;
+        this.dependentIDs = new ArrayList<>();  // Initialize the dependentIDs list
     }
 
-    public List<Dependent> getDependents() {
-        return dependents;
+    public PolicyHolder(String customerID, String fullName, InsuranceCard insuranceCard, List<String> dependentIDs) {
+        super(customerID, fullName, insuranceCard);
+        this.insuranceCard = insuranceCard;
+        this.dependentIDs = dependentIDs != null ? dependentIDs : new ArrayList<>();  // Initialize the dependentIDs list if null
+    }
+
+    public InsuranceCard getInsuranceCard() {
+        return insuranceCard;
+    }
+
+    public void setInsuranceCard(InsuranceCard insuranceCard) {
+        this.insuranceCard = insuranceCard;
+    }
+
+    public List<String> getDependentIDs() {
+        return dependentIDs;
+    }
+
+    public void setDependentIDs(List<String> dependentIDs) {
+        this.dependentIDs = dependentIDs;
     }
 
     @Override
@@ -25,9 +45,8 @@ public class PolicyHolder extends Customer {
         return "PolicyHolder{" +
                 "customerID='" + getCustomerID() + '\'' +
                 ", fullName='" + getFullName() + '\'' +
-                ", insuranceCard='" + getInsuranceCard() + '\'' +
-//                ", claimList=" + getClaimList() +
-                ", dependents=" + dependents +
+                ", insuranceCard=" + insuranceCard +
+                ", dependentIDs=" + (dependentIDs != null ? dependentIDs.toString().replace("[", "").replace("]", "") : "") +
                 '}';
     }
 }

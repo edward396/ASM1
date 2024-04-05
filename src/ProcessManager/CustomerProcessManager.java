@@ -5,16 +5,18 @@ package ProcessManager;
  * @sID s3979056
  * version JDK21
  */
-import Classes.Claim;
 import Classes.Customer;
 
 import java.util.List;
 
 public interface CustomerProcessManager {
-    void addPolicyHolder(String id, String fullName, String insuranceCard);
-    void addDependent(String id, String fullName, String insuranceCard, String policyHolderId);
+    void addPolicyHolder(String id, String fullName, String insuranceCardNumber) throws Exception;
+    void addDependent(String id, String fullName, String policyHolderId) throws Exception;
     void delete(String customerID);
     Customer getOne(String customerID);
     List<Customer> getAll();
-    void saveToFile(String filename);
+    void saveToFile(String customerFilename, String dependentFilename);
+    void loadFromFile(String customerFilename, String dependentFilename);
 }
+
+

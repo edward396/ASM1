@@ -5,30 +5,32 @@
  */
 package Classes;
 
-import java.util.List;
+import Classes.InsuranceCard;
 
 public class Dependent extends Customer {
-    private PolicyHolder policyHolder;
+    private String policyHolderID;
 
-    public Dependent(String customerID, String fullName, String insuranceCard, List<Claim> claimList) {
-        super(customerID, fullName, insuranceCard, claimList);
-    }
-    public PolicyHolder getPolicyHolder() {
-        return policyHolder;
+    public Dependent(String customerID, String fullName, InsuranceCard insuranceCard, String policyHolderID) {
+        super(customerID, fullName, insuranceCard);
+        this.policyHolderID = policyHolderID;
     }
 
-    public void setPolicyHolder(PolicyHolder policyHolder) {
-        this.policyHolder = policyHolder;
+    public Dependent(String customerID, String fullName, InsuranceCard insuranceCard) {
+        super(customerID, fullName, insuranceCard);
     }
 
+
+    public String getPolicyHolderID() {
+        return policyHolderID;
+    }
 
     @Override
     public String toString() {
         return "Dependent{" +
                 "customerID='" + getCustomerID() + '\'' +
                 ", fullName='" + getFullName() + '\'' +
-                ", insuranceCard='" + getInsuranceCard() + '\'' +
-//                ", claimList=" + getClaimList() +
+                ", insuranceCard=" + getInsuranceCard() +
+                ", policyHolderID='" + policyHolderID + '\'' +
                 '}';
     }
 }

@@ -5,36 +5,55 @@
  */
 package Classes;
 
-import java.util.ArrayList;
-import java.util.List;
+import Classes.InsuranceCard;
+import java.util.Objects;
 
-public class Customer {
+public abstract class Customer {
     private String customerID;
     private String fullName;
-    private String insuranceCard;
-    private List<Claim> claimList;
+    private InsuranceCard insuranceCard;
 
-    public Customer(String customerID, String fullName, String insuranceCard, List<Claim> claimList) {
+    public Customer(String customerID, String fullName, InsuranceCard insuranceCard) {
         this.customerID = customerID;
         this.fullName = fullName;
         this.insuranceCard = insuranceCard;
-        this.claimList = claimList;
     }
 
     public String getCustomerID() {
         return customerID;
     }
 
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
+
     public String getFullName() {
         return fullName;
     }
 
-    public String getInsuranceCard() {
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public InsuranceCard getInsuranceCard() {
         return insuranceCard;
     }
 
-    public List<Claim> getClaimList() {
-        return claimList;
+    public void setInsuranceCard(InsuranceCard insuranceCard) {
+        this.insuranceCard = insuranceCard;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(customerID, customer.customerID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customerID);
     }
 
     @Override
@@ -42,8 +61,7 @@ public class Customer {
         return "Customer{" +
                 "customerID='" + customerID + '\'' +
                 ", fullName='" + fullName + '\'' +
-                ", insuranceCard='" + insuranceCard + '\'' +
-//                ", claimList=" + claimList +
+                ", insuranceCard=" + insuranceCard +
                 '}';
     }
 }
