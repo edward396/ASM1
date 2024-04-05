@@ -140,14 +140,14 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                         add(claim);
 
                     } catch (ParseException | NumberFormatException e) {
-                        System.out.println("Error parsing line: " + line + ". Error: " + e.getMessage());
+                        throw new RuntimeException("Error parsing line: " + line + ". Error: " + e.getMessage(), e);
                     }
                 } else {
-                    System.out.println("Invalid line format: " + line);
+                    throw new IllegalArgumentException("Invalid line format: " + line);
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            throw new RuntimeException("Error reading file: " + e.getMessage(), e);
         }
     }
 }

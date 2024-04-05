@@ -20,54 +20,60 @@ public class MenuDisplay {
 
     public void displayMenu() {
         boolean continueProgram = true;
-        while (continueProgram) {
-            displayOptions();
-            int choice = getChoice();
+        try {
+            while (continueProgram) {
+                displayOptions();
+                int choice = getChoice();
 
-            switch (choice) {
-                case 1:
-                    claimInputHandler.addClaim(scanner);
-                    break;
-                case 2:
-                    claimInputHandler.updateClaim(scanner);
-                    break;
-                case 3:
-                    claimInputHandler.deleteClaim(scanner);
-                    break;
-                case 4:
-                    System.out.print("Enter the claim ID to view: ");
-                    String claimID = scanner.nextLine();
-                    claimInputHandler.viewClaim(claimID);
-                    break;
-                case 5:
-                    claimInputHandler.viewAllClaims();
-                    break;
-                case 6:
-                    customerInputHandler.addPolicyHolder(scanner);
-                    break;
-                case 7:
-                    customerInputHandler.addDependent(scanner);
-                    break;
-                case 8:
-                    customerInputHandler.deleteCustomer(scanner);
-                    break;
-                case 9:
-                    customerInputHandler.viewCustomer(scanner);
-                    break;
-                case 10:
-                    customerInputHandler.viewAllCustomers();
-                    break;
-                case 11:
-                    claimInputHandler.saveAndExit();
-                    customerInputHandler.saveAndExit();
-                    scanner.close(); // Close the scanner
-                    return;
-                default:
-                    System.out.println("Invalid choice. Try again.");
-                    System.out.println("-------------------------------------------");
+                switch (choice) {
+                    case 1:
+                        claimInputHandler.addClaim(scanner);
+                        break;
+                    case 2:
+                        claimInputHandler.updateClaim(scanner);
+                        break;
+                    case 3:
+                        claimInputHandler.deleteClaim(scanner);
+                        break;
+                    case 4:
+                        System.out.print("Enter the claim ID to view: ");
+                        String claimID = scanner.nextLine();
+                        claimInputHandler.viewClaim(claimID);
+                        break;
+                    case 5:
+                        claimInputHandler.viewAllClaims();
+                        break;
+                    case 6:
+                        customerInputHandler.addPolicyHolder(scanner);
+                        break;
+                    case 7:
+                        customerInputHandler.addDependent(scanner);
+                        break;
+                    case 8:
+                        customerInputHandler.deleteCustomer(scanner);
+                        break;
+                    case 9:
+                        customerInputHandler.viewCustomer(scanner);
+                        break;
+                    case 10:
+                        customerInputHandler.viewAllCustomers();
+                        break;
+                    case 11:
+                        claimInputHandler.saveAndExit();
+                        customerInputHandler.saveAndExit();
+                        scanner.close();
+                        return;
+                    default:
+                        System.out.println("Invalid choice. Try again.");
+                        System.out.println("-------------------------------------------");
+                }
+                continueProgram = continueOrExit();
             }
-
-            continueProgram = continueOrExit();
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            scanner.close(); // Ensure the scanner is closed in case of an exception
         }
     }
 
@@ -103,9 +109,6 @@ public class MenuDisplay {
             scanner.nextLine();
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please enter a number.");
-            scanner.nextLine();
-        } catch (NoSuchElementException e) {
-            System.out.println("No line found. Please enter a number.");
             scanner.nextLine();
         }
         return choice;

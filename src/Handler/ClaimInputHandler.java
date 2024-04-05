@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ClaimInputHandler {
-    public static ClaimProcessManager claimManager;
+    private ClaimProcessManager claimManager;
 
     public ClaimInputHandler() {
         try {
@@ -58,6 +58,11 @@ public class ClaimInputHandler {
             System.out.print("Enter Receiver Banking Info (Account Number): ");
             String accountNumber = InputValidator.getStringInput(scanner, "");
 
+            if (bankName.isEmpty() || accountOwner.isEmpty() || accountNumber.isEmpty()) {
+                System.out.println("Error: Bank info cannot be empty.");
+                return;
+            }
+
             Claim claim = new Claim.Builder()
                     .claimID(claimID)
                     .claimDate(claimDate)
@@ -75,7 +80,7 @@ public class ClaimInputHandler {
             claimManager.add(claim);
             System.out.println("Claim added successfully.");
         } catch (Exception e) {
-            System.out.println("Error adding claim: " + e.getMessage());
+            System.out.println("Error adding claim: " + e.getClass().getSimpleName() + " - " + e.getMessage());
             System.out.println("-------------------------------------------");
         }
     }
@@ -97,6 +102,11 @@ public class ClaimInputHandler {
 
                 System.out.print("Enter Receiver Banking Info (Account Number): ");
                 String accountNumber = scanner.nextLine();
+
+                if (bankName.isEmpty() || accountOwner.isEmpty() || accountNumber.isEmpty()) {
+                    System.out.println("Error: Bank info cannot be empty.");
+                    return;
+                }
 
                 Claim updatedClaim = new Claim.Builder()
                         .claimID(claimID)
@@ -187,7 +197,7 @@ public class ClaimInputHandler {
             System.out.println("Claim data saved. Exiting program...");
             System.exit(0);  // Exit the program
         } catch (Exception e) {
-            System.out.println("Error saving claim d: " + e.getMessage());
+            System.out.println("Error saving claim data: " + e.getMessage());
             System.out.println("-------------------------------------------");
         }
     }

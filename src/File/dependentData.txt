@@ -9,7 +9,6 @@ D008, Zoe Brown, IC005, Dependent, P005
 D009, Noah Wilson, IC006, Dependent, P006
 D010, Sophia Davis, IC007, Dependent, P007
 D011, Ethan Davis, IC007, Dependent, P007
-D012, Emma Jones, IC008, Dependent, P008
 D013, Ava Miller, IC009, Dependent, P009
 D014, Mia Miller, IC009, Dependent, P009
 D015, Mason Moore, IC010, Dependent, P010

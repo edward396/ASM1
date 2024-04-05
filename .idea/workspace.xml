@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Update Save and Load customer data">
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Make customer ID unique">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/File/customerData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/customerData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/File/dependentData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/dependentData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManagerImplement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,12 +304,19 @@
       <option name="project" value="LOCAL" />
       <updated>1712340339411</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Make customer ID unique">
+      <option name="closed" value="true" />
+      <created>1712340680103</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1712340680103</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Formatted the Date reference objects" />
     <MESSAGE value="Add SOLID design pattern" />
     <MESSAGE value="Adjust to the SOLID design pattern" />
     <MESSAGE value="Format Updated" />
@@ -331,6 +341,7 @@
     <MESSAGE value="Merge into 1 package" />
     <MESSAGE value="Update Add and View Policy Holders" />
     <MESSAGE value="Update Save and Load customer data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Save and Load customer data" />
+    <MESSAGE value="Make customer ID unique" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make customer ID unique" />
   </component>
 </project>
