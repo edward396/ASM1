@@ -46,7 +46,7 @@ public class CustomerManager {
         return customers;
     }
 
-    public void saveToFile() {
+    public void saveToFile(String filename) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
             for (Customer customer : customers) {
                 writer.print(customer.getCustomerID() + ", ");
