@@ -13,6 +13,7 @@ import ProcessManager.CustomerProcessManagerImplement;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class CustomerInputHandler {
     private final CustomerProcessManagerImplement customerProcessManager;
@@ -121,6 +122,40 @@ public class CustomerInputHandler {
         }
     }
 
+    public void viewDependentsOfPolicyHolder(Scanner scanner) {
+        try {
+            System.out.print("Enter Policy Holder ID: ");
+            String policyHolderId = scanner.nextLine();
+
+            if (!customerProcessManager.exists(policyHolderId)) {
+                System.out.println("Policy Holder not found.");
+                return;
+            }
+
+            Customer policyHolder = customerProcessManager.getOne(policyHolderId);
+            if (!(policyHolder instanceof PolicyHolder)) {
+                System.out.println("Entered ID does not belong to a Policy Holder.");
+                return;
+            }
+
+            Set<String> dependentIDs = ((PolicyHolder) policyHolder).getDependentIDs();
+            if (dependentIDs.isEmpty()) {
+                System.out.println("No dependents found for this Policy Holder.");
+                return;
+            }
+
+            System.out.println("Dependents of Policy Holder " + policyHolder.getFullName() + ":");
+            for (String dependentID : dependentIDs) {
+                Customer dependent = customerProcessManager.getOne(dependentID);
+                if (dependent instanceof Dependent) {
+                    System.out.println(dependent);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error viewing dependents: " + e.getMessage());
+            System.out.println("-------------------------------------------");
+        }
+    }
 
 
     public boolean exists(String customerID) {

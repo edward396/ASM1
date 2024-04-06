@@ -59,10 +59,9 @@ public class MenuDisplay {
                         customerInputHandler.viewCustomer(scanner);
                         break;
                     case 11:
-                        //viewDependentsOfPolicyHolder();
+                        customerInputHandler.viewDependentsOfPolicyHolder(scanner);
                         break;
                     case 12:
-                        //viewDependentsOfPolicyHolder();
                         customerInputHandler.viewAllCustomers();
                         break;
                     case 13:
