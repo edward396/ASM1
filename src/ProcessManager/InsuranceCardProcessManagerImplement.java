@@ -41,19 +41,27 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
     public List<InsuranceCard> getAll() {
         return insuranceCards;
     }
+    @Override
+    public void add(InsuranceCard card) {
+        insuranceCards.add(card);
+        saveToFile(FILE_PATH);
+    }
 
     @Override
     public void saveToFile(String fileName) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
             for (InsuranceCard card : insuranceCards) {
-                writer.println(card.toString());
+                writer.print(card.getCardNumber() + ", ");
+                writer.print(card.getCardHolderID() + ", ");
+                writer.print(card.getPolicyOwner() + ", ");
+                writer.print(dateFormat.format(card.getExpirationDate()));
+                writer.println();
             }
         } catch (IOException e) {
             System.out.println("Error saving file: " + e.getMessage());
             e.printStackTrace();
         }
     }
-
     public void loadFromFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -75,18 +83,17 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
         try {
             String cardNumber = parts[0].trim();
             String cardHolderID = parts[1].trim();
+
+            // Check if the card holder ID is "ABC Company"
+            if (!cardHolderID.equals("ABC Company")) {
+                // Validate card holder ID format
+                if (!cardHolderID.matches("c-\\d{7}")) {
+                    throw new IllegalArgumentException("Invalid card holder ID format: " + cardHolderID);
+                }
+            }
+
             String policyHolderID = parts[2].trim();
             Date expirationDate = dateFormat.parse(parts[3].trim());
-
-            // Validate card holder ID format
-            if (!cardHolderID.matches("c-\\d{7}")) {
-                throw new IllegalArgumentException("Invalid card holder ID format: " + cardHolderID);
-            }
-
-            // Validate policy holder ID format
-            if (!policyHolderID.matches("c-\\d{7}")) {
-                throw new IllegalArgumentException("Invalid policy holder ID format: " + policyHolderID);
-            }
 
             InsuranceCard insuranceCard = new InsuranceCard(cardNumber, cardHolderID, policyHolderID, expirationDate);
             insuranceCards.add(insuranceCard);

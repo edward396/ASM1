@@ -16,11 +16,12 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
     private List<Claim> claims;
     private String filename;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    private InsuranceCardProcessManagerImplement insuranceCardProcessManager;
+    private InsuranceCardProcessManagerImplement insuranceCardProcessManager;  // Add this line
 
     public ClaimProcessManagerImplement(String filename) {
         this.filename = filename;
         this.claims = new ArrayList<>();
+        this.insuranceCardProcessManager = new InsuranceCardProcessManagerImplement();  // Initialize insuranceCardProcessManager
 
         try {
             loadFromFile(filename);
@@ -40,10 +41,23 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
             if (getOne(claim.getClaimID()) != null) {
                 throw new IllegalArgumentException("Claim ID already exists. Please enter a unique Claim ID.");
             }
+
+            // Add the new insurance card to the insuranceCardData.txt
+            String newInsuranceCardNumber = claim.getCardNumber();
+            String newInsuranceCardHolderID = "c-" + claim.getCustomerID().substring(2);
+            String policyOwner = "ABC Company";  // Automatic policy owner
+            Date expirationDate = dateFormat.parse("01-01-2030");  // Expiration date
+
+            InsuranceCard newInsuranceCard = new InsuranceCard(newInsuranceCardNumber, newInsuranceCardHolderID, policyOwner, expirationDate);
+            insuranceCardProcessManager.add(newInsuranceCard);
+
             claims.add(claim);
             saveToFile(filename);
+
         } catch (IllegalArgumentException e) {
             System.out.println("Error adding claim: " + e.getMessage());
+        } catch (ParseException e) {
+            System.out.println("Error parsing expiration date: " + e.getMessage());
         }
     }
 
@@ -161,7 +175,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         try {
             String claimID = parts[0].trim();
             Date claimDate = dateFormat.parse(parts[1].trim());
-            String insuredPerson = parts[2].trim();
+            String customerID = parts[2].trim();
             String cardNumber = parts[3].trim();
             Date examDate = dateFormat.parse(parts[4].trim());
             List<String> documents = Arrays.asList(parts[5].trim().split("_"));
@@ -171,20 +185,10 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
             String accountOwner = parts[9].trim();
             String accountNumber = parts[10].trim();
 
-            // Validate customer ID format
-            if (!insuredPerson.matches("c-\\d{7}")) {
-                throw new IllegalArgumentException("Invalid customer ID format: " + insuredPerson);
-            }
-
-            // Validate insurance card number format
-            if (cardNumber.length() != 10 || !cardNumber.matches("\\d{10}")) {
-                throw new IllegalArgumentException("Invalid insurance card number format: " + cardNumber);
-            }
-
             Claim claim = new Claim.Builder()
                     .claimID(claimID)
                     .claimDate(claimDate)
-                    .customerID(insuredPerson)
+                    .customerID(customerID)
                     .cardNumber(cardNumber)
                     .examDate(examDate)
                     .documents(documents)

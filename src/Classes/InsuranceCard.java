@@ -8,14 +8,14 @@ import java.util.Objects;
 public class InsuranceCard {
     private String cardNumber;
     private String cardHolderID; // Added
-    private String policyHolderID; // Added
+    private String policyOwner; // Added
     private Date expirationDate;
     private List<Dependent> dependents;
 
-    public InsuranceCard(String cardNumber, String cardHolderID, String policyHolderID, Date expirationDate) {
+    public InsuranceCard(String cardNumber, String cardHolderID, String policyOwner, Date expirationDate) {
         this.cardNumber = cardNumber;
         this.cardHolderID = cardHolderID;
-        this.policyHolderID = policyHolderID;
+        this.policyOwner = policyOwner;
         this.expirationDate = expirationDate;
         this.dependents = new ArrayList<>();
     }
@@ -45,13 +45,10 @@ public class InsuranceCard {
         this.cardHolderID = cardHolderID;
     }
 
-    public String getPolicyHolderID() { // Added
-        return policyHolderID;
+    public String getPolicyOwner() { // Added
+        return policyOwner;
     }
 
-    public void setPolicyHolderID(String policyHolderID) { // Added
-        this.policyHolderID = policyHolderID;
-    }
     public Date getExpirationDate() {
         return expirationDate;
     }
@@ -90,7 +87,7 @@ public class InsuranceCard {
         return "InsuranceCard{" +
                 "cardNumber='" + cardNumber + '\'' +
                 ", cardHolder='" + cardHolderID + '\'' +
-                ", policyHolder='" + policyHolderID + '\'' +
+                ", policyHolder='" + policyOwner + '\'' +
                 ", expirationDate=" + expirationDate +
                 ", dependents=" + dependents +
                 '}';
