@@ -3,7 +3,7 @@ package Menu;
 import Classes.Claim;
 import Handler.ClaimInputHandler;
 import Handler.CustomerInputHandler;
-import ProcessManager.ClaimProcessManagerImplement;
+//import Handler.InsuranceCardMenuHandler;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -13,6 +13,7 @@ public class MenuDisplay {
 
     private final ClaimInputHandler claimInputHandler = new ClaimInputHandler();
     private final CustomerInputHandler customerInputHandler = new CustomerInputHandler();
+//    private final InsuranceCardMenuHandler insuranceCardMenuHandler = new InsuranceCardMenuHandler();
     private final Scanner scanner = new Scanner(System.in);
 
     public void displayMenu() {
@@ -65,7 +66,7 @@ public class MenuDisplay {
                         customerInputHandler.viewAllCustomers();
                         break;
                     case 13:
-                        //viewInsuranceCard();
+//                        insuranceCardMenuHandler.viewInsuranceCard(scanner);
                         break;
                     case 14:
                         claimInputHandler.saveAndExit();
