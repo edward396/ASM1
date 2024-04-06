@@ -1,6 +1,8 @@
 package ProcessManager;
 
 import Classes.Claim;
+import Classes.Dependent;
+import Classes.InsuranceCard;
 
 import java.io.*;
 import java.text.ParseException;
@@ -21,6 +23,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
             loadFromFile(filename);
         } catch (Exception e) {
             System.out.println("Error loading file: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -28,13 +31,13 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
     public void add(Claim claim) {
         try {
             if (getOne(claim.getClaimID()) != null) {
-                System.out.println("Claim ID already exists. Please enter a unique Claim ID.");
-                return;
+                throw new Exception("Claim ID already exists. Please enter a unique Claim ID.");
             }
             claims.add(claim);
             saveToFile(filename);
         } catch (Exception e) {
             System.out.println("Error adding claim: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -50,12 +53,12 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                 }
             }
             if (!updated) {
-                System.out.println("Claim with ID " + claim.getClaimID() + " not found.");
-                return;
+                throw new Exception("Claim with ID " + claim.getClaimID() + " not found.");
             }
             saveToFile(filename);
         } catch (Exception e) {
             System.out.println("Error updating claim: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -64,12 +67,12 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         try {
             boolean removed = claims.removeIf(claim -> claim.getClaimID().equals(claimId));
             if (!removed) {
-                System.out.println("Claim with ID " + claimId + " not found.");
-                return;
+                throw new Exception("Claim with ID " + claimId + " not found.");
             }
             saveToFile(filename);
         } catch (Exception e) {
             System.out.println("Error deleting claim: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -80,7 +83,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                 return claim;
             }
         }
-        throw new RuntimeException("Claim with ID " + claimID + " not found.");
+        return null;
     }
 
     @Override
@@ -92,7 +95,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
     public List<Claim> getAllClaimsByCustomerID(String customerId) {
         List<Claim> customerClaims = new ArrayList<>();
         for (Claim claim : claims) {
-            if (claim.getInsuredPerson().equals(customerId)) {
+            if (claim.getCustomerID().equals(customerId)) {
                 customerClaims.add(claim);
             }
         }
@@ -106,7 +109,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
             for (Claim claim : claims) {
                 writer.print(claim.getClaimID() + ", ");
                 writer.print(dateFormat.format(claim.getClaimDate()) + ", ");
-                writer.print(claim.getInsuredPerson() + ", ");
+                writer.print(claim.getCustomerID() + ", ");
                 writer.print(claim.getCardNumber() + ", ");
                 writer.print(dateFormat.format(claim.getExamDate()) + ", ");
                 writer.print(String.join("_", claim.getDocuments()) + ", ");
@@ -119,6 +122,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
             }
         } catch (IOException e) {
             System.out.println("Error saving file: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -136,9 +140,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                         String insuredPerson = parts[2].trim();
                         String cardNumber = parts[3].trim();
                         Date examDate = dateFormat.parse(parts[4].trim());
-
                         List<String> documents = Arrays.asList(parts[5].trim().split("_"));
-
                         double amount = Double.parseDouble(parts[6].trim());
                         String status = parts[7].trim();
                         String bankName = parts[8].trim();
@@ -148,7 +150,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                         Claim claim = new Claim.Builder()
                                 .claimID(claimID)
                                 .claimDate(claimDate)
-                                .insuredPerson(insuredPerson)
+                                .customerID(insuredPerson)
                                 .cardNumber(cardNumber)
                                 .examDate(examDate)
                                 .documents(documents)
@@ -162,6 +164,22 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                         claims.add(claim);
 
                     } catch (ParseException | NumberFormatException e) {
+                        throw new RuntimeException("Error parsing line: " + line + ". Error: " + e.getMessage(), e);
+                    }
+                } else if (parts.length == 4) {
+                    try {
+                        String dependentID = parts[0].trim();
+                        String dependentName = parts[1].trim();
+                        String cardNumber = parts[2].trim();  // This is the insurance card number
+                        String policyHolderID = parts[3].trim();
+
+                        InsuranceCard insuranceCard = new InsuranceCard(cardNumber);
+                        Dependent dependent = new Dependent(dependentID, dependentName, insuranceCard, policyHolderID);
+                        // Add dependent to a list or another data structure
+                        // For now, let's just print it
+                        System.out.println(dependent);
+
+                    } catch (NumberFormatException e) {
                         throw new RuntimeException("Error parsing line: " + line + ". Error: " + e.getMessage(), e);
                     }
                 } else {

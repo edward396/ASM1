@@ -9,10 +9,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 public class Claim {
     private String claimID;
     private Date claimDate;
-    private String insuredPerson; //Customer ID here
+    private String customerID;
     private String cardNumber;
     private Date examDate;
     private List<String> documents;
@@ -27,7 +31,7 @@ public class Claim {
     private Claim(Builder builder) {
         this.claimID = builder.claimID;
         this.claimDate = builder.claimDate;
-        this.insuredPerson = builder.insuredPerson;
+        this.customerID = builder.customerID;
         this.cardNumber = builder.cardNumber;
         this.examDate = builder.examDate;
         this.documents = builder.documents;
@@ -42,11 +46,12 @@ public class Claim {
         return claimID;
     }
 
-    public String getInsuredPerson() {
-        return insuredPerson;
+    public String getCustomerID() {
+        return customerID;
     }
-    public void setInsuredPerson(String insuredPerson) {
-        this.insuredPerson = insuredPerson;
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
     }
 
     public String getCardNumber() {
@@ -88,7 +93,7 @@ public class Claim {
     public static class Builder {
         private String claimID;
         private Date claimDate;
-        private String insuredPerson;
+        private String customerID;
         private String cardNumber;
         private Date examDate;
         private List<String> documents;
@@ -110,8 +115,8 @@ public class Claim {
             return this;
         }
 
-        public Builder insuredPerson(String insuredPerson) {
-            this.insuredPerson = insuredPerson;
+        public Builder customerID(String customerID) {
+            this.customerID = customerID;
             return this;
         }
 
@@ -164,7 +169,7 @@ public class Claim {
     public String toString() {
         return "{claimID='" + claimID + '\'' +
                 ", claimDate=" + (claimDate != null ? dateFormat.format(claimDate) : "No date") +
-                ", insuredPerson='" + insuredPerson + '\'' +
+                ", customerID='" + customerID + '\'' +
                 ", cardNumber='" + cardNumber + '\'' +
                 ", examDate=" + (examDate != null ? dateFormat.format(examDate) : "No date") +
                 ", documents=" + documents +

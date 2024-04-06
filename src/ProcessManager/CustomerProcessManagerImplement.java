@@ -12,6 +12,7 @@ import Classes.InsuranceCard;
 import Classes.PolicyHolder;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class CustomerProcessManagerImplement implements CustomerProcessManager {
@@ -115,12 +116,14 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
         }
     }
 
-    @Override
     public void loadFromFile(String customerFilename, String dependentFilename) {
         try (BufferedReader customerReader = new BufferedReader(new FileReader(customerFilename));
              BufferedReader dependentReader = new BufferedReader(new FileReader(dependentFilename))) {
 
             String line;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+            // Load Customers
             while ((line = customerReader.readLine()) != null) {
                 String[] parts = line.split(", ");
                 if (parts.length < 5) {
@@ -144,25 +147,26 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
                 customers.add(policyHolder);
             }
 
+            // Load Dependents
             while ((line = dependentReader.readLine()) != null) {
                 String[] parts = line.split(", ");
-                if (parts.length < 5) {
+                if (parts.length != 4) {
                     System.out.println("Invalid data format in dependent file.");
                     continue;
                 }
 
-                String id = parts[0].trim();
-                String fullName = parts[1].trim();
-                String cardNumber = parts[2].trim();
-                String policyHolderID = parts[4].trim();
+                String dependentID = parts[0].trim();
+                String dependentName = parts[1].trim();
+                String cardNumber = parts[2].trim();  // This is the insurance card number
+                String policyHolderID = parts[3].trim();
 
                 InsuranceCard insuranceCard = new InsuranceCard(cardNumber);
-                Dependent dependent = new Dependent(id, fullName, insuranceCard, policyHolderID);
+                Dependent dependent = new Dependent(dependentID, dependentName, insuranceCard, policyHolderID);
                 customers.add(dependent);
 
                 PolicyHolder policyHolder = (PolicyHolder) getOne(policyHolderID);
                 if (policyHolder != null) {
-                    policyHolder.getDependentIDs().add(id);
+                    policyHolder.getDependentIDs().add(dependentID);
                 }
             }
 

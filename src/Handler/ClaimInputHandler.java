@@ -4,10 +4,7 @@ import Classes.Claim;
 import ProcessManager.ClaimProcessManager;
 import ProcessManager.ClaimProcessManagerImplement;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ClaimInputHandler {
     private ClaimProcessManager claimManager;
@@ -16,12 +13,6 @@ public class ClaimInputHandler {
     public ClaimInputHandler() {
         this.claimManager = new ClaimProcessManagerImplement("src/File/claimData.txt");
         this.customerInputHandler = new CustomerInputHandler();
-        try {
-            claimManager.loadFromFile("src/File/claimData.txt");
-        } catch (Exception e) {
-            System.out.println("Error initializing ClaimProcessManager: " + e.getMessage());
-            System.exit(1);
-        }
     }
 
     public void addClaim(Scanner scanner) {
@@ -35,11 +26,12 @@ public class ClaimInputHandler {
             String insuredPerson = customerInputHandler.getCustomerName(customerID);
             Claim claim = buildClaim(scanner, insuredPerson);
 
-            claimManager.add(claim);
-            System.out.println("Claim added successfully.");
+            if (claim != null) {
+                claimManager.add(claim);
+                System.out.println("Claim added successfully.");
+            }
         } catch (Exception e) {
             System.out.println("Error adding claim: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -48,7 +40,7 @@ public class ClaimInputHandler {
         return scanner.nextLine();
     }
 
-    private Claim buildClaim(Scanner scanner, String insuredPerson) {
+    private Claim buildClaim(Scanner scanner, String customerID) {
         String claimID = generateClaimID();
         Date claimDate = InputValidator.getDateInput(scanner, "Enter Claim Date (dd-MM-yyyy): ");
         String cardNumber = InputValidator.getStringInput(scanner, "Enter Card Number: ");
@@ -68,7 +60,7 @@ public class ClaimInputHandler {
         return new Claim.Builder()
                 .claimID(claimID)
                 .claimDate(claimDate)
-                .insuredPerson(insuredPerson)
+                .customerID(customerID)
                 .cardNumber(cardNumber)
                 .examDate(examDate)
                 .documents(documents)
@@ -81,22 +73,10 @@ public class ClaimInputHandler {
     }
 
     private String generateClaimID() {
-        String generatedID = "";
-        boolean isUnique = false;
-
-        while (!isUnique) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("f-");
-            String numbers = "0123456789";
-            for (int i = 0; i < 10; i++) {
-                int index = (int) (numbers.length() * Math.random());
-                sb.append(numbers.charAt(index));
-            }
-            generatedID = sb.toString();
-            if (claimManager.getOne(generatedID) == null) {
-                isUnique = true;
-            }
-        }
+        String generatedID;
+        do {
+            generatedID = "f-" + UUID.randomUUID().toString().substring(0, 8);
+        } while (claimManager.getOne(generatedID) != null);
         return generatedID;
     }
 
@@ -107,18 +87,28 @@ public class ClaimInputHandler {
 
             if (existingClaim != null) {
                 Claim updatedClaim = buildUpdatedClaim(scanner, existingClaim);
-                claimManager.update(updatedClaim);
-                System.out.println("Claim updated successfully.");
+                if (updatedClaim != null) {
+                    claimManager.update(updatedClaim);
+                    System.out.println("Claim updated successfully.");
+                }
             } else {
                 System.out.println("Claim not found.");
             }
         } catch (Exception e) {
             System.out.println("Error updating claim: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
     private Claim buildUpdatedClaim(Scanner scanner, Claim existingClaim) {
+        Claim.Builder builder = new Claim.Builder()
+                .claimID(existingClaim.getClaimID())
+                .claimDate(existingClaim.getClaimDate())
+                .customerID(existingClaim.getCustomerID())
+                .cardNumber(existingClaim.getCardNumber())
+                .examDate(existingClaim.getExamDate())
+                .documents(existingClaim.getDocuments())
+                .amount(existingClaim.getAmount());
+
         String status = InputValidator.getClaimStatus(scanner);
         String bankName = InputValidator.getStringInput(scanner, "Enter Receiver Banking Info (Bank Name): ");
         String accountOwner = InputValidator.getStringInput(scanner, "Enter Receiver Banking Info (Account Owner): ");
@@ -129,19 +119,12 @@ public class ClaimInputHandler {
             return null;
         }
 
-        return new Claim.Builder()
-                .claimID(existingClaim.getClaimID())
-                .claimDate(existingClaim.getClaimDate())
-                .insuredPerson(existingClaim.getInsuredPerson())
-                .cardNumber(existingClaim.getCardNumber())
-                .examDate(existingClaim.getExamDate())
-                .documents(existingClaim.getDocuments())
-                .amount(existingClaim.getAmount())
-                .status(status)
+        builder.status(status)
                 .bankName(bankName)
                 .accountOwner(accountOwner)
-                .accountNumber(accountNumber)
-                .build();
+                .accountNumber(accountNumber);
+
+        return builder.build();
     }
 
     public void deleteClaim(Scanner scanner) {
@@ -157,7 +140,6 @@ public class ClaimInputHandler {
             }
         } catch (Exception e) {
             System.out.println("Error deleting claim: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -171,7 +153,6 @@ public class ClaimInputHandler {
             }
         } catch (Exception e) {
             System.out.println("Error viewing claim: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -187,7 +168,6 @@ public class ClaimInputHandler {
             }
         } catch (Exception e) {
             System.out.println("Error viewing all claims: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -203,26 +183,16 @@ public class ClaimInputHandler {
             }
         } catch (Exception e) {
             System.out.println("Error viewing claims by customer ID: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
     public void saveAndExit() {
         try {
-            List<Claim> allClaims = claimManager.getAll();
-            for (Claim claim : allClaims) {
-                if (claim.getInsuredPerson() == null || claim.getClaimID() == null) {
-                    System.out.println("Error saving claims: Insured Person ID cannot be null.");
-                    return;
-                }
-            }
-
             claimManager.saveToFile("src/File/claimData.txt");
             System.out.println("Claim data saved. Exiting program...");
             System.exit(0);
         } catch (Exception e) {
             System.out.println("Error saving claim data: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 }
