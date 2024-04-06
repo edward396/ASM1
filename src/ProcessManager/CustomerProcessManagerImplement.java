@@ -99,7 +99,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
     }
 
     @Override
-    public void updateDependent(String id, String fullName, String policyHolderId) {
+    public void updateDependent(String id, String fullName, String policyHolderId)  {
         Dependent dependent = (Dependent) getOne(id);
         if (dependent != null) {
             dependent.setFullName(fullName);

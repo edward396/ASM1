@@ -78,9 +78,4 @@ public class InsuranceCardMenuHandler {
         }
     }
 
-    public static void closeScanner(Scanner scanner) {
-        if (scanner != null) {
-            scanner.close();
-        }
-    }
 }

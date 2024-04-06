@@ -7,8 +7,8 @@ import java.util.Objects;
 
 public class InsuranceCard {
     private String cardNumber;
-    private String cardHolderID; // Added
-    private String policyOwner; // Added
+    private String cardHolderID;
+    private String policyOwner;
     private Date expirationDate;
     private List<Dependent> dependents;
 
@@ -37,16 +37,20 @@ public class InsuranceCard {
         this.cardNumber = cardNumber;
     }
 
-    public String getCardHolderID() { // Added
+    public String getCardHolderID() {
         return cardHolderID;
     }
 
-    public void setCardHolderID(String cardHolderID) { // Added
+    public void setCardHolderID(String cardHolderID) {
         this.cardHolderID = cardHolderID;
     }
 
-    public String getPolicyOwner() { // Added
+    public String getPolicyOwner() {
         return policyOwner;
+    }
+
+    public void setPolicyOwner(String policyOwner) {
+        this.policyOwner = policyOwner;
     }
 
     public Date getExpirationDate() {
@@ -58,15 +62,15 @@ public class InsuranceCard {
     }
 
     public List<Dependent> getDependents() {
-        return new ArrayList<>(dependents);
+        return dependents;
+    }
+
+    public void setDependents(List<Dependent> dependents) {
+        this.dependents = dependents;
     }
 
     public void addDependent(Dependent dependent) {
         dependents.add(dependent);
-    }
-
-    public void removeDependent(Dependent dependent) {
-        dependents.remove(dependent);
     }
 
     @Override
