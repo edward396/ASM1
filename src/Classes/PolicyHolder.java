@@ -9,27 +9,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class PolicyHolder extends Customer {
-    private InsuranceCard insuranceCard;
     private Set<String> dependentIDs;
 
     public PolicyHolder(String customerID, String fullName, InsuranceCard insuranceCard) {
         super(customerID, fullName, insuranceCard);
-        this.insuranceCard = insuranceCard;
-        this.dependentIDs = new HashSet<>();  // Initialize the dependentIDs list
+        this.dependentIDs = new HashSet<>();  // Initialize the dependentIDs set
     }
 
     public PolicyHolder(String customerID, String fullName, InsuranceCard insuranceCard, Set<String> dependentIDs) {
         super(customerID, fullName, insuranceCard);
-        this.insuranceCard = insuranceCard;
-        this.dependentIDs = dependentIDs;  // Initialize the dependentIDs list if null
-    }
-
-    public InsuranceCard getInsuranceCard() {
-        return insuranceCard;
-    }
-
-    public void setInsuranceCard(InsuranceCard insuranceCard) {
-        this.insuranceCard = insuranceCard;
+        this.dependentIDs = dependentIDs != null ? dependentIDs : new HashSet<>();
     }
 
     public Set<String> getDependentIDs() {
@@ -45,8 +34,8 @@ public class PolicyHolder extends Customer {
         return "PolicyHolder{" +
                 "customerID='" + getCustomerID() + '\'' +
                 ", fullName='" + getFullName() + '\'' +
-                ", insuranceCard=" + insuranceCard +
-                ", dependentIDs=" + (dependentIDs != null ? dependentIDs.toString().replace("[", "").replace("]", "") : "") +
+                ", insuranceCard=" + getInsuranceCard() +
+                ", dependentIDs=" + (dependentIDs != null ? String.join(", ", dependentIDs) : "") +
                 '}';
     }
 }
