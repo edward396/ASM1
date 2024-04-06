@@ -78,11 +78,16 @@ public class MenuDisplay {
                 }
                 continueProgram = continueOrExit();
             }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a number.");
+            scanner.nextLine();
+        } catch (NoSuchElementException e) {
+            System.out.println("Input not found. Exiting...");
         } catch (Exception e) {
             System.out.println("An unexpected error occurred: " + e.getMessage());
             e.printStackTrace();
         } finally {
-            scanner.close(); // Ensure the scanner is closed in case of an exception
+            scanner.close();
         }
     }
 
