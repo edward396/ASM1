@@ -61,7 +61,11 @@ public class InputValidator {
         while (true) {
             try {
                 System.out.print(prompt);
-                return dateFormat.parse(scanner.nextLine());
+                String input = scanner.nextLine();
+                if (!input.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
+                    throw new IllegalArgumentException();
+                }
+                return dateFormat.parse(input);
             } catch (Exception e) {
                 System.out.println("Invalid date format. Please enter the date in dd-MM-yyyy format.");
             }
@@ -73,7 +77,7 @@ public class InputValidator {
      *
      * @param scanner Scanner object for user input.
      * @param prompt  Prompt message for the user.
-     * @return Validated non-negative double value.
+     * @return Validated Date object.
      */
     public static double getDoubleInput(Scanner scanner, String prompt) {
         while (true) {
@@ -137,14 +141,13 @@ public class InputValidator {
      * @return Validated Customer ID.
      */
     public static String getCustomerID(Scanner scanner) {
-        String id;
-        do {
-            System.out.print("Enter the Customer ID (c-followed by 7 numbers): ");
-            id = scanner.nextLine();
-            if (!id.matches("^c-\\d{7}$")) {
+        while (true) {
+            String id = getStringInput(scanner, "Enter the Customer ID (c-followed by 7 numbers): ");
+            if (id.matches("^c-\\d{7}$")) {
+                return id;
+            } else {
                 System.out.println("Invalid ID format. Please enter again.");
             }
-        } while (!id.matches("^c-\\d{7}$"));
-        return id;
+        }
     }
 }
