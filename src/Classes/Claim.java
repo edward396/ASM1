@@ -12,7 +12,7 @@ import java.util.List;
 public class Claim {
     private String claimID;
     private Date claimDate;
-    private String insuredPerson;
+    private String insuredPerson; //Customer ID here
     private String cardNumber;
     private Date examDate;
     private List<String> documents;
@@ -44,6 +44,9 @@ public class Claim {
 
     public String getInsuredPerson() {
         return insuredPerson;
+    }
+    public void setInsuredPerson(String insuredPerson) {
+        this.insuredPerson = insuredPerson;
     }
 
     public String getCardNumber() {

@@ -1,21 +1,9 @@
-/**
- * @author Nguyen Vo Truong Toan
- * @sID s3979056
- * version JDK21
- */
 package Menu;
 
 import Classes.Claim;
 import Handler.ClaimInputHandler;
 import Handler.CustomerInputHandler;
 import ProcessManager.ClaimProcessManagerImplement;
-
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
-
-import Handler.ClaimInputHandler;
-import Handler.CustomerInputHandler;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -50,24 +38,37 @@ public class MenuDisplay {
                         claimInputHandler.viewClaim(claimID);
                         break;
                     case 5:
-                        claimInputHandler.viewAllClaims();
+                        System.out.print("Enter the customer ID to view claims: ");
+                        String customerID = scanner.nextLine();
+                        claimInputHandler.viewAllClaimsByCustomerID(customerID);
                         break;
                     case 6:
-                        customerInputHandler.addPolicyHolder(scanner);
+                        claimInputHandler.viewAllClaims();
                         break;
                     case 7:
-                        customerInputHandler.addDependent(scanner);
+                        customerInputHandler.addPolicyHolder(scanner);
                         break;
                     case 8:
-                        customerInputHandler.deleteCustomer(scanner);
+                        customerInputHandler.addDependent(scanner);
                         break;
                     case 9:
-                        customerInputHandler.viewCustomer(scanner);
+                        customerInputHandler.deleteCustomer(scanner);
                         break;
                     case 10:
                         customerInputHandler.viewAllCustomers();
+                        customerInputHandler.viewCustomer(scanner);
                         break;
                     case 11:
+                        //viewDependentsOfPolicyHolder();
+                        break;
+                    case 12:
+                        //viewDependentsOfPolicyHolder();
+                        customerInputHandler.viewAllCustomers();
+                        break;
+                    case 13:
+                        //viewInsuranceCard();
+                        break;
+                    case 14:
                         claimInputHandler.saveAndExit();
                         customerInputHandler.saveAndExit();
                         scanner.close();
@@ -98,20 +99,25 @@ public class MenuDisplay {
         System.out.println("==============================================");
         System.out.println("|               Claim Options                |");
         System.out.println("| 1. Add a Claim                             |");
-        System.out.println("| 2. Update a Claim                          |");
-        System.out.println("| 3. Delete a Claim                          |");
-        System.out.println("| 4. View a Claim                            |");
-        System.out.println("| 5. View all Claims                         |");
+        System.out.println("| 2. Update a Claim (by Claim ID)            |");
+        System.out.println("| 3. Delete a Claim (by Claim ID)            |");
+        System.out.println("| 4. View a Claim (by Claim ID)              |");
+        System.out.println("| 5. View all Claims (by Customer ID)        |");
+        System.out.println("| 6. View all Claims in the system           |");
         System.out.println("==============================================");
         System.out.println("|              Customer Options              |");
-        System.out.println("| 6. Add a PolicyHolder                      |");
-        System.out.println("| 7. Add a Dependent                         |");
-        System.out.println("| 8. Delete a Customer                       |");
-        System.out.println("| 9. View a Customer                         |");
-        System.out.println("| 10. View all Customers                     |");
+        System.out.println("| 7. Add a PolicyHolder                      |");
+        System.out.println("| 8. Add a Dependent                         |");
+        System.out.println("| 9. Delete a Customer                       |");
+        System.out.println("| 10. View a Customer                        |");
+        System.out.println("| 11. View all Dependents of a Policy Holder |");
+        System.out.println("| 12. View all Customers in the system       |");
+        System.out.println("==============================================");
+        System.out.println("|           Insurance Card Options           |");
+        System.out.println("| 13. View an Insurance Card                 |");
         System.out.println("==============================================");
         System.out.println("|              System Options                |");
-        System.out.println("| 11. Save and Exit                          |");
+        System.out.println("| 14. Save and Exit                          |");
         System.out.println("==============================================");
         System.out.print("Enter your choice: ");
     }

@@ -12,10 +12,7 @@ import Classes.InsuranceCard;
 import Classes.PolicyHolder;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class CustomerProcessManagerImplement implements CustomerProcessManager {
     private List<Customer> customers = new ArrayList<>();
@@ -126,6 +123,11 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
             String line;
             while ((line = customerReader.readLine()) != null) {
                 String[] parts = line.split(", ");
+                if (parts.length < 5) {
+                    System.out.println("Invalid data format in customer file.");
+                    continue;
+                }
+
                 String id = parts[0].trim();
                 String fullName = parts[1].trim();
                 String cardNumber = parts[2].trim();
@@ -133,10 +135,9 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
                 Set<String> dependentIDs = new HashSet<>();
                 if (!parts[4].trim().equals("null")) {
                     String[] depIDs = parts[4].split(", ");
-                    for (String depID : depIDs) {
-                        dependentIDs.add(depID);
-                    }
+                    dependentIDs.addAll(new ArrayList<>(Arrays.asList(depIDs)));
                 }
+
                 InsuranceCard insuranceCard = new InsuranceCard(cardNumber);
                 PolicyHolder policyHolder = new PolicyHolder(id, fullName, insuranceCard);
                 policyHolder.setDependentIDs(dependentIDs);
@@ -145,6 +146,11 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
 
             while ((line = dependentReader.readLine()) != null) {
                 String[] parts = line.split(", ");
+                if (parts.length < 5) {
+                    System.out.println("Invalid data format in dependent file.");
+                    continue;
+                }
+
                 String id = parts[0].trim();
                 String fullName = parts[1].trim();
                 String cardNumber = parts[2].trim();

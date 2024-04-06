@@ -121,6 +121,8 @@ public class CustomerInputHandler {
         }
     }
 
+
+
     public boolean exists(String customerID) {
         return customerProcessManager.exists(customerID);
     }

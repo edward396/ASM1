@@ -75,28 +75,28 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
 
     @Override
     public Claim getOne(String claimID) {
-        try {
-            for (Claim claim : claims) {
-                if (claim.getClaimID().equals(claimID)) {
-                    return claim;
-                }
+        for (Claim claim : claims) {
+            if (claim.getClaimID().equals(claimID)) {
+                return claim;
             }
-            System.out.println("Claim with ID " + claimID + " not found.");
-            return null;
-        } catch (Exception e) {
-            System.out.println("Error fetching claim: " + e.getMessage());
-            return null;
         }
+        throw new RuntimeException("Claim with ID " + claimID + " not found.");
     }
 
     @Override
     public List<Claim> getAll() {
-        try {
-            return new ArrayList<>(claims);
-        } catch (Exception e) {
-            System.out.println("Error fetching all claims: " + e.getMessage());
-            return new ArrayList<>();
+        return new ArrayList<>(claims);
+    }
+
+    @Override
+    public List<Claim> getAllClaimsByCustomerID(String customerId) {
+        List<Claim> customerClaims = new ArrayList<>();
+        for (Claim claim : claims) {
+            if (claim.getInsuredPerson().equals(customerId)) {
+                customerClaims.add(claim);
+            }
         }
+        return customerClaims;
     }
 
     @Override
@@ -122,7 +122,6 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         }
     }
 
-    @Override
     public void loadFromFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -160,7 +159,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                                 .accountNumber(accountNumber)
                                 .build();
 
-                        add(claim);
+                        claims.add(claim);
 
                     } catch (ParseException | NumberFormatException e) {
                         throw new RuntimeException("Error parsing line: " + line + ". Error: " + e.getMessage(), e);
