@@ -1,9 +1,8 @@
 package Menu;
 
-import Classes.Claim;
-import Handler.ClaimInputHandler;
-import Handler.CustomerInputHandler;
-//import Handler.InsuranceCardMenuHandler;
+import Handler.ClaimMenuHandler;
+import Handler.CustomerMenuHandler;
+import Handler.InsuranceCardMenuHandler;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -11,9 +10,9 @@ import java.util.Scanner;
 
 public class MenuDisplay {
 
-    private final ClaimInputHandler claimInputHandler = new ClaimInputHandler();
-    private final CustomerInputHandler customerInputHandler = new CustomerInputHandler();
-//    private final InsuranceCardMenuHandler insuranceCardMenuHandler = new InsuranceCardMenuHandler();
+    private final ClaimMenuHandler claimMenuHandler = new ClaimMenuHandler();
+    private final CustomerMenuHandler customerMenuHandler = new CustomerMenuHandler();
+    private final InsuranceCardMenuHandler insuranceCardMenuHandler = new InsuranceCardMenuHandler();
     private final Scanner scanner = new Scanner(System.in);
 
     public void displayMenu() {
@@ -25,52 +24,56 @@ public class MenuDisplay {
 
                 switch (choice) {
                     case 1:
-                        claimInputHandler.addClaim(scanner);
+                        claimMenuHandler.addClaim(scanner);
                         break;
                     case 2:
-                        claimInputHandler.updateClaim(scanner);
+                        claimMenuHandler.updateClaim(scanner);
                         break;
                     case 3:
-                        claimInputHandler.deleteClaim(scanner);
+                        claimMenuHandler.deleteClaim(scanner);
                         break;
                     case 4:
                         System.out.print("Enter the claim ID to view: ");
                         String claimID = scanner.nextLine();
-                        claimInputHandler.viewClaim(claimID);
+                        claimMenuHandler.viewClaim(claimID);
                         break;
                     case 5:
                         System.out.print("Enter the customer ID to view claims: ");
                         String customerID = scanner.nextLine();
-                        claimInputHandler.viewAllClaimsByCustomerID(customerID);
+                        claimMenuHandler.viewAllClaimsByCustomerID(customerID);
                         break;
                     case 6:
-                        claimInputHandler.viewAllClaims();
+                        claimMenuHandler.viewAllClaims();
                         break;
                     case 7:
-                        customerInputHandler.addPolicyHolder(scanner);
+                        customerMenuHandler.addPolicyHolder(scanner);
                         break;
                     case 8:
-                        customerInputHandler.addDependent(scanner);
+                        customerMenuHandler.addDependent(scanner);
                         break;
                     case 9:
-                        customerInputHandler.deleteCustomer(scanner);
+                        customerMenuHandler.deleteCustomer(scanner);
                         break;
                     case 10:
-                        customerInputHandler.viewAllCustomers();
-                        customerInputHandler.viewCustomer(scanner);
+                        customerMenuHandler.viewAllCustomers();
+                        customerMenuHandler.viewCustomer(scanner);
                         break;
                     case 11:
-                        customerInputHandler.viewDependentsOfPolicyHolder(scanner);
+                        customerMenuHandler.viewDependentsOfPolicyHolder(scanner);
                         break;
                     case 12:
-                        customerInputHandler.viewAllCustomers();
+                        customerMenuHandler.viewAllCustomers();
                         break;
                     case 13:
-//                        insuranceCardMenuHandler.viewInsuranceCard(scanner);
+                        insuranceCardMenuHandler.viewInsuranceCard(scanner);
                         break;
                     case 14:
-                        claimInputHandler.saveAndExit();
-                        customerInputHandler.saveAndExit();
+                        insuranceCardMenuHandler.viewAllInsuranceCards();
+                        break;
+                    case 15:
+                        claimMenuHandler.saveAndExit();
+                        customerMenuHandler.saveAndExit();
+                        insuranceCardMenuHandler.saveToFile();
                         scanner.close();
                         return;
                     default:
@@ -115,9 +118,10 @@ public class MenuDisplay {
         System.out.println("==============================================");
         System.out.println("|           Insurance Card Options           |");
         System.out.println("| 13. View an Insurance Card                 |");
+        System.out.println("| 14. View all Insurance Cards in the system |");
         System.out.println("==============================================");
         System.out.println("|              System Options                |");
-        System.out.println("| 14. Save and Exit                          |");
+        System.out.println("| 15. Save and Exit                          |");
         System.out.println("==============================================");
         System.out.print("Enter your choice: ");
     }

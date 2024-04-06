@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Update View Dependents of a Policy Holder option">
-      <change afterPath="$PROJECT_DIR$/src/File/insuranceCardData.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Handler/InsuranceCardMenuHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManagerImplement.java" afterDir="false" />
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Adding view Insurance Card option">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/File/insuranceCardData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/insuranceCardData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/ClaimMenuHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handler/CustomerInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/CustomerMenuHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handler/InsuranceCardMenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/InsuranceCardMenuHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManagerImplement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,12 +411,19 @@
       <option name="project" value="LOCAL" />
       <updated>1712409116419</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Adding view Insurance Card option">
+      <option name="closed" value="true" />
+      <created>1712410576129</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1712410576129</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Modifying saveToFile" />
     <MESSAGE value="Update methods" />
     <MESSAGE value="Small updates" />
     <MESSAGE value="Update more options, fixing adding and viewing customers" />
@@ -438,6 +448,7 @@
     <MESSAGE value="Update view claims by customer ID" />
     <MESSAGE value="Fix duplicating data error" />
     <MESSAGE value="Update View Dependents of a Policy Holder option" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update View Dependents of a Policy Holder option" />
+    <MESSAGE value="Adding view Insurance Card option" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding view Insurance Card option" />
   </component>
 </project>

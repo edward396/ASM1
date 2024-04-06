@@ -15,10 +15,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-public class CustomerInputHandler {
+public class CustomerMenuHandler {
     private final CustomerProcessManagerImplement customerProcessManager;
 
-    public CustomerInputHandler() {
+    public CustomerMenuHandler() {
         this.customerProcessManager = new CustomerProcessManagerImplement();
         try {
             customerProcessManager.loadFromFile("src/File/customerData.txt", "src/File/dependentData.txt");

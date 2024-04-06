@@ -1,34 +1,54 @@
-//package Handler;
-//
-///**
-// * @author Nguyen Vo Truong Toan
-// * @sID s3979056
-// * version JDK21
-// */
-//import ProcessManager.InsuranceCardProcessManagerImplement;
-//
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
-//import java.util.InputMismatchException;
-//import java.util.Scanner;
-//
-//public class InsuranceCardMenuHandler {
-//    private final InsuranceCardProcessManagerImplement insuranceCardManager = new InsuranceCardProcessManagerImplement("src/File/insuranceCardData.txt");
-//    private final Scanner scanner = new Scanner(System.in);
-//
-//    public void viewInsuranceCard(Scanner scanner) {
-//        System.out.print("Enter the Policy Holder ID to view insurance card: ");
-//        String policyHolderID = scanner.nextLine();
-//        var card = insuranceCardManager.getOne(policyHolderID);
-//        if (card != null) {
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-//            System.out.println("Insurance Card Details:");
-//            System.out.println("Policy Holder ID: " + card.getPolicyHolderID());
-//            System.out.println("Dependent IDs: " + String.join(", ", card.getDependentIDs()));
-//            System.out.println("Issue Date: " + dateFormat.format(card.getIssueDate()));
-//            System.out.println("Due Date: " + dateFormat.format(card.getDueDate()));
-//        } else {
-//            System.out.println("Insurance card not found for the Policy Holder ID: " + policyHolderID);
-//        }
-//    }
-//}
+package Handler;
+
+import ProcessManager.InsuranceCardProcessManagerImplement;
+import Classes.InsuranceCard;
+
+import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+
+public class InsuranceCardMenuHandler {
+
+    private final InsuranceCardProcessManagerImplement insuranceCardProcessManager;
+
+    public InsuranceCardMenuHandler() {
+        this.insuranceCardProcessManager = new InsuranceCardProcessManagerImplement("src/File/insuranceCardData.txt");
+    }
+
+    public void viewInsuranceCard(Scanner scanner) {
+        System.out.print("Enter the card number to view: ");
+        String cardNumber = scanner.nextLine();
+
+        InsuranceCard card = insuranceCardProcessManager.getOne(cardNumber);
+        if (card != null) {
+            System.out.println("Card Number: " + card.getCardNumber() +
+                    ", Card Holder ID: " + card.getCardHolderID() +
+                    ", Policy Holder ID: " + card.getPolicyHolderID() +
+                    ", Expiration Date: " + new SimpleDateFormat("dd-MM-yyyy").format(card.getExpirationDate()));
+        } else {
+            System.out.println("Insurance Card not found.");
+        }
+    }
+
+    public void viewAllInsuranceCards() {
+        List<InsuranceCard> cards = insuranceCardProcessManager.getAll();
+
+        if (cards.isEmpty()) {
+            System.out.println("No insurance cards found.");
+            return;
+        }
+
+        System.out.println("All Insurance Cards:");
+        for (InsuranceCard card : cards) {
+            System.out.println("Card Number: " + card.getCardNumber() +
+                    ", Card Holder ID: " + card.getCardHolderID() +
+                    ", Policy Holder ID: " + card.getPolicyHolderID() +
+                    ", Expiration Date: " + new SimpleDateFormat("dd-MM-yyyy").format(card.getExpirationDate()));
+        }
+    }
+
+    public void saveToFile() {
+        insuranceCardProcessManager.saveToFile("src/File/insuranceCardData.txt");
+    }
+}

@@ -6,13 +6,13 @@ import ProcessManager.ClaimProcessManagerImplement;
 
 import java.util.*;
 
-public class ClaimInputHandler {
+public class ClaimMenuHandler {
     private ClaimProcessManager claimManager;
-    private CustomerInputHandler customerInputHandler;
+    private CustomerMenuHandler customerMenuHandler;
 
-    public ClaimInputHandler() {
+    public ClaimMenuHandler() {
         this.claimManager = new ClaimProcessManagerImplement("src/File/claimData.txt");
-        this.customerInputHandler = new CustomerInputHandler();
+        this.customerMenuHandler = new CustomerMenuHandler();
     }
 
     public void addClaim(Scanner scanner) {
@@ -23,7 +23,7 @@ public class ClaimInputHandler {
                 return;
             }
 
-            String insuredPerson = customerInputHandler.getCustomerName(customerID);
+            String insuredPerson = customerMenuHandler.getCustomerName(customerID);
             Claim claim = buildClaim(scanner, insuredPerson);
 
             if (claim != null) {
