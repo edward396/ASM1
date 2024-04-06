@@ -2,7 +2,11 @@ package ProcessManager;
 
 import Classes.InsuranceCard;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,13 +14,13 @@ import java.util.Date;
 import java.util.List;
 
 public class InsuranceCardProcessManagerImplement implements InsuranceCardProcessManager {
+    private static final String FILE_PATH = "src/File/insuranceCardData.txt";
     private List<InsuranceCard> insuranceCards = new ArrayList<>();
-    private String filename;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-    public InsuranceCardProcessManagerImplement(String filename) {
-        this.filename = filename;
+    public InsuranceCardProcessManagerImplement() {
         try {
-            loadFromFile(filename);
+            loadFromFile(FILE_PATH);
         } catch (Exception e) {
             System.out.println("Error loading file: " + e.getMessage());
             e.printStackTrace();
@@ -24,9 +28,9 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
     }
 
     @Override
-    public InsuranceCard getOne(String policyHolderID) {
+    public InsuranceCard getOne(String cardNumber) {
         for (InsuranceCard card : insuranceCards) {
-            if (card.getPolicyHolderID().equals(policyHolderID)) {
+            if (card.getCardNumber().equals(cardNumber)) {
                 return card;
             }
         }
@@ -35,17 +39,14 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
 
     @Override
     public List<InsuranceCard> getAll() {
-        return new ArrayList<>(insuranceCards);
+        return insuranceCards;
     }
 
-    public void saveToFile(String filename) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    @Override
+    public void saveToFile(String fileName) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
             for (InsuranceCard card : insuranceCards) {
-                writer.println(card.getCardNumber() + ", " +
-                        card.getCardHolderID() + ", " +
-                        card.getPolicyHolderID() + ", " +
-                        dateFormat.format(card.getExpirationDate()));
+                writer.println(card.toString());
             }
         } catch (IOException e) {
             System.out.println("Error saving file: " + e.getMessage());
@@ -53,27 +54,45 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
         }
     }
 
-    public void loadFromFile(String filename) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+    public void loadFromFile(String fileName) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(", ");
-                if (parts.length == 4) {
-                    String cardNumber = parts[0].trim();
-                    String cardHolderID = parts[1].trim();
-                    String policyHolderID = parts[2].trim();
-                    Date expirationDate = dateFormat.parse(parts[3].trim());
 
-                    InsuranceCard card = new InsuranceCard(cardNumber, cardHolderID, policyHolderID, expirationDate);
-                    insuranceCards.add(card);
+                if (parts.length == 4) {
+                    processInsuranceCardData(parts);
                 } else {
-                    throw new RuntimeException("Invalid line format in insurance card file: " + line);
+                    throw new IllegalArgumentException("Invalid line format: " + line);
                 }
             }
-        } catch (IOException | ParseException e) {
-            System.out.println("Error reading file: " + e.getMessage());
-            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading file: " + e.getMessage(), e);
+        }
+    }
+
+    private void processInsuranceCardData(String[] parts) {
+        try {
+            String cardNumber = parts[0].trim();
+            String cardHolderID = parts[1].trim();
+            String policyHolderID = parts[2].trim();
+            Date expirationDate = dateFormat.parse(parts[3].trim());
+
+            // Validate card holder ID format
+            if (!cardHolderID.matches("c-\\d{7}")) {
+                throw new IllegalArgumentException("Invalid card holder ID format: " + cardHolderID);
+            }
+
+            // Validate policy holder ID format
+            if (!policyHolderID.matches("c-\\d{7}")) {
+                throw new IllegalArgumentException("Invalid policy holder ID format: " + policyHolderID);
+            }
+
+            InsuranceCard insuranceCard = new InsuranceCard(cardNumber, cardHolderID, policyHolderID, expirationDate);
+            insuranceCards.add(insuranceCard);
+
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Error parsing line: " + String.join(", ", parts) + ". Error: " + e.getMessage(), e);
         }
     }
 }

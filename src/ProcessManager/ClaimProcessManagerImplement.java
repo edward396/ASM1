@@ -15,10 +15,13 @@ import java.util.List;
 public class ClaimProcessManagerImplement implements ClaimProcessManager {
     private List<Claim> claims;
     private String filename;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private InsuranceCardProcessManagerImplement insuranceCardProcessManager;
 
     public ClaimProcessManagerImplement(String filename) {
         this.filename = filename;
         this.claims = new ArrayList<>();
+
         try {
             loadFromFile(filename);
         } catch (Exception e) {
@@ -27,17 +30,20 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         }
     }
 
+    public void setInsuranceCardProcessManager(InsuranceCardProcessManagerImplement insuranceCardProcessManager) {
+        this.insuranceCardProcessManager = insuranceCardProcessManager;
+    }
+
     @Override
     public void add(Claim claim) {
         try {
             if (getOne(claim.getClaimID()) != null) {
-                throw new Exception("Claim ID already exists. Please enter a unique Claim ID.");
+                throw new IllegalArgumentException("Claim ID already exists. Please enter a unique Claim ID.");
             }
             claims.add(claim);
             saveToFile(filename);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Error adding claim: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -53,12 +59,11 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                 }
             }
             if (!updated) {
-                throw new Exception("Claim with ID " + claim.getClaimID() + " not found.");
+                throw new IllegalArgumentException("Claim with ID " + claim.getClaimID() + " not found.");
             }
             saveToFile(filename);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Error updating claim: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -67,12 +72,11 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         try {
             boolean removed = claims.removeIf(claim -> claim.getClaimID().equals(claimId));
             if (!removed) {
-                throw new Exception("Claim with ID " + claimId + " not found.");
+                throw new IllegalArgumentException("Claim with ID " + claimId + " not found.");
             }
             saveToFile(filename);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Error deleting claim: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -92,6 +96,15 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
     }
 
     @Override
+    public List<String> getAllClaimIDs() {
+        List<String> claimIDs = new ArrayList<>();
+        for (Claim claim : claims) {
+            claimIDs.add(claim.getClaimID());
+        }
+        return claimIDs;
+    }
+
+    @Override
     public List<Claim> getAllClaimsByCustomerID(String customerId) {
         List<Claim> customerClaims = new ArrayList<>();
         for (Claim claim : claims) {
@@ -105,7 +118,6 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
     @Override
     public void saveToFile(String fileName) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             for (Claim claim : claims) {
                 writer.print(claim.getClaimID() + ", ");
                 writer.print(dateFormat.format(claim.getClaimDate()) + ", ");
@@ -129,65 +141,83 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
     public void loadFromFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(", ");
 
                 if (parts.length == 11) {
-                    try {
-                        String claimID = parts[0].trim();
-                        Date claimDate = dateFormat.parse(parts[1].trim());
-                        String insuredPerson = parts[2].trim();
-                        String cardNumber = parts[3].trim();
-                        Date examDate = dateFormat.parse(parts[4].trim());
-                        List<String> documents = Arrays.asList(parts[5].trim().split("_"));
-                        double amount = Double.parseDouble(parts[6].trim());
-                        String status = parts[7].trim();
-                        String bankName = parts[8].trim();
-                        String accountOwner = parts[9].trim();
-                        String accountNumber = parts[10].trim();
-
-                        Claim claim = new Claim.Builder()
-                                .claimID(claimID)
-                                .claimDate(claimDate)
-                                .customerID(insuredPerson)
-                                .cardNumber(cardNumber)
-                                .examDate(examDate)
-                                .documents(documents)
-                                .amount(amount)
-                                .status(status)
-                                .bankName(bankName)
-                                .accountOwner(accountOwner)
-                                .accountNumber(accountNumber)
-                                .build();
-
-                        claims.add(claim);
-
-                    } catch (ParseException | NumberFormatException e) {
-                        throw new RuntimeException("Error parsing line: " + line + ". Error: " + e.getMessage(), e);
-                    }
+                    processClaimData(parts);
                 } else if (parts.length == 4) {
-                    try {
-                        String dependentID = parts[0].trim();
-                        String dependentName = parts[1].trim();
-                        String cardNumber = parts[2].trim();  // This is the insurance card number
-                        String policyHolderID = parts[3].trim();
-
-                        InsuranceCard insuranceCard = new InsuranceCard(cardNumber);
-                        Dependent dependent = new Dependent(dependentID, dependentName, insuranceCard, policyHolderID);
-                        // Add dependent to a list or another data structure
-                        // For now, let's just print it
-                        System.out.println(dependent);
-
-                    } catch (NumberFormatException e) {
-                        throw new RuntimeException("Error parsing line: " + line + ". Error: " + e.getMessage(), e);
-                    }
+                    processDependentData(parts);
                 } else {
-                    throw new RuntimeException("Invalid line format: " + line);
+                    throw new IllegalArgumentException("Invalid line format: " + line);
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException("Error reading file: " + e.getMessage(), e);
+        }
+    }
+
+    private void processClaimData(String[] parts) {
+        try {
+            String claimID = parts[0].trim();
+            Date claimDate = dateFormat.parse(parts[1].trim());
+            String insuredPerson = parts[2].trim();
+            String cardNumber = parts[3].trim();
+            Date examDate = dateFormat.parse(parts[4].trim());
+            List<String> documents = Arrays.asList(parts[5].trim().split("_"));
+            double amount = Double.parseDouble(parts[6].trim());
+            String status = parts[7].trim();
+            String bankName = parts[8].trim();
+            String accountOwner = parts[9].trim();
+            String accountNumber = parts[10].trim();
+
+            // Validate customer ID format
+            if (!insuredPerson.matches("c-\\d{7}")) {
+                throw new IllegalArgumentException("Invalid customer ID format: " + insuredPerson);
+            }
+
+            // Validate insurance card number format
+            if (cardNumber.length() != 10 || !cardNumber.matches("\\d{10}")) {
+                throw new IllegalArgumentException("Invalid insurance card number format: " + cardNumber);
+            }
+
+            Claim claim = new Claim.Builder()
+                    .claimID(claimID)
+                    .claimDate(claimDate)
+                    .customerID(insuredPerson)
+                    .cardNumber(cardNumber)
+                    .examDate(examDate)
+                    .documents(documents)
+                    .amount(amount)
+                    .status(status)
+                    .bankName(bankName)
+                    .accountOwner(accountOwner)
+                    .accountNumber(accountNumber)
+                    .build();
+
+            claims.add(claim);
+
+        } catch (ParseException | NumberFormatException e) {
+            throw new IllegalArgumentException("Error parsing line: " + String.join(", ", parts) + ". Error: " + e.getMessage(), e);
+        }
+    }
+
+    private void processDependentData(String[] parts) {
+        try {
+            String dependentID = parts[0].trim();
+            String dependentName = parts[1].trim();
+            String cardNumber = parts[2].trim();  // This is the insurance card number
+            String policyHolderID = parts[3].trim();
+
+            InsuranceCard insuranceCard = insuranceCardProcessManager.getOne(cardNumber);
+            if (insuranceCard != null) {
+                Dependent dependent = new Dependent(dependentID, dependentName, insuranceCard, policyHolderID);
+                // Add dependent to the insurance card
+                insuranceCard.addDependent(dependent);
+            }
+
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Error parsing line: " + String.join(", ", parts) + ". Error: " + e.getMessage(), e);
         }
     }
 }

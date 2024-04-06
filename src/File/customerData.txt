@@ -1,2 +1,0 @@
-c-1234567, John Doe, 1234567890, PolicyHolder, d-7654321, d-8765432
-c-7654321, Jane Smith, 0987654321, PolicyHolder, d-6543210

@@ -17,9 +17,12 @@ public class Dependent extends Customer {
         super(customerID, fullName, insuranceCard);
     }
 
-
     public String getPolicyHolderID() {
         return policyHolderID;
+    }
+
+    public void setPolicyHolderID(String policyHolderID) {
+        this.policyHolderID = policyHolderID;
     }
 
     @Override

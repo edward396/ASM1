@@ -8,12 +8,24 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
 public class MenuDisplay {
 
-    private final ClaimMenuHandler claimMenuHandler = new ClaimMenuHandler();
-    private final CustomerMenuHandler customerMenuHandler = new CustomerMenuHandler();
-    private final InsuranceCardMenuHandler insuranceCardMenuHandler = new InsuranceCardMenuHandler();
-    private final Scanner scanner = new Scanner(System.in);
+    private final ClaimMenuHandler claimMenuHandler;
+    private final CustomerMenuHandler customerMenuHandler;
+    private final InsuranceCardMenuHandler insuranceCardMenuHandler;
+    private final Scanner scanner;
+
+    public MenuDisplay() {
+        this.claimMenuHandler = new ClaimMenuHandler();
+        this.customerMenuHandler = new CustomerMenuHandler();
+        this.insuranceCardMenuHandler = new InsuranceCardMenuHandler();
+        this.scanner = new Scanner(System.in);
+    }
+
 
     public void displayMenu() {
         boolean continueProgram = true;
@@ -33,14 +45,10 @@ public class MenuDisplay {
                         claimMenuHandler.deleteClaim(scanner);
                         break;
                     case 4:
-                        System.out.print("Enter the claim ID to view: ");
-                        String claimID = scanner.nextLine();
-                        claimMenuHandler.viewClaim(claimID);
+                        claimMenuHandler.viewClaim(scanner);
                         break;
                     case 5:
-                        System.out.print("Enter the customer ID to view claims: ");
-                        String customerID = scanner.nextLine();
-                        claimMenuHandler.viewAllClaimsByCustomerID(customerID);
+                        claimMenuHandler.viewAllClaimsByCustomerID(scanner);
                         break;
                     case 6:
                         claimMenuHandler.viewAllClaims();
@@ -56,7 +64,6 @@ public class MenuDisplay {
                         break;
                     case 10:
                         customerMenuHandler.viewAllCustomers();
-                        customerMenuHandler.viewCustomer(scanner);
                         break;
                     case 11:
                         customerMenuHandler.viewDependentsOfPolicyHolder(scanner);
@@ -74,10 +81,9 @@ public class MenuDisplay {
                         claimMenuHandler.saveAndExit();
                         customerMenuHandler.saveAndExit();
                         insuranceCardMenuHandler.saveToFile();
-                        scanner.close();
                         return;
                     default:
-                        System.out.println("Invalid choice. Try again.");
+                        System.out.println("Invalid choice. Please enter a number between 1 and 15.");
                         System.out.println("-------------------------------------------");
                 }
                 continueProgram = continueOrExit();
@@ -112,7 +118,7 @@ public class MenuDisplay {
         System.out.println("| 7. Add a PolicyHolder                      |");
         System.out.println("| 8. Add a Dependent                         |");
         System.out.println("| 9. Delete a Customer                       |");
-        System.out.println("| 10. View a Customer                        |");
+        System.out.println("| 10. View all Customers in the system       |");
         System.out.println("| 11. View all Dependents of a Policy Holder |");
         System.out.println("| 12. View all Customers in the system       |");
         System.out.println("==============================================");
@@ -130,10 +136,16 @@ public class MenuDisplay {
         int choice = 0;
         try {
             choice = scanner.nextInt();
+            if (choice < 1 || choice > 15) {
+                throw new InputMismatchException();
+            }
             scanner.nextLine();
         } catch (InputMismatchException e) {
-            System.out.println("Invalid input. Please enter a number.");
+            System.out.println("Invalid input. Please enter a number between 1 and 15.");
             scanner.nextLine();
+        } catch (NoSuchElementException e) {
+            System.out.println("Input not found. Exiting...");
+            System.exit(0);
         }
         return choice;
     }

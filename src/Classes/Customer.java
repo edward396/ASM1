@@ -1,11 +1,5 @@
-/**
- * @author Nguyen Vo Truong Toan
- * @sID s3979056
- * version JDK21
- */
 package Classes;
 
-import Classes.InsuranceCard;
 import java.util.Objects;
 
 public abstract class Customer {
@@ -41,6 +35,10 @@ public abstract class Customer {
 
     public void setInsuranceCard(InsuranceCard insuranceCard) {
         this.insuranceCard = insuranceCard;
+    }
+
+    public boolean exists(String customerID) {
+        return this.customerID.equals(customerID);
     }
 
     @Override

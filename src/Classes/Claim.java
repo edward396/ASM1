@@ -9,10 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
 public class Claim {
     private String claimID;
     private Date claimDate;

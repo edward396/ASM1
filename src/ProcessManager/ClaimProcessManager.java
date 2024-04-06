@@ -10,6 +10,7 @@ public interface ClaimProcessManager {
     void delete(String claimID);
     Claim getOne(String claimID);
     List<Claim> getAll();
+    public List<String> getAllClaimIDs();
     List<Claim> getAllClaimsByCustomerID(String customerId);
     void saveToFile(String fileName);
     void loadFromFile(String fileName);

@@ -1,13 +1,5 @@
 package Handler;
 
-/**
- * @author Nguyen Vo Truong Toan
- * @sID s3979056
- * version JDK21
- */
-
-import Classes.Claim;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -22,14 +14,7 @@ public class InputValidator {
      * @return Formatted Claim ID.
      */
     public static String getFormattedClaimID(Scanner scanner) {
-        while (true) {
-            System.out.print("Enter Claim ID (f-followed by 10 numbers): ");
-            String input = scanner.nextLine();
-            String claimID = formatClaimID(input);
-            if (claimID != null) {
-                return claimID;
-            }
-        }
+        return validateInput(scanner, "Enter Claim ID (f-followed by 10 numbers): ", InputValidator::formatClaimID);
     }
 
     /**
@@ -45,8 +30,7 @@ public class InputValidator {
             String paddedNumber = String.format("%010d", Long.parseLong(input));
             return "f-" + paddedNumber;
         } else {
-            System.out.println("Invalid Claim ID format. Please enter the Claim ID in the correct format.");
-            return null;
+            throw new IllegalArgumentException("Invalid Claim ID format. Please enter the Claim ID in the correct format.");
         }
     }
 
@@ -58,18 +42,20 @@ public class InputValidator {
      * @return Validated Date object.
      */
     public static Date getDateInput(Scanner scanner, String prompt) {
-        while (true) {
-            try {
-                System.out.print(prompt);
-                String input = scanner.nextLine();
-                if (!input.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
-                    throw new IllegalArgumentException();
-                }
-                return dateFormat.parse(input);
-            } catch (Exception e) {
-                System.out.println("Invalid date format. Please enter the date in dd-MM-yyyy format.");
-            }
+        return validateInput(scanner, prompt, InputValidator::parseDate);
+    }
+
+    /**
+     * Parses the input to a Date object.
+     *
+     * @param input User input for Date.
+     * @return Date object or throws exception if the input is invalid.
+     */
+    private static Date parseDate(String input) throws Exception {
+        if (!input.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
+            throw new IllegalArgumentException("Invalid date format. Please enter the date in dd-MM-yyyy format.");
         }
+        return dateFormat.parse(input);
     }
 
     /**
@@ -80,22 +66,21 @@ public class InputValidator {
      * @return Validated Date object.
      */
     public static double getDoubleInput(Scanner scanner, String prompt) {
-        while (true) {
-            try {
-                System.out.print(prompt);
-                double value = scanner.nextDouble();
-                scanner.nextLine(); // Consume newline character
-                if (value < 0) {
-                    throw new IllegalArgumentException("Amount cannot be negative.");
-                }
-                return value;
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-                scanner.nextLine(); // Consume newline character
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        return validateInput(scanner, prompt, InputValidator::parseDouble);
+    }
+
+    /**
+     * Parses the input to a double value.
+     *
+     * @param input User input for double value.
+     * @return Double value or throws exception if the input is invalid.
+     */
+    private static double parseDouble(String input) {
+        double value = Double.parseDouble(input);
+        if (value < 0) {
+            throw new IllegalArgumentException("Amount cannot be negative.");
         }
+        return value;
     }
 
     /**
@@ -106,48 +91,97 @@ public class InputValidator {
      * @return Validated non-empty string.
      */
     public static String getStringInput(Scanner scanner, String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            String input = scanner.nextLine().trim();
-            if (!input.isEmpty()) {
-                return input;
-            } else {
-                System.out.println("Input cannot be empty. Please try again.");
-            }
-        }
+        return validateInput(scanner, prompt, InputValidator::validateNonEmptyString);
     }
 
     /**
-     * Ensures that the claim status entered by the user is valid.
+     * Validates that the input is a non-empty string.
+     *
+     * @param input User input for string.
+     * @return Validated non-empty string or throws exception if the input is empty.
+     */
+    private static String validateNonEmptyString(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("Input cannot be empty. Please try again.");
+        }
+        return input;
+    }
+
+    /**
+     * Validates and returns a valid claim status from the user input.
      *
      * @param scanner Scanner object for user input.
      * @return Valid claim status.
      */
     public static String getClaimStatus(Scanner scanner) {
-        String status;
-        do {
-            status = getStringInput(scanner, "Enter Status (New, Processing, Done): ").toLowerCase();
-            if (!Arrays.asList(VALID_STATUSES).contains(status)) {
-                System.out.println("Invalid status. Status must be New, Processing, or Done. Please try again.");
-            }
-        } while (!Arrays.asList(VALID_STATUSES).contains(status));
+        return validateInput(scanner, "Enter Status (New, Processing, Done): ", InputValidator::validateClaimStatus);
+    }
+
+    /**
+     * Validates that the input is a valid claim status.
+     *
+     * @param input User input for claim status.
+     * @return Valid claim status or throws exception if the input is invalid.
+     */
+    private static String validateClaimStatus(String input) {
+        String status = input.toLowerCase();
+        if (!Arrays.asList(VALID_STATUSES).contains(status)) {
+            throw new IllegalArgumentException("Invalid status. Status must be New, Processing, or Done.");
+        }
         return status;
     }
 
     /**
-     * Ensures that the customer ID entered by the user matches the specified format.
+     * Validates and returns a valid customer ID from the user input.
      *
      * @param scanner Scanner object for user input.
      * @return Validated Customer ID.
      */
     public static String getCustomerID(Scanner scanner) {
+        return validateInput(scanner, "Enter the Customer ID (c-followed by 7 numbers): ", InputValidator::validateCustomerID);
+    }
+
+    /**
+     * Validates that the input is a valid customer ID.
+     *
+     * @param input User input for Customer ID.
+     * @return Validated Customer ID or throws exception if the input is invalid.
+     */
+    private static String validateCustomerID(String input) throws Exception {
+        if (!input.matches("^c-\\d{7}$")) {
+            throw new IllegalArgumentException("Invalid ID format. Please enter again.");
+        }
+        return input;
+    }
+
+    /**
+     * Generic method to validate user input.
+     *
+     * @param scanner   Scanner object for user input.
+     * @param prompt    Prompt message for the user.
+     * @param validator Function to validate the input.
+     * @param <T>       Type of the validated input.
+     * @return Validated input.
+     */
+    private static <T> T validateInput(Scanner scanner, String prompt, Validator<T> validator) {
         while (true) {
-            String id = getStringInput(scanner, "Enter the Customer ID (c-followed by 7 numbers): ");
-            if (id.matches("^c-\\d{7}$")) {
-                return id;
-            } else {
-                System.out.println("Invalid ID format. Please enter again.");
+            try {
+                System.out.print(prompt);
+                String input = scanner.nextLine().trim();
+                return validator.validate(input);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
+    }
+
+    /**
+     * Functional interface for input validation.
+     *
+     * @param <T> Type of the validated input.
+     */
+    @FunctionalInterface
+    private interface Validator<T> {
+        T validate(String input) throws Exception;
     }
 }

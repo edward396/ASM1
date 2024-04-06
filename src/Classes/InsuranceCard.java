@@ -1,27 +1,32 @@
-/**
- * @author Nguyen Vo Truong Toan
- * @sID s3979056
- * version JDK21
- */
 package Classes;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 public class InsuranceCard {
     private String cardNumber;
-    private String cardHolderID;
-    private String policyHolderID;
+    private String cardHolderID; // Added
+    private String policyHolderID; // Added
     private Date expirationDate;
-
-    public InsuranceCard(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
+    private List<Dependent> dependents;
 
     public InsuranceCard(String cardNumber, String cardHolderID, String policyHolderID, Date expirationDate) {
         this.cardNumber = cardNumber;
         this.cardHolderID = cardHolderID;
         this.policyHolderID = policyHolderID;
         this.expirationDate = expirationDate;
+        this.dependents = new ArrayList<>();
+    }
+
+    public InsuranceCard(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public InsuranceCard(String cardNumber, String cardHolderID) {
+        this.cardNumber = cardNumber;
+        this.cardHolderID = cardHolderID;
     }
 
     public String getCardNumber() {
@@ -32,22 +37,21 @@ public class InsuranceCard {
         this.cardNumber = cardNumber;
     }
 
-    public String getCardHolderID() {
+    public String getCardHolderID() { // Added
         return cardHolderID;
     }
 
-    public void setCardHolderID(String cardHolderID) {
+    public void setCardHolderID(String cardHolderID) { // Added
         this.cardHolderID = cardHolderID;
     }
 
-    public String getPolicyHolderID() {
+    public String getPolicyHolderID() { // Added
         return policyHolderID;
     }
 
-    public void setPolicyHolderID(String policyHolderID) {
+    public void setPolicyHolderID(String policyHolderID) { // Added
         this.policyHolderID = policyHolderID;
     }
-
     public Date getExpirationDate() {
         return expirationDate;
     }
@@ -56,14 +60,39 @@ public class InsuranceCard {
         this.expirationDate = expirationDate;
     }
 
+    public List<Dependent> getDependents() {
+        return new ArrayList<>(dependents);
+    }
+
+    public void addDependent(Dependent dependent) {
+        dependents.add(dependent);
+    }
+
+    public void removeDependent(Dependent dependent) {
+        dependents.remove(dependent);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        InsuranceCard that = (InsuranceCard) o;
+        return Objects.equals(cardNumber, that.cardNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cardNumber);
+    }
+
     @Override
     public String toString() {
         return "InsuranceCard{" +
                 "cardNumber='" + cardNumber + '\'' +
+                ", cardHolder='" + cardHolderID + '\'' +
+                ", policyHolder='" + policyHolderID + '\'' +
+                ", expirationDate=" + expirationDate +
+                ", dependents=" + dependents +
                 '}';
     }
 }
-
-
-
-
