@@ -40,33 +40,19 @@ public class ClaimInputHandler {
                 return;
             }
 
-            String insuredPerson = customerInputHandler.getCustomerName(customerID); // Fetch customer name based on ID
+            String insuredPerson = customerInputHandler.getCustomerName(customerID);
 
             String claimID = generateClaimID();
-
             Date claimDate = InputValidator.getDateInput(scanner, "Enter Claim Date (dd-MM-yyyy): ");
-
-            System.out.print("Enter Card Number: ");
-            String cardNumber = InputValidator.getStringInput(scanner, "");
-
+            String cardNumber = InputValidator.getStringInput(scanner, "Enter Card Number: ");
             Date examDate = InputValidator.getDateInput(scanner, "Enter Exam Date (dd-MM-yyyy): ");
-
-            System.out.print("Enter Document Names (claimId_cardNumber_documentName.pdf): ");
-            String[] documentArray = scanner.nextLine().split("_");
-            List<String> documents = Arrays.asList(documentArray);
-
+            List<String> documents = Arrays.asList(InputValidator.getStringInput(scanner, "Enter Document Names (claimId_cardNumber_documentName.pdf): ").split("_"));
             double amount = InputValidator.getDoubleInput(scanner, "Enter Claim Amount: ");
-
             String status = InputValidator.getClaimStatus(scanner);
 
-            System.out.print("Enter Receiver Banking Info (Bank Name): ");
-            String bankName = InputValidator.getStringInput(scanner, "");
-
-            System.out.print("Enter Receiver Banking Info (Account Owner): ");
-            String accountOwner = InputValidator.getStringInput(scanner, "");
-
-            System.out.print("Enter Receiver Banking Info (Account Number): ");
-            String accountNumber = InputValidator.getStringInput(scanner, "");
+            String bankName = InputValidator.getStringInput(scanner, "Enter Receiver Banking Info (Bank Name): ");
+            String accountOwner = InputValidator.getStringInput(scanner, "Enter Receiver Banking Info (Account Owner): ");
+            String accountNumber = InputValidator.getStringInput(scanner, "Enter Receiver Banking Info (Account Number): ");
 
             if (bankName.isEmpty() || accountOwner.isEmpty() || accountNumber.isEmpty()) {
                 System.out.println("Error: Bank info cannot be empty.");
@@ -96,7 +82,6 @@ public class ClaimInputHandler {
     }
 
     private String generateClaimID() {
-        // Generate a unique claim ID with the format "f-" followed by 10 numbers
         StringBuilder sb = new StringBuilder();
         sb.append("f-");
         String numbers = "0123456789";
