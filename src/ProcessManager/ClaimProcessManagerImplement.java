@@ -1,11 +1,6 @@
-/**
- * @author Nguyen Vo Truong Toan
- * @sID s3979056
- * version JDK21
- */
 package ProcessManager;
 
-import Classes.*;
+import Classes.Claim;
 
 import java.io.*;
 import java.text.ParseException;
@@ -17,63 +12,91 @@ import java.util.List;
 
 public class ClaimProcessManagerImplement implements ClaimProcessManager {
     private List<Claim> claims;
-    private List<Customer> customers;
     private String filename;
-
 
     public ClaimProcessManagerImplement(String filename) {
         this.filename = filename;
         this.claims = new ArrayList<>();
-        this.customers = new ArrayList<>();
-        loadFromFile(filename);
+        try {
+            loadFromFile(filename);
+        } catch (Exception e) {
+            System.out.println("Error loading file: " + e.getMessage());
+        }
     }
 
     @Override
     public void add(Claim claim) {
-        // Check if the claimID already exists
-        for (Claim existingClaim : claims) {
-            if (existingClaim.getClaimID().equals(claim.getClaimID())) {
+        try {
+            if (getOne(claim.getClaimID()) != null) {
                 System.out.println("Claim ID already exists. Please enter a unique Claim ID.");
                 return;
             }
+            claims.add(claim);
+            saveToFile(filename);
+        } catch (Exception e) {
+            System.out.println("Error adding claim: " + e.getMessage());
         }
-        claims.add(claim);
-        saveToFile(filename);  // Saving to file after adding
     }
-
 
     @Override
     public void update(Claim claim) {
-        for (int i = 0; i < claims.size(); i++) {
-            if (claims.get(i).getClaimID().equals(claim.getClaimID())) {
-                claims.set(i, claim);
+        try {
+            boolean updated = false;
+            for (int i = 0; i < claims.size(); i++) {
+                if (claims.get(i).getClaimID().equals(claim.getClaimID())) {
+                    claims.set(i, claim);
+                    updated = true;
+                    break;
+                }
+            }
+            if (!updated) {
+                System.out.println("Claim with ID " + claim.getClaimID() + " not found.");
                 return;
             }
+            saveToFile(filename);
+        } catch (Exception e) {
+            System.out.println("Error updating claim: " + e.getMessage());
         }
-        System.out.println("Claim with ID " + claim.getClaimID() + " not found.");
     }
 
     @Override
     public void delete(String claimId) {
-        boolean removed = claims.removeIf(claim -> claim.getClaimID().equals(claimId));
-        if (!removed) {
-            System.out.println("Claim with ID " + claimId + " not found.");
+        try {
+            boolean removed = claims.removeIf(claim -> claim.getClaimID().equals(claimId));
+            if (!removed) {
+                System.out.println("Claim with ID " + claimId + " not found.");
+                return;
+            }
+            saveToFile(filename);
+        } catch (Exception e) {
+            System.out.println("Error deleting claim: " + e.getMessage());
         }
     }
 
     @Override
-    public Claim getOne(java.lang.String claimID) {
-        for (Claim claim : claims) {
-            if (claim.getClaimID().equals(claimID)) {
-                return claim;
+    public Claim getOne(String claimID) {
+        try {
+            for (Claim claim : claims) {
+                if (claim.getClaimID().equals(claimID)) {
+                    return claim;
+                }
             }
+            System.out.println("Claim with ID " + claimID + " not found.");
+            return null;
+        } catch (Exception e) {
+            System.out.println("Error fetching claim: " + e.getMessage());
+            return null;
         }
-        return null;
     }
 
     @Override
     public List<Claim> getAll() {
-        return new ArrayList<>(claims);
+        try {
+            return new ArrayList<>(claims);
+        } catch (Exception e) {
+            System.out.println("Error fetching all claims: " + e.getMessage());
+            return new ArrayList<>();
+        }
     }
 
     @Override
@@ -136,13 +159,14 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
                                 .accountOwner(accountOwner)
                                 .accountNumber(accountNumber)
                                 .build();
+
                         add(claim);
 
                     } catch (ParseException | NumberFormatException e) {
                         throw new RuntimeException("Error parsing line: " + line + ". Error: " + e.getMessage(), e);
                     }
                 } else {
-                    throw new IllegalArgumentException("Invalid line format: " + line);
+                    throw new RuntimeException("Invalid line format: " + line);
                 }
             }
         } catch (IOException e) {

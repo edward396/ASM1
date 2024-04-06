@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Successfully write and read claims &amp; customers">
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/ClaimInputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/InputValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/InputValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManagerImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -328,20 +326,62 @@
       <option name="project" value="LOCAL" />
       <updated>1712346925889</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Update better exceptions">
+      <option name="closed" value="true" />
+      <created>1712391529800</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1712391529800</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Organizing code lines">
+      <option name="closed" value="true" />
+      <created>1712391550096</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1712391550096</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Adjust methods">
+      <option name="closed" value="true" />
+      <created>1712391589971</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1712391589971</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Close Scanner outside the loop">
+      <option name="closed" value="true" />
+      <created>1712391606326</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1712391606326</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Remove insuranceCard initialization">
+      <option name="closed" value="true" />
+      <created>1712391636557</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1712391636557</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Update">
+      <option name="closed" value="true" />
+      <created>1712391642448</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1712391642448</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Format Updated" />
-    <MESSAGE value="Add more data" />
-    <MESSAGE value="Updated" />
-    <MESSAGE value="Add Builder Pattern for the Claim class" />
-    <MESSAGE value="Modify updateClaim()" />
     <MESSAGE value="Move packages" />
     <MESSAGE value="Created" />
     <MESSAGE value="Add more options" />
-    <MESSAGE value="Update" />
     <MESSAGE value="Update exiting option" />
     <MESSAGE value="Modifying saveToFile" />
     <MESSAGE value="Update methods" />
@@ -358,6 +398,12 @@
     <MESSAGE value="Make customer ID unique" />
     <MESSAGE value="Small updates for better throw Exception" />
     <MESSAGE value="Successfully write and read claims &amp; customers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Successfully write and read claims &amp; customers" />
+    <MESSAGE value="Update better exceptions" />
+    <MESSAGE value="Organizing code lines" />
+    <MESSAGE value="Adjust methods" />
+    <MESSAGE value="Close Scanner outside the loop" />
+    <MESSAGE value="Remove insuranceCard initialization" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
 </project>

@@ -10,6 +10,7 @@ import Classes.Customer;
 import Classes.Dependent;
 import Classes.InsuranceCard;
 import Classes.PolicyHolder;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -137,7 +138,8 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
                     }
                 }
                 InsuranceCard insuranceCard = new InsuranceCard(cardNumber);
-                PolicyHolder policyHolder = new PolicyHolder(id, fullName, insuranceCard, dependentIDs);
+                PolicyHolder policyHolder = new PolicyHolder(id, fullName, insuranceCard);
+                policyHolder.setDependentIDs(dependentIDs);
                 customers.add(policyHolder);
             }
 
