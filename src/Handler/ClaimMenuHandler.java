@@ -1,3 +1,9 @@
+/**
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * version JDK21
+ */
+
 package Handler;
 
 import Classes.Claim;
@@ -10,7 +16,7 @@ import ProcessManager.CustomerProcessManagerImplement;
 import java.util.*;
 
 /**
- * The type Claim menu handler.
+ * Handles the menu operations related to Claim entities.
  */
 public class ClaimMenuHandler {
     private final ClaimProcessManager claimManager;
@@ -25,7 +31,7 @@ public class ClaimMenuHandler {
     }
 
     /**
-     * Add claim.
+     * Adds a new claim.
      *
      * @param scanner the scanner
      */
@@ -55,7 +61,7 @@ public class ClaimMenuHandler {
     }
 
     /**
-     * Update claim.
+     * Updates an existing claim.
      *
      * @param scanner the scanner
      */
@@ -79,7 +85,7 @@ public class ClaimMenuHandler {
     }
 
     /**
-     * Remove claim.
+     * Removes a claim.
      *
      * @param scanner the scanner
      */
@@ -100,7 +106,7 @@ public class ClaimMenuHandler {
     }
 
     /**
-     * View claim.
+     * Displays details of a specific claim.
      *
      * @param scanner the scanner
      */
@@ -120,7 +126,7 @@ public class ClaimMenuHandler {
     }
 
     /**
-     * View all claims by customer id.
+     * Displays all claims associated with a specific customer ID.
      *
      * @param scanner the scanner
      */
@@ -144,7 +150,7 @@ public class ClaimMenuHandler {
     }
 
     /**
-     * View all claims.
+     * Displays all existing claims.
      */
     public void viewAllClaims() {
         try {
@@ -159,6 +165,12 @@ public class ClaimMenuHandler {
         }
     }
 
+    /**
+     * Prompts the user to enter a Customer ID (either Policy Holder or Dependant) and validates it.
+     *
+     * @param scanner the scanner
+     * @return the validated customer ID
+     */
     private String getCustomerID(Scanner scanner) {
         while (true) {
             try {
@@ -176,12 +188,25 @@ public class ClaimMenuHandler {
         }
     }
 
+    /**
+     * Checks if the provided customer ID is valid.
+     *
+     * @param customerID the customer ID to validate
+     * @return true if the customer ID is valid, otherwise false
+     */
     private boolean isValidCustomerID(String customerID) {
         return customerProcessManager.exists(customerID) ||
                 customerProcessManager.exists("c-" + customerID) ||
                 customerProcessManager.exists("d-" + customerID);
     }
 
+    /**
+     * Builds a new Claim object using the provided information.
+     *
+     * @param scanner    the scanner
+     * @param customerID the customer ID associated with the claim
+     * @return the constructed Claim object
+     */
     private Claim buildClaim(Scanner scanner, String customerID) {
         String claimID = generateClaimID();
         Date claimDate = InputValidator.getDateInput(scanner, "Enter Claim Date (dd-MM-yyyy): ");
@@ -211,6 +236,13 @@ public class ClaimMenuHandler {
                 .build();
     }
 
+    /**
+     * Builds an updated Claim object using the provided information.
+     *
+     * @param scanner       the scanner
+     * @param existingClaim the existing claim to be updated
+     * @return the updated Claim object
+     */
     private Claim buildUpdatedClaim(Scanner scanner, Claim existingClaim) {
         Claim.Builder builder = new Claim.Builder()
                 .claimID(existingClaim.getClaimID())
@@ -236,6 +268,12 @@ public class ClaimMenuHandler {
         return builder.build();
     }
 
+    /**
+     * Prompts the user to enter banking information.
+     *
+     * @param scanner the scanner
+     * @return an array containing bank name, account owner, and account number
+     */
     private String[] getBankInfo(Scanner scanner) {
         String bankName = InputValidator.getStringInput(scanner, "Enter Receiver Banking Info (Bank Name): ");
         String accountOwner = InputValidator.getStringInput(scanner, "Enter Receiver Banking Info (Account Owner): ");
@@ -249,10 +287,23 @@ public class ClaimMenuHandler {
         return new String[]{bankName, accountOwner, accountNumber};
     }
 
+    /**
+     * Validates the provided banking information.
+     *
+     * @param bankName      the bank name
+     * @param accountOwner  the account owner
+     * @param accountNumber the account number
+     * @return true if the banking information is valid, otherwise false
+     */
     private boolean validateBankInfo(String bankName, String accountOwner, String accountNumber) {
         return !bankName.isEmpty() && !accountOwner.isEmpty() && !accountNumber.isEmpty();
     }
 
+    /**
+     * Generates a new unique claim ID.
+     *
+     * @return the generated claim ID
+     */
     private String generateClaimID() {
         List<String> existingClaimIDs = claimManager.getAllClaimIDs();
         int maxClaimID = existingClaimIDs.stream()
@@ -263,12 +314,18 @@ public class ClaimMenuHandler {
         return String.format("f-%010d", maxClaimID + 1);
     }
 
+    /**
+     * Handles exceptions by displaying an error message.
+     *
+     * @param message the error message prefix
+     * @param e       the exception
+     */
     private void handleException(String message, Exception e) {
         System.out.println(message + e.getMessage());
     }
 
     /**
-     * Save and exit.
+     * Saves the claim data to a file and exits the program.
      */
     public void saveAndExit() {
         try {

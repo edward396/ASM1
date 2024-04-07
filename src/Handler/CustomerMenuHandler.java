@@ -1,7 +1,7 @@
 /**
  * @author Nguyen Vo Truong Toan
  * @sID s3979056
- * version JDK21
+ * @version JDK21
  */
 
 package Handler;
@@ -15,13 +15,27 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * Handles the menu operations related to Customer, PolicyHolder, and Dependant.
+ *
+ */
+
 public class CustomerMenuHandler {
     private final CustomerProcessManagerImplement customerProcessManager;
 
+    /**
+     * Constructor for CustomerMenuHandler.
+     * Initializes the customer process manager.
+     */
     public CustomerMenuHandler() {
         this.customerProcessManager = new CustomerProcessManagerImplement();
     }
 
+    /**
+     * Adds a new PolicyHolder.
+     *
+     * @param scanner the scanner object to get user input
+     */
     public void addPolicyHolder(Scanner scanner) {
         try {
             String fullName = getInput(scanner, "Enter Full Name: ");
@@ -36,6 +50,11 @@ public class CustomerMenuHandler {
         }
     }
 
+    /**
+     * Adds a new Dependant.
+     *
+     * @param scanner the scanner object to get user input
+     */
     public void addDependant(Scanner scanner) {
         try {
             String fullName = getInput(scanner, "Enter Full Name: ");
@@ -48,6 +67,11 @@ public class CustomerMenuHandler {
         }
     }
 
+    /**
+     * Removes a customer.
+     *
+     * @param scanner the scanner object to get user input
+     */
     public void removeCustomer(Scanner scanner) {
         try {
             String id = getInput(scanner, "Enter the customer ID to remove: ");
@@ -64,6 +88,11 @@ public class CustomerMenuHandler {
         }
     }
 
+    /**
+     * Views details of a customer.
+     *
+     * @param scanner the scanner object to get user input
+     */
     public void viewCustomer(Scanner scanner) {
         try {
             String id = getInput(scanner, "Enter the customer ID: ");
@@ -84,6 +113,9 @@ public class CustomerMenuHandler {
         }
     }
 
+    /**
+     * Views all customers.
+     */
     public void viewAllCustomers() {
         try {
             List<Customer> customers = customerProcessManager.getAll();
@@ -97,6 +129,11 @@ public class CustomerMenuHandler {
         }
     }
 
+    /**
+     * Views all dependants of a PolicyHolder.
+     *
+     * @param scanner the scanner object to get user input
+     */
     public void viewDependantsOfPolicyHolder(Scanner scanner) {
         try {
             String policyHolderId = getInput(scanner, "Enter Policy Holder ID: ");
@@ -128,11 +165,23 @@ public class CustomerMenuHandler {
         }
     }
 
+    /**
+     * Helper method to get user input.
+     *
+     * @param scanner the scanner object to get user input
+     * @param prompt  the prompt message for the user
+     * @return        the user input
+     */
     private String getInput(Scanner scanner, String prompt) {
         System.out.print(prompt);
         return scanner.nextLine();
     }
 
+    /**
+     * Helper method to print customer details.
+     *
+     * @param customer the customer object to print
+     */
     private void printCustomerDetails(Customer customer) {
         if (customer instanceof PolicyHolder) {
             System.out.println("PolicyHolder: " + customer);
@@ -142,11 +191,20 @@ public class CustomerMenuHandler {
         System.out.println("-------------------------------------------");
     }
 
+    /**
+     * Helper method to handle exceptions.
+     *
+     * @param message the error message prefix
+     * @param e       the exception
+     */
     private void handleException(String message, Exception e) {
         System.out.println(message + e.getMessage());
         System.out.println("-------------------------------------------");
     }
 
+    /**
+     * Saves customer data to files and exits the program.
+     */
     public void saveAndExit() {
         try {
             customerProcessManager.saveToFile(CustomerProcessManagerImplement.CUSTOMER_FILE_PATH, CustomerProcessManagerImplement.DEPENDANT_FILE_PATH);

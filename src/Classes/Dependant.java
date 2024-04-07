@@ -7,18 +7,18 @@
 package Classes;
 
 /**
- * The type Dependant.
+ * Represents a Dependant in the Insurance Claim Management System.
  */
 public class Dependant extends Customer {
     private String policyHolderID;
 
     /**
-     * Instantiates a new Dependant.
+     * Constructor to instantiate a new Dependant.
      *
-     * @param customerID     the customer id
-     * @param fullName       the full name
-     * @param insuranceCard  the insurance card
-     * @param policyHolderID the policy holder id
+     * @param customerID     the customer ID
+     * @param fullName       the full name of the dependant
+     * @param insuranceCard  the insurance card associated with the dependant
+     * @param policyHolderID the ID of the policyholder
      */
     public Dependant(String customerID, String fullName, InsuranceCard insuranceCard, String policyHolderID) {
         super(customerID, fullName, insuranceCard);
@@ -26,23 +26,20 @@ public class Dependant extends Customer {
     }
 
     /**
-     * Gets policy holder id.
-     *
-     * @return the policy holder id
+     * Getters and Setters for necessary attributes
      */
     public String getPolicyHolderID() {
         return policyHolderID;
     }
-
-    /**
-     * Sets policy holder id.
-     *
-     * @param policyHolderID the policy holder id
-     */
     public void setPolicyHolderID(String policyHolderID) {
         this.policyHolderID = policyHolderID;
     }
 
+    /**
+     * Returns a string representation of the Dependant object.
+     *
+     * @return a string representation of the Dependant object
+     */
     @Override
     public String toString() {
         return "Dependant{" +

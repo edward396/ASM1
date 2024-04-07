@@ -3,6 +3,7 @@
  * @sID s3979056
  * version JDK21
  */
+
 package Classes;
 
 import java.text.SimpleDateFormat;
@@ -10,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The type Claim.
+ * Represents a claim in the Insurance Claim Management System.
  */
 public class Claim {
     private String claimID;
@@ -27,6 +28,11 @@ public class Claim {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
+    /**
+     * Private constructor to instantiate a new Claim using the Builder pattern.
+     *
+     * @param builder the builder object
+     */
     private Claim(Builder builder) {
         this.claimID = builder.claimID;
         this.claimDate = builder.claimDate;
@@ -42,100 +48,48 @@ public class Claim {
     }
 
     /**
-     * Gets claim id.
-     *
-     * @return the claim id
+     * Getters and Setters for necessary attributes
      */
     public String getClaimID() {
         return claimID;
     }
 
-    /**
-     * Gets customer id.
-     *
-     * @return the customer id
-     */
     public String getCustomerID() {
         return customerID;
     }
 
-    /**
-     * Gets card number.
-     *
-     * @return the card number
-     */
     public String getCardNumber() {
         return cardNumber;
     }
 
-    /**
-     * Gets claim date.
-     *
-     * @return the claim date
-     */
     public Date getClaimDate() {
         return claimDate;
     }
 
-    /**
-     * Gets exam date.
-     *
-     * @return the exam date
-     */
     public Date getExamDate() {
         return examDate;
     }
 
-    /**
-     * Gets documents.
-     *
-     * @return the documents
-     */
     public List<String> getDocuments() {
         return documents;
     }
 
-    /**
-     * Gets amount.
-     *
-     * @return the amount
-     */
     public double getAmount() {
         return amount;
     }
 
-    /**
-     * Gets status.
-     *
-     * @return the status
-     */
     public String getStatus() {
         return status;
     }
 
-    /**
-     * Gets bank name.
-     *
-     * @return the bank name
-     */
     public String getBankName() {
         return bankName;
     }
 
-    /**
-     * Gets account owner.
-     *
-     * @return the account owner
-     */
     public String getAccountOwner() {
         return accountOwner;
     }
 
-    /**
-     * Gets account number.
-     *
-     * @return the account number
-     */
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -157,7 +111,7 @@ public class Claim {
         private String accountNumber;
 
         /**
-         * Instantiates a new Builder.
+         * Default constructor for the Builder class.
          */
         public Builder() {}
 
@@ -292,6 +246,11 @@ public class Claim {
         }
     }
 
+    /**
+     * Returns a string representation of the Claim object.
+     *
+     * @return a string representation of the Claim object
+     */
     @Override
     public String toString() {
         return "{claimID='" + claimID + '\'' +

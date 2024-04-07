@@ -1,3 +1,9 @@
+/**
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * version JDK21
+ */
+
 package Classes;
 
 import java.util.ArrayList;
@@ -41,86 +47,55 @@ public class InsuranceCard {
     }
 
     /**
-     * Gets card number.
-     *
-     * @return the card number
+     * Getters and Setters for necessary attributes
      */
     public String getCardNumber() {
         return cardNumber;
     }
 
-    /**
-     * Sets card number.
-     *
-     * @param cardNumber the card number
-     */
     public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
-    /**
-     * Gets card holder id.
-     *
-     * @return the card holder id
-     */
     public String getCardHolderID() {
         return cardHolderID;
     }
 
-    /**
-     * Sets card holder id.
-     *
-     * @param cardHolderID the card holder id
-     */
     public void setCardHolderID(String cardHolderID) {
         this.cardHolderID = cardHolderID;
     }
 
-    /**
-     * Gets policy owner.
-     *
-     * @return the policy owner
-     */
     public String getPolicyOwner() {
         return policyOwner;
     }
 
-    /**
-     * Sets policy owner.
-     *
-     * @param policyOwner the policy owner
-     */
     public void setPolicyOwner(String policyOwner) {
         this.policyOwner = policyOwner;
     }
 
-    /**
-     * Gets expiration date.
-     *
-     * @return the expiration date
-     */
     public Date getExpirationDate() {
         return expirationDate;
     }
 
-    /**
-     * Sets expiration date.
-     *
-     * @param expirationDate the expiration date
-     */
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 
     /**
-     * Add dependant.
+     * Adds a dependant to the list of dependants.
      *
-     * @param dependant the dependant
+     * @param dependant the dependant to add
      */
     public void addDependant(Dependant dependant) {
         dependants.add(dependant);
     }
 
+    /**
+     * Overrides the equals method to compare InsuranceCard objects based on cardNumber.
+     *
+     * @param o the object to compare
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,17 +104,27 @@ public class InsuranceCard {
         return Objects.equals(cardNumber, that.cardNumber);
     }
 
+    /**
+     * Overrides the hashCode method.
+     *
+     * @return the hash code value for this object
+     */
     @Override
     public int hashCode() {
         return Objects.hash(cardNumber);
     }
 
+    /**
+     * Returns a string representation of the InsuranceCard object.
+     *
+     * @return a string representation of the InsuranceCard object
+     */
     @Override
     public String toString() {
         return "InsuranceCard{" +
                 "cardNumber='" + cardNumber + '\'' +
                 ", cardHolder='" + cardHolderID + '\'' +
-                ", policyHolder='" + policyOwner + '\'' +
+                ", policyOwner='" + policyOwner + '\'' +
                 ", expirationDate=" + expirationDate +
                 ", dependants=" + dependants +
                 '}';

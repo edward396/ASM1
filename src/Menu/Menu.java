@@ -1,3 +1,9 @@
+/**
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * version JDK21
+ */
+
 package Menu;
 
 import Handler.ClaimMenuHandler;
@@ -9,9 +15,11 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
- * The type Menu display.
+ * A class to display the main menu and handle user inputs.
+ * This class provides a menu with various options related to Claims, Customers, and Insurance Cards.
  */
-public class Menu {
+
+ public class Menu {
 
     private final ClaimMenuHandler claimMenuHandler;
     private final CustomerMenuHandler customerMenuHandler;
@@ -20,6 +28,7 @@ public class Menu {
 
     /**
      * Instantiates a new Menu display.
+     * Initializes the menu handlers and the scanner for user input.
      */
     public Menu() {
         this.claimMenuHandler = new ClaimMenuHandler();
@@ -30,7 +39,7 @@ public class Menu {
 
 
     /**
-     * Display menu.
+     * Displays the main menu and handles user inputs.
      */
     public void displayMenu() {
         boolean continueProgram = true;
@@ -106,6 +115,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Displays the main menu options.
+     */
     private void displayOptions() {
         System.out.println("==============================================");
         System.out.println("|        Welcome to Insurance Claims         |");
@@ -137,6 +149,11 @@ public class Menu {
         System.out.print("Enter your choice: ");
     }
 
+    /**
+     * Gets the user's choice from the menu options.
+     *
+     * @return the user's choice as an integer.
+     */
     private int getChoice() {
         int choice = 0;
         try {
@@ -155,6 +172,11 @@ public class Menu {
         return choice;
     }
 
+    /**
+     * Asks the user if they want to continue or exit the program.
+     *
+     * @return true if the user wants to continue, false otherwise.
+     */
     private boolean continueOrExit() {
         System.out.print("Do you want to continue? (yes/no): ");
         String continueChoice = scanner.nextLine();

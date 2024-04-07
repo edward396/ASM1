@@ -1,3 +1,9 @@
+/**
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * @version JDK21
+ */
+
 package Handler;
 
 import ProcessManager.InsuranceCardProcessManagerImplement;
@@ -9,7 +15,8 @@ import java.util.Scanner;
 import java.io.File;
 
 /**
- * The type Insurance card menu handler.
+ * A menu handler class for managing Insurance Card operations.
+ * This class provides methods to view individual and all insurance cards and to save the insurance card data to a file.
  */
 public class InsuranceCardMenuHandler {
 
@@ -19,6 +26,7 @@ public class InsuranceCardMenuHandler {
 
     /**
      * Instantiates a new Insurance card menu handler.
+     * It checks if the insurance card data file exists, and if not, creates a new file.
      */
     public InsuranceCardMenuHandler() {
         this.insuranceCardProcessManager = new InsuranceCardProcessManagerImplement();
@@ -35,9 +43,9 @@ public class InsuranceCardMenuHandler {
     }
 
     /**
-     * View insurance card.
+     * View insurance card details by card number.
      *
-     * @param scanner the scanner
+     * @param scanner the scanner object for user input.
      */
     public void viewInsuranceCard(Scanner scanner) {
         try {
@@ -56,7 +64,7 @@ public class InsuranceCardMenuHandler {
     }
 
     /**
-     * View all insurance cards.
+     * View details of all insurance cards.
      */
     public void viewAllInsuranceCards() {
         try {
@@ -76,6 +84,11 @@ public class InsuranceCardMenuHandler {
         }
     }
 
+    /**
+     * Prints the details of an InsuranceCard object.
+     *
+     * @param card the InsuranceCard object to print details of.
+     */
     private void printInsuranceCardDetails(InsuranceCard card) {
         System.out.println("Card Number: " + card.getCardNumber() +
                 ", Card Holder ID: " + card.getCardHolderID() +
@@ -84,7 +97,7 @@ public class InsuranceCardMenuHandler {
     }
 
     /**
-     * Save to file.
+     * Saves the insurance card data to a file.
      */
     public void saveToFile() {
         try {
@@ -94,5 +107,4 @@ public class InsuranceCardMenuHandler {
             System.out.println("Error saving insurance card data: " + e.getMessage());
         }
     }
-
 }

@@ -3,17 +3,14 @@
  * @sID s3979056
  * version JDK21
  */
+
 package Menu;
 
 /**
- * The type Main class.
+ * The main class to start the application.
+ * This class contains the entry point of the application.
  */
-public class MAIN {
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
+ public class MAIN {
     public static void main(String[] args) {
         Menu menu = new Menu();
         menu.displayMenu();

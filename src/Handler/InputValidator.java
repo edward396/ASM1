@@ -1,10 +1,17 @@
+/**
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * @version JDK21
+ */
+
 package Handler;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * The type Input validator.
+ * A utility class for validating user input.
+ * It provides methods to validate and format various types of user inputs.
  */
 public class InputValidator {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");

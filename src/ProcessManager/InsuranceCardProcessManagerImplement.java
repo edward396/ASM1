@@ -14,15 +14,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The type Insurance card process manager implement.
+ * The interface for managing insurance card processes.
+ * This interface defines the methods to manage insurance cards.
  */
 public class InsuranceCardProcessManagerImplement implements InsuranceCardProcessManager {
+
+    /** The file path where insurance card data is stored. */
     private static final String FILE_PATH = "src/File/insuranceCardData.txt";
+
+    /** The list to hold InsuranceCard objects. */
     private List<InsuranceCard> insuranceCards = new ArrayList<>();
+
+    /** The date format used for formatting and parsing dates. */
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     /**
-     * Instantiates a new Insurance card process manager implement.
+     * Constructs an InsuranceCardProcessManagerImplement and loads data from the file.
      */
     public InsuranceCardProcessManagerImplement() {
         try {
@@ -33,11 +40,22 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
         }
     }
 
+    /**
+     * Adds a new InsuranceCard object to the list.
+     *
+     * @param insuranceCard the InsuranceCard to add
+     */
     @Override
     public void add(InsuranceCard insuranceCard) {
         insuranceCards.add(insuranceCard);
     }
 
+    /**
+     * Retrieves an InsuranceCard object by card number.
+     *
+     * @param cardNumber the card number of the InsuranceCard to retrieve
+     * @return the InsuranceCard object if found, otherwise null
+     */
     @Override
     public InsuranceCard getOne(String cardNumber) {
         for (InsuranceCard card : insuranceCards) {
@@ -48,11 +66,21 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
         return null;
     }
 
+    /**
+     * Retrieves all InsuranceCard objects.
+     *
+     * @return the list of all InsuranceCard objects
+     */
     @Override
     public List<InsuranceCard> getAll() {
         return insuranceCards;
     }
 
+    /**
+     * Saves the list of InsuranceCard objects to a file.
+     *
+     * @param fileName the name of the file to save to
+     */
     @Override
     public void saveToFile(String fileName) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
@@ -70,10 +98,10 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
     }
 
     /**
-     * Load from file.
+     * Loads insurance card data from a file and populates the list.
      *
-     * @param fileName the file name
-     * @throws Exception the exception
+     * @param fileName the name of the file to load from
+     * @throws Exception if an error occurs while reading the file or parsing the data
      */
     public void loadFromFile(String fileName) throws Exception {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
@@ -88,6 +116,11 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
         }
     }
 
+    /**
+     * Processes a line of data read from the file and creates an InsuranceCard object.
+     *
+     * @param parts the parts of the data line split by ","
+     */
     private void processInsuranceCardData(String[] parts) {
         String cardNumber = parts[0].trim();
         String customerID = parts[1].trim();

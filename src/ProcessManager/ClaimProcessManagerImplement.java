@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The type Claim process manager implement.
+ * Implementation of the Claim Process Manager interface.
  */
 public class ClaimProcessManagerImplement implements ClaimProcessManager {
     private List<Claim> claims;
@@ -22,9 +22,9 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
     private InsuranceCardProcessManagerImplement insuranceCardProcessManager;  // Add this line
 
     /**
-     * Instantiates a new Claim process manager implement.
+     * Constructs a new ClaimProcessManagerImplement with the specified filename.
      *
-     * @param filename the filename
+     * @param filename the name of the file to load claims from and save claims to
      */
     public ClaimProcessManagerImplement(String filename) {
         this.filename = filename;
@@ -39,6 +39,11 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         }
     }
 
+    /**
+     * Adds a new claim to the manager.
+     *
+     * @param claim the claim to be added
+     */
     @Override
     public void add(Claim claim) {
         try {
@@ -65,6 +70,11 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         }
     }
 
+    /**
+     * Updates an existing claim in the manager.
+     *
+     * @param claim the updated claim
+     */
     @Override
     public void update(Claim claim) {
         try {
@@ -85,6 +95,11 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         }
     }
 
+    /**
+     * Removes a claim from the manager.
+     *
+     * @param claimId the ID of the claim to be removed
+     */
     @Override
     public void remove(String claimId) {
         try {
@@ -98,6 +113,12 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         }
     }
 
+    /**
+     * Retrieves a claim by its ID.
+     *
+     * @param claimID the ID of the claim to retrieve
+     * @return the claim with the specified ID, or null if not found
+     */
     @Override
     public Claim getOne(String claimID) {
         for (Claim claim : claims) {
@@ -108,11 +129,21 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         return null;
     }
 
+    /**
+     * Retrieves all claims in the manager.
+     *
+     * @return a list of all claims
+     */
     @Override
     public List<Claim> getAll() {
         return new ArrayList<>(claims);
     }
 
+    /**
+     * Retrieves all claim IDs in the manager.
+     *
+     * @return a list of all claim IDs
+     */
     @Override
     public List<String> getAllClaimIDs() {
         List<String> claimIDs = new ArrayList<>();
@@ -122,6 +153,12 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         return claimIDs;
     }
 
+    /**
+     * Retrieves all claims associated with a specific customer ID.
+     *
+     * @param customerId the ID of the customer
+     * @return a list of all claims associated with the specified customer ID
+     */
     @Override
     public List<Claim> getAllClaimsByCustomerID(String customerId) {
         List<Claim> customerClaims = new ArrayList<>();
@@ -133,6 +170,11 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         return customerClaims;
     }
 
+    /**
+     * Saves the claims to a file.
+     *
+     * @param fileName the name of the file to save to
+     */
     @Override
     public void saveToFile(String fileName) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
@@ -156,6 +198,11 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         }
     }
 
+    /**
+     * Loads claims from a file.
+     *
+     * @param fileName the name of the file to load from
+     */
     public void loadFromFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -175,6 +222,11 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         }
     }
 
+    /**
+     * Processes data for a claim and adds it to the manager.
+     *
+     * @param parts the parts of the claim data
+     */
     private void processClaimData(String[] parts) {
         try {
             String claimID = parts[0].trim();
@@ -210,6 +262,11 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
         }
     }
 
+    /**
+     * Processes data for a dependent and associates it with an insurance card.
+     *
+     * @param parts the parts of the dependent data
+     */
     private void processDependentData(String[] parts) {
         try {
             String dependentID = parts[0].trim();
