@@ -8,14 +8,14 @@ package Menu;
 /**
  * The type Main class.
  */
-public class MainClass {
+public class MAIN {
     /**
      * The entry point of application.
      *
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        MenuDisplay menuDisplay = new MenuDisplay();
-        menuDisplay.displayMenu();
+        Menu menu = new Menu();
+        menu.displayMenu();
     }
 }

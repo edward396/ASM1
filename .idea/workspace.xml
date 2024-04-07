@@ -4,26 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Put data to test">
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Adjust data to test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Claim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Dependent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/File/claimData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/claimData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/ClaimMenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/ClaimMenuHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/File/dependentData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/dependentData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Handler/CustomerMenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/CustomerMenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/InputValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/InputValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handler/InsuranceCardMenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/InsuranceCardMenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MainClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManagerImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MAIN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManagerImplement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,20 +43,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.MainClass.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.MAIN.executor": "Run",
+    "Application.MainClass.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "fileTemplates"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -84,14 +73,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1712217858540</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Add SOLID design pattern">
-      <option name="closed" value="true" />
-      <created>1712236605865</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1712236605865</updated>
     </task>
     <task id="LOCAL-00005" summary="Adjust to the SOLID design pattern">
       <option name="closed" value="true" />
@@ -477,12 +458,19 @@
       <option name="project" value="LOCAL" />
       <updated>1712475364079</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Adjust data to test">
+      <option name="closed" value="true" />
+      <created>1712476790316</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1712476790316</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update interface methods" />
     <MESSAGE value="Remove unnecessary setters" />
     <MESSAGE value="Fixing date attributes in Claim" />
     <MESSAGE value="Merge into 1 package" />
@@ -507,6 +495,7 @@
     <MESSAGE value="Successfully run the system, small update" />
     <MESSAGE value="Update" />
     <MESSAGE value="Put data to test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Put data to test" />
+    <MESSAGE value="Adjust data to test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjust data to test" />
   </component>
 </project>

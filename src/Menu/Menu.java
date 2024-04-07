@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  * The type Menu display.
  */
-public class MenuDisplay {
+public class Menu {
 
     private final ClaimMenuHandler claimMenuHandler;
     private final CustomerMenuHandler customerMenuHandler;
@@ -21,7 +21,7 @@ public class MenuDisplay {
     /**
      * Instantiates a new Menu display.
      */
-    public MenuDisplay() {
+    public Menu() {
         this.claimMenuHandler = new ClaimMenuHandler();
         this.customerMenuHandler = new CustomerMenuHandler();
         this.insuranceCardMenuHandler = new InsuranceCardMenuHandler();

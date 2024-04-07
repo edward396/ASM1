@@ -128,16 +128,6 @@ public class CustomerMenuHandler {
         }
     }
 
-    public void saveAndExit() {
-        try {
-            customerProcessManager.saveToFile(CustomerProcessManagerImplement.CUSTOMER_FILE_PATH, CustomerProcessManagerImplement.DEPENDENT_FILE_PATH);
-            System.out.println("Customer data saved. Exiting program...");
-            System.exit(0);  // Exit the program
-        } catch (Exception e) {
-            handleException("Error saving customer data: ", e);
-        }
-    }
-
     private String getInput(Scanner scanner, String prompt) {
         System.out.print(prompt);
         return scanner.nextLine();
@@ -155,5 +145,15 @@ public class CustomerMenuHandler {
     private void handleException(String message, Exception e) {
         System.out.println(message + e.getMessage());
         System.out.println("-------------------------------------------");
+    }
+
+    public void saveAndExit() {
+        try {
+            customerProcessManager.saveToFile(CustomerProcessManagerImplement.CUSTOMER_FILE_PATH, CustomerProcessManagerImplement.DEPENDENT_FILE_PATH);
+            System.out.println("Customer data saved. Exiting program...");
+            System.exit(0);  // Exit the program
+        } catch (Exception e) {
+            handleException("Error saving customer data: ", e);
+        }
     }
 }

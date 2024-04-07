@@ -186,7 +186,6 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
                     dependentWriter.println(customer.getCustomerID() + ", " +
                             customer.getFullName() + ", " +
                             customer.getInsuranceCard().getCardNumber() + ", " +
-                            "Dependent, " +
                             ((Dependent) customer).getPolicyHolderID());
                 }
             }
