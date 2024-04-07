@@ -4,6 +4,9 @@ Claim Insurance Management System
 Overview
 The Claim Insurance Management System is a Java-based application designed to manage insurance claims efficiently.
 
+How to run:
+Go to the ASM1/src/Menu/MAIN.java
+
 Features
 Claim Operations
 1. Add a Claim: Enter a valid customer ID to add a new claim.
