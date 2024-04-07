@@ -3,6 +3,9 @@ package Handler;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * The type Input validator.
+ */
 public class InputValidator {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private static final String[] VALID_STATUSES = {"new", "processing", "done"};
@@ -147,7 +150,7 @@ public class InputValidator {
      * @param input User input for Customer ID.
      * @return Validated Customer ID or throws exception if the input is invalid.
      */
-    private static String validateCustomerID(String input) throws Exception {
+    private static String validateCustomerID(String input) {
         if (!input.matches("^c-\\d{7}$")) {
             throw new IllegalArgumentException("Invalid ID format. Please enter again.");
         }
@@ -182,6 +185,13 @@ public class InputValidator {
      */
     @FunctionalInterface
     private interface Validator<T> {
+        /**
+         * Validate t.
+         *
+         * @param input the input
+         * @return the t
+         * @throws Exception the exception
+         */
         T validate(String input) throws Exception;
     }
 }

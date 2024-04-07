@@ -9,17 +9,21 @@ package ProcessManager;
 import Classes.InsuranceCard;
 
 import java.io.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+/**
+ * The type Insurance card process manager implement.
+ */
 public class InsuranceCardProcessManagerImplement implements InsuranceCardProcessManager {
     private static final String FILE_PATH = "src/File/insuranceCardData.txt";
     private List<InsuranceCard> insuranceCards = new ArrayList<>();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
+    /**
+     * Instantiates a new Insurance card process manager implement.
+     */
     public InsuranceCardProcessManagerImplement() {
         try {
             loadFromFile(FILE_PATH);
@@ -64,6 +68,13 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
             e.printStackTrace();
         }
     }
+
+    /**
+     * Load from file.
+     *
+     * @param fileName the file name
+     * @throws Exception the exception
+     */
     public void loadFromFile(String fileName) throws Exception {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -77,7 +88,7 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
         }
     }
 
-    private void processInsuranceCardData(String[] parts) throws ParseException {
+    private void processInsuranceCardData(String[] parts) {
         String cardNumber = parts[0].trim();
         String customerID = parts[1].trim();
         String policyOwner = parts[2].trim();

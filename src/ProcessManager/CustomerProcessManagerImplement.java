@@ -9,12 +9,24 @@ import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * The type Customer process manager implement.
+ */
 public class CustomerProcessManagerImplement implements CustomerProcessManager {
+    /**
+     * The constant CUSTOMER_FILE_PATH.
+     */
     public static final String CUSTOMER_FILE_PATH = "src/File/policyHolderData.txt";
+    /**
+     * The constant DEPENDENT_FILE_PATH.
+     */
     public static final String DEPENDENT_FILE_PATH = "src/File/dependentData.txt";
     private List<Customer> customers = new ArrayList<>();
     private int lastCustomerId = 0;
 
+    /**
+     * Instantiates a new Customer process manager implement.
+     */
     public CustomerProcessManagerImplement() {
         try {
             loadFromFile(CUSTOMER_FILE_PATH, DEPENDENT_FILE_PATH);
@@ -39,7 +51,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
     }
 
     @Override
-    public void addPolicyHolder(String fullName, String insuranceCardNumber, List<String> dependentIds) throws Exception {
+    public void addPolicyHolder(String fullName, String insuranceCardNumber, List<String> dependentIds) {
         String id = generateCustomerID();
         validateCustomerID(id);
 
@@ -82,7 +94,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
     }
 
     @Override
-    public void updatePolicyHolder(String id, String fullName, String insuranceCardNumber) throws Exception {
+    public void updatePolicyHolder(String id, String fullName, String insuranceCardNumber) {
         PolicyHolder policyHolder = (PolicyHolder) getOne(id);
         if (policyHolder != null) {
             policyHolder.setFullName(fullName);
@@ -99,7 +111,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
     }
 
     @Override
-    public void updateDependent(String id, String fullName, String policyHolderId) throws Exception {
+    public void updateDependent(String id, String fullName, String policyHolderId) {
         Dependent dependent = (Dependent) getOne(id);
         if (dependent != null) {
             dependent.setFullName(fullName);
@@ -167,13 +179,13 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
                             String.join(", ", ((PolicyHolder) customer).getDependentIDs());
                     customerWriter.println(customer.getCustomerID() + ", " +
                             customer.getFullName() + ", " +
-                            ((PolicyHolder) customer).getInsuranceCard().getCardNumber() + ", " +
+                            customer.getInsuranceCard().getCardNumber() + ", " +
                             "PolicyHolder, " +
                             dependentIDs);
                 } else if (customer instanceof Dependent) {
                     dependentWriter.println(customer.getCustomerID() + ", " +
                             customer.getFullName() + ", " +
-                            ((Dependent) customer).getInsuranceCard().getCardNumber() + ", " +
+                            customer.getInsuranceCard().getCardNumber() + ", " +
                             "Dependent, " +
                             ((Dependent) customer).getPolicyHolderID());
                 }

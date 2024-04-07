@@ -9,15 +9,26 @@ import ProcessManager.CustomerProcessManagerImplement;
 
 import java.util.*;
 
+/**
+ * The type Claim menu handler.
+ */
 public class ClaimMenuHandler {
     private final ClaimProcessManager claimManager;
     private final CustomerProcessManager customerProcessManager;
 
+    /**
+     * Instantiates a new Claim menu handler.
+     */
     public ClaimMenuHandler() {
         this.claimManager = new ClaimProcessManagerImplement("src/File/claimData.txt");
         this.customerProcessManager = new CustomerProcessManagerImplement();
     }
 
+    /**
+     * Add claim.
+     *
+     * @param scanner the scanner
+     */
     public void addClaim(Scanner scanner) {
         try {
             String customerID = getCustomerID(scanner);
@@ -43,6 +54,11 @@ public class ClaimMenuHandler {
         }
     }
 
+    /**
+     * Update claim.
+     *
+     * @param scanner the scanner
+     */
     public void updateClaim(Scanner scanner) {
         try {
             String claimID = InputValidator.getFormattedClaimID(scanner);
@@ -62,6 +78,11 @@ public class ClaimMenuHandler {
         }
     }
 
+    /**
+     * Delete claim.
+     *
+     * @param scanner the scanner
+     */
     public void deleteClaim(Scanner scanner) {
         try {
             String claimID = InputValidator.getFormattedClaimID(scanner);
@@ -78,6 +99,11 @@ public class ClaimMenuHandler {
         }
     }
 
+    /**
+     * View claim.
+     *
+     * @param scanner the scanner
+     */
     public void viewClaim(Scanner scanner) {
         try {
             String claimID = InputValidator.getFormattedClaimID(scanner);
@@ -93,6 +119,11 @@ public class ClaimMenuHandler {
         }
     }
 
+    /**
+     * View all claims by customer id.
+     *
+     * @param scanner the scanner
+     */
     public void viewAllClaimsByCustomerID(Scanner scanner) {
         try {
             String customerID = getCustomerID(scanner);
@@ -112,6 +143,9 @@ public class ClaimMenuHandler {
         }
     }
 
+    /**
+     * View all claims.
+     */
     public void viewAllClaims() {
         try {
             List<Claim> allClaims = claimManager.getAll();
@@ -233,6 +267,9 @@ public class ClaimMenuHandler {
         System.out.println(message + e.getMessage());
     }
 
+    /**
+     * Save and exit.
+     */
     public void saveAndExit() {
         try {
             claimManager.saveToFile("src/File/claimData.txt");

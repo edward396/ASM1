@@ -97,34 +97,6 @@ public class CustomerMenuHandler {
         }
     }
 
-    public void updateCustomer(Scanner scanner) {
-        try {
-            String id = getInput(scanner, "Enter the customer ID to update: ");
-
-            if (!customerProcessManager.exists(id)) {
-                System.out.println("Customer not found.");
-                return;
-            }
-
-            Customer existingCustomer = customerProcessManager.getOne(id);
-
-            if (existingCustomer instanceof PolicyHolder) {
-                String fullName = getInput(scanner, "Enter Full Name: ");
-                String insuranceCardNumber = getInput(scanner, "Enter Insurance Card: ");
-                customerProcessManager.updatePolicyHolder(id, fullName, insuranceCardNumber);
-                System.out.println("PolicyHolder updated successfully.");
-            } else if (existingCustomer instanceof Dependent) {
-                String fullName = getInput(scanner, "Enter Full Name: ");
-                String policyHolderId = getInput(scanner, "Enter the PolicyHolder ID: ");
-                customerProcessManager.updateDependent(id, fullName, policyHolderId);
-                System.out.println("Dependent updated successfully.");
-            }
-
-        } catch (Exception e) {
-            handleException("Error updating customer: ", e);
-        }
-    }
-
     public void viewDependentsOfPolicyHolder(Scanner scanner) {
         try {
             String policyHolderId = getInput(scanner, "Enter Policy Holder ID: ");
@@ -154,15 +126,6 @@ public class CustomerMenuHandler {
         } catch (Exception e) {
             handleException("Error viewing dependents: ", e);
         }
-    }
-
-    public boolean exists(String customerID) {
-        return customerProcessManager.exists(customerID);
-    }
-
-    public String getCustomerName(String customerID) {
-        Customer customer = customerProcessManager.getOne(customerID);
-        return customer != null ? customer.getFullName() : null;
     }
 
     public void saveAndExit() {

@@ -8,12 +8,18 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 
+/**
+ * The type Insurance card menu handler.
+ */
 public class InsuranceCardMenuHandler {
 
     private final InsuranceCardProcessManagerImplement insuranceCardProcessManager;
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private final String filePath = "src/File/insuranceCardData.txt";
 
+    /**
+     * Instantiates a new Insurance card menu handler.
+     */
     public InsuranceCardMenuHandler() {
         this.insuranceCardProcessManager = new InsuranceCardProcessManagerImplement();
 
@@ -28,6 +34,11 @@ public class InsuranceCardMenuHandler {
         }
     }
 
+    /**
+     * View insurance card.
+     *
+     * @param scanner the scanner
+     */
     public void viewInsuranceCard(Scanner scanner) {
         try {
             System.out.print("Enter the card number to view: ");
@@ -44,6 +55,9 @@ public class InsuranceCardMenuHandler {
         }
     }
 
+    /**
+     * View all insurance cards.
+     */
     public void viewAllInsuranceCards() {
         try {
             List<InsuranceCard> cards = insuranceCardProcessManager.getAll();
@@ -69,6 +83,9 @@ public class InsuranceCardMenuHandler {
                 ", Expiration Date: " + dateFormat.format(card.getExpirationDate()));
     }
 
+    /**
+     * Save to file.
+     */
     public void saveToFile() {
         try {
             insuranceCardProcessManager.saveToFile(filePath);
@@ -78,9 +95,4 @@ public class InsuranceCardMenuHandler {
         }
     }
 
-    public static void closeScanner(Scanner scanner) {
-        if (scanner != null) {
-            scanner.close();
-        }
-    }
 }

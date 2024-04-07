@@ -12,12 +12,20 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The type Claim process manager implement.
+ */
 public class ClaimProcessManagerImplement implements ClaimProcessManager {
     private List<Claim> claims;
     private String filename;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private InsuranceCardProcessManagerImplement insuranceCardProcessManager;  // Add this line
 
+    /**
+     * Instantiates a new Claim process manager implement.
+     *
+     * @param filename the filename
+     */
     public ClaimProcessManagerImplement(String filename) {
         this.filename = filename;
         this.claims = new ArrayList<>();
@@ -29,10 +37,6 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
             System.out.println("Error loading file: " + e.getMessage());
             e.printStackTrace();
         }
-    }
-
-    public void setInsuranceCardProcessManager(InsuranceCardProcessManagerImplement insuranceCardProcessManager) {
-        this.insuranceCardProcessManager = insuranceCardProcessManager;
     }
 
     @Override
