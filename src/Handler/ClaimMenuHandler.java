@@ -151,7 +151,7 @@ public class ClaimMenuHandler {
     private Claim buildClaim(Scanner scanner, String customerID) {
         String claimID = generateClaimID();
         Date claimDate = InputValidator.getDateInput(scanner, "Enter Claim Date (dd-MM-yyyy): ");
-        String cardNumber = InputValidator.getStringInput(scanner, "Enter Card Number (10 numbers): ");
+        String cardNumber = InputValidator.getStringInput(scanner, "Enter Card Number: ");
         Date examDate = InputValidator.getDateInput(scanner, "Enter Exam Date (dd-MM-yyyy): ");
         List<String> documents = Arrays.asList(InputValidator.getStringInput(scanner, "Enter Document Names (claimId_cardNumber_documentName.pdf): ").split("_"));
         double amount = InputValidator.getDoubleInput(scanner, "Enter Claim Amount: ");

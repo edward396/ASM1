@@ -65,7 +65,7 @@ public class InsuranceCardMenuHandler {
     private void printInsuranceCardDetails(InsuranceCard card) {
         System.out.println("Card Number: " + card.getCardNumber() +
                 ", Card Holder ID: " + card.getCardHolderID() +
-                ", Policy Owner: " + card.getPolicyOwner() +
+                ", Policy Holder ID: " + card.getPolicyOwner() +
                 ", Expiration Date: " + dateFormat.format(card.getExpirationDate()));
     }
 
@@ -75,6 +75,12 @@ public class InsuranceCardMenuHandler {
             System.out.println("Insurance card data saved.");
         } catch (Exception e) {
             System.out.println("Error saving insurance card data: " + e.getMessage());
+        }
+    }
+
+    public static void closeScanner(Scanner scanner) {
+        if (scanner != null) {
+            scanner.close();
         }
     }
 }

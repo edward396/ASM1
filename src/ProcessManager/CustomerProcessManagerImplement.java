@@ -39,7 +39,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
     }
 
     @Override
-    public void addPolicyHolder(String fullName, String insuranceCardNumber, List<String> dependentIds) {
+    public void addPolicyHolder(String fullName, String insuranceCardNumber, List<String> dependentIds) throws Exception {
         String id = generateCustomerID();
         validateCustomerID(id);
 
@@ -82,7 +82,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
     }
 
     @Override
-    public void updatePolicyHolder(String id, String fullName, String insuranceCardNumber) {
+    public void updatePolicyHolder(String id, String fullName, String insuranceCardNumber) throws Exception {
         PolicyHolder policyHolder = (PolicyHolder) getOne(id);
         if (policyHolder != null) {
             policyHolder.setFullName(fullName);
@@ -99,7 +99,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
     }
 
     @Override
-    public void updateDependent(String id, String fullName, String policyHolderId)  {
+    public void updateDependent(String id, String fullName, String policyHolderId) throws Exception {
         Dependent dependent = (Dependent) getOne(id);
         if (dependent != null) {
             dependent.setFullName(fullName);

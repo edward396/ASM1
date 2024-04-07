@@ -3,6 +3,7 @@
  * @sID s3979056
  * version JDK21
  */
+
 package Classes;
 
 public class Dependent extends Customer {

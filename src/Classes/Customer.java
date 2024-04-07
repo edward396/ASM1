@@ -1,3 +1,9 @@
+/**
+ * @author Nguyen Vo Truong Toan
+ * @sID s3979056
+ * version JDK21
+ */
+
 package Classes;
 
 import java.util.Objects;
@@ -17,10 +23,6 @@ public abstract class Customer {
         return customerID;
     }
 
-    public void setCustomerID(String customerID) {
-        this.customerID = customerID;
-    }
-
     public String getFullName() {
         return fullName;
     }
@@ -31,10 +33,6 @@ public abstract class Customer {
 
     public InsuranceCard getInsuranceCard() {
         return insuranceCard;
-    }
-
-    public void setInsuranceCard(InsuranceCard insuranceCard) {
-        this.insuranceCard = insuranceCard;
     }
 
     public boolean exists(String customerID) {

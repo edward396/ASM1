@@ -61,6 +61,14 @@ public class InsuranceCard {
         this.expirationDate = expirationDate;
     }
 
+    public List<Dependent> getDependents() {
+        return dependents;
+    }
+
+    public void setDependents(List<Dependent> dependents) {
+        this.dependents = dependents;
+    }
+
     public void addDependent(Dependent dependent) {
         dependents.add(dependent);
     }

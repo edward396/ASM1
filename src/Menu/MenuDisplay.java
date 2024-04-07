@@ -59,21 +59,18 @@ public class MenuDisplay {
                         customerMenuHandler.deleteCustomer(scanner);
                         break;
                     case 10:
-                        customerMenuHandler.viewCustomer(scanner);
-                        break;
-                    case 11:
                         customerMenuHandler.viewDependentsOfPolicyHolder(scanner);
                         break;
-                    case 12:
+                    case 11:
                         customerMenuHandler.viewAllCustomers();
                         break;
-                    case 13:
+                    case 12:
                         insuranceCardMenuHandler.viewInsuranceCard(scanner);
                         break;
-                    case 14:
+                    case 13:
                         insuranceCardMenuHandler.viewAllInsuranceCards();
                         break;
-                    case 15:
+                    case 14:
                         claimMenuHandler.saveAndExit();
                         customerMenuHandler.saveAndExit();
                         insuranceCardMenuHandler.saveToFile();
@@ -114,16 +111,15 @@ public class MenuDisplay {
         System.out.println("| 7. Add a PolicyHolder                      |");
         System.out.println("| 8. Add a Dependent                         |");
         System.out.println("| 9. Delete a Customer                       |");
-        System.out.println("| 10. View a Customer (by Customer ID)       |");
-        System.out.println("| 11. View all Dependents of a Policy Holder |");
-        System.out.println("| 12. View all Customers in the system       |");
+        System.out.println("| 10. View all Dependents of a Policy Holder |");
+        System.out.println("| 11. View all Customers in the system       |");
         System.out.println("==============================================");
         System.out.println("|           Insurance Card Options           |");
-        System.out.println("| 13. View an Insurance Card                 |");
-        System.out.println("| 14. View all Insurance Cards in the system |");
+        System.out.println("| 12. View an Insurance Card                 |");
+        System.out.println("| 13. View all Insurance Cards in the system |");
         System.out.println("==============================================");
         System.out.println("|              System Options                |");
-        System.out.println("| 15. Save and Exit                          |");
+        System.out.println("| 14. Save and Exit                          |");
         System.out.println("==============================================");
         System.out.print("Enter your choice: ");
     }
