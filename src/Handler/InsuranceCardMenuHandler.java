@@ -77,5 +77,4 @@ public class InsuranceCardMenuHandler {
             System.out.println("Error saving insurance card data: " + e.getMessage());
         }
     }
-
 }
