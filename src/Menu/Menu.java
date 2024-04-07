@@ -47,7 +47,7 @@ public class Menu {
                         claimMenuHandler.updateClaim(scanner);
                         break;
                     case 3:
-                        claimMenuHandler.deleteClaim(scanner);
+                        claimMenuHandler.removeClaim(scanner);
                         break;
                     case 4:
                         claimMenuHandler.viewClaim(scanner);
@@ -62,16 +62,16 @@ public class Menu {
                         customerMenuHandler.addPolicyHolder(scanner);
                         break;
                     case 8:
-                        customerMenuHandler.addDependent(scanner);
+                        customerMenuHandler.addDependant(scanner);
                         break;
                     case 9:
-                        customerMenuHandler.viewCustomer(scanner);
+                       customerMenuHandler.removeCustomer(scanner);
                         break;
                     case 10:
-                        customerMenuHandler.deleteCustomer(scanner);
+                        customerMenuHandler.viewCustomer(scanner);
                         break;
                     case 11:
-                        customerMenuHandler.viewDependentsOfPolicyHolder(scanner);
+                        customerMenuHandler.viewDependantsOfPolicyHolder(scanner);
                         break;
                     case 12:
                         customerMenuHandler.viewAllCustomers();
@@ -114,7 +114,7 @@ public class Menu {
         System.out.println("|               Claim Options                |");
         System.out.println("| 1. Add a Claim                             |");
         System.out.println("| 2. Update a Claim (by Claim ID)            |");
-        System.out.println("| 3. Delete a Claim (by Claim ID)            |");
+        System.out.println("| 3. Remove a Claim (by Claim ID)            |");
         System.out.println("| 4. View a Claim (by Claim ID)              |");
         System.out.println("| 5. View all Claims (by Customer ID)        |");
         System.out.println("| 6. View all Claims in the system           |");
@@ -122,9 +122,9 @@ public class Menu {
         System.out.println("|              Customer Options              |");
         System.out.println("| 7. Add a PolicyHolder                      |");
         System.out.println("| 8. Add a Dependent                         |");
-        System.out.println("| 9. View a Customer                         |");
-        System.out.println("| 10. Delete a Customer                      |");
-        System.out.println("| 11. View all Dependents of a Policy Holder |");
+        System.out.println("| 9. Remove a Customer                       |");
+        System.out.println("| 10. View a Customer                        |");
+        System.out.println("| 11. View all Dependants of a Policy Holder |");
         System.out.println("| 12. View all Customers in the system       |");
         System.out.println("==============================================");
         System.out.println("|           Insurance Card Options           |");

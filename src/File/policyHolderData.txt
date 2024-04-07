@@ -7,9 +7,8 @@ c-0000006, Henry Davis, 9325178460, PolicyHolder, c-1000006
 c-0000007, Leo Garcia, 4061829357, PolicyHolder, c-1000007
 c-0000008, Mary Taylor, 5296318740, PolicyHolder, c-1000008
 c-0000009, Nick Wilson, 7830421965, PolicyHolder, c-1000009
-c-0000010, Olivia Davis, 1629350478, PolicyHolder, c-1000010, c-1000015
+c-0000010, Olivia Davis, 1629350478, PolicyHolder, c-1000010
 c-0000011, Peter Smith, 8740196235, PolicyHolder, c-1000011
 c-0000012, Queen Brown, 3209471856, PolicyHolder, c-1000012
 c-0000013, Robert Johnson, 5478129306, PolicyHolder, c-1000013
 c-0000014, Sarah Williams, 4912368570, PolicyHolder, c-1000014
-c-0000015, Toan Nguyen, 6958132047, PolicyHolder, null

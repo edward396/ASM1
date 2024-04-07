@@ -4,14 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Adjust data to test">
+    <list default="true" id="45d503cc-676a-4f44-bf02-36f6007eb42a" name="Changes" comment="Final Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Dependant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/InsuranceCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/PolicyHolder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/File/claimData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/claimData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/File/dependentData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/dependentData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/File/dependentData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/dependantData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/File/policyHolderData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/File/policyHolderData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handler/ClaimMenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/ClaimMenuHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Handler/CustomerMenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/CustomerMenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MAIN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu/MenuDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handler/InsuranceCardMenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handler/InsuranceCardMenuHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/ClaimProcessManagerImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/CustomerProcessManagerImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManagerImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessManager/InsuranceCardProcessManagerImplement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,14 +82,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1712217858540</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Adjust to the SOLID design pattern">
-      <option name="closed" value="true" />
-      <created>1712236635386</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1712236635386</updated>
     </task>
     <task id="LOCAL-00006" summary="Format Updated">
       <option name="closed" value="true" />
@@ -466,12 +467,19 @@
       <option name="project" value="LOCAL" />
       <updated>1712476790316</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Final Update">
+      <option name="closed" value="true" />
+      <created>1712493848213</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1712493848213</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Remove unnecessary setters" />
     <MESSAGE value="Fixing date attributes in Claim" />
     <MESSAGE value="Merge into 1 package" />
     <MESSAGE value="Update Add and View Policy Holders" />
@@ -496,6 +504,7 @@
     <MESSAGE value="Update" />
     <MESSAGE value="Put data to test" />
     <MESSAGE value="Adjust data to test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjust data to test" />
+    <MESSAGE value="Final Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final Update" />
   </component>
 </project>

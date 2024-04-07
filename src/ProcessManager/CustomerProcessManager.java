@@ -25,7 +25,7 @@ public interface CustomerProcessManager {
      * @param policyHolderId the policy holder id
      * @throws Exception the exception
      */
-    void addDependent(String fullName, String policyHolderId) throws Exception;
+    void addDependant(String fullName, String policyHolderId) throws Exception;
 
     /**
      * Update policy holder.
@@ -52,7 +52,7 @@ public interface CustomerProcessManager {
      *
      * @param customerID the customer id
      */
-    void delete(String customerID);
+    void remove(String customerID);
 
     /**
      * Gets one.

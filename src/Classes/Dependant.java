@@ -7,20 +7,20 @@
 package Classes;
 
 /**
- * The type Dependent.
+ * The type Dependant.
  */
-public class Dependent extends Customer {
+public class Dependant extends Customer {
     private String policyHolderID;
 
     /**
-     * Instantiates a new Dependent.
+     * Instantiates a new Dependant.
      *
      * @param customerID     the customer id
      * @param fullName       the full name
      * @param insuranceCard  the insurance card
      * @param policyHolderID the policy holder id
      */
-    public Dependent(String customerID, String fullName, InsuranceCard insuranceCard, String policyHolderID) {
+    public Dependant(String customerID, String fullName, InsuranceCard insuranceCard, String policyHolderID) {
         super(customerID, fullName, insuranceCard);
         this.policyHolderID = policyHolderID;
     }
@@ -45,7 +45,7 @@ public class Dependent extends Customer {
 
     @Override
     public String toString() {
-        return "Dependent{" +
+        return "Dependant{" +
                 "customerID='" + getCustomerID() + '\'' +
                 ", fullName='" + getFullName() + '\'' +
                 ", insuranceCard=" + getInsuranceCard() +

@@ -79,23 +79,23 @@ public class ClaimMenuHandler {
     }
 
     /**
-     * Delete claim.
+     * Remove claim.
      *
      * @param scanner the scanner
      */
-    public void deleteClaim(Scanner scanner) {
+    public void removeClaim(Scanner scanner) {
         try {
             String claimID = InputValidator.getFormattedClaimID(scanner);
             Claim existingClaim = claimManager.getOne(claimID);
 
             if (existingClaim != null) {
-                claimManager.delete(claimID);
-                System.out.println("Claim deleted successfully.");
+                claimManager.remove(claimID);
+                System.out.println("Claim removed successfully.");
             } else {
                 System.out.println("Claim not found.");
             }
         } catch (Exception e) {
-            handleException("Error deleting claim: ", e);
+            handleException("Error removing claim: ", e);
         }
     }
 

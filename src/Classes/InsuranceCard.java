@@ -13,7 +13,7 @@ public class InsuranceCard {
     private String cardHolderID;
     private String policyOwner;
     private Date expirationDate;
-    private List<Dependent> dependents;
+    private List<Dependant> dependants;
 
     /**
      * Instantiates a new Insurance card.
@@ -28,7 +28,7 @@ public class InsuranceCard {
         this.cardHolderID = cardHolderID;
         this.policyOwner = policyOwner;
         this.expirationDate = expirationDate;
-        this.dependents = new ArrayList<>();
+        this.dependants = new ArrayList<>();
     }
 
     /**
@@ -113,12 +113,12 @@ public class InsuranceCard {
     }
 
     /**
-     * Add dependent.
+     * Add dependant.
      *
-     * @param dependent the dependent
+     * @param dependant the dependant
      */
-    public void addDependent(Dependent dependent) {
-        dependents.add(dependent);
+    public void addDependant(Dependant dependant) {
+        dependants.add(dependant);
     }
 
     @Override
@@ -141,7 +141,7 @@ public class InsuranceCard {
                 ", cardHolder='" + cardHolderID + '\'' +
                 ", policyHolder='" + policyOwner + '\'' +
                 ", expirationDate=" + expirationDate +
-                ", dependents=" + dependents +
+                ", dependants=" + dependants +
                 '}';
     }
 }

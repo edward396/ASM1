@@ -95,8 +95,8 @@ public class InsuranceCardProcessManagerImplement implements InsuranceCardProces
         String expirationDateStr = parts[3].trim();
 
         InsuranceCard insuranceCard = new InsuranceCard(cardNumber);
-        insuranceCard.setCardHolderID(customerID);  // Setting the cardHolderID to customerID
-        insuranceCard.setPolicyOwner(policyOwner);  // Setting the policyOwner from the file
+        insuranceCard.setCardHolderID(customerID);
+        insuranceCard.setPolicyOwner(policyOwner);
 
         try {
             insuranceCard.setExpirationDate(dateFormat.parse(expirationDateStr));

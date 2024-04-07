@@ -79,7 +79,7 @@ public class InsuranceCardMenuHandler {
     private void printInsuranceCardDetails(InsuranceCard card) {
         System.out.println("Card Number: " + card.getCardNumber() +
                 ", Card Holder ID: " + card.getCardHolderID() +
-                ", Policy Holder ID: " + card.getPolicyOwner() +
+                ", Policy Owner: " + card.getPolicyOwner() +
                 ", Expiration Date: " + dateFormat.format(card.getExpirationDate()));
     }
 

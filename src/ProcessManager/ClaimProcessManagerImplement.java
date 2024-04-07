@@ -1,7 +1,7 @@
 package ProcessManager;
 
 import Classes.Claim;
-import Classes.Dependent;
+import Classes.Dependant;
 import Classes.InsuranceCard;
 
 import java.io.*;
@@ -86,7 +86,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
     }
 
     @Override
-    public void delete(String claimId) {
+    public void remove(String claimId) {
         try {
             boolean removed = claims.removeIf(claim -> claim.getClaimID().equals(claimId));
             if (!removed) {
@@ -94,7 +94,7 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
             }
             saveToFile(filename);
         } catch (IllegalArgumentException e) {
-            System.out.println("Error deleting claim: " + e.getMessage());
+            System.out.println("Error removing claim: " + e.getMessage());
         }
     }
 
@@ -219,9 +219,9 @@ public class ClaimProcessManagerImplement implements ClaimProcessManager {
 
             InsuranceCard insuranceCard = insuranceCardProcessManager.getOne(cardNumber);
             if (insuranceCard != null) {
-                Dependent dependent = new Dependent(dependentID, dependentName, insuranceCard, policyHolderID);
+                Dependant dependant = new Dependant(dependentID, dependentName, insuranceCard, policyHolderID);
                 // Add dependent to the insurance card
-                insuranceCard.addDependent(dependent);
+                insuranceCard.addDependant(dependant);
             }
 
         } catch (NumberFormatException e) {

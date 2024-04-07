@@ -1,7 +1,7 @@
 package ProcessManager;
 
 import Classes.Customer;
-import Classes.Dependent;
+import Classes.Dependant;
 import Classes.InsuranceCard;
 import Classes.PolicyHolder;
 
@@ -18,9 +18,9 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
      */
     public static final String CUSTOMER_FILE_PATH = "src/File/policyHolderData.txt";
     /**
-     * The constant DEPENDENT_FILE_PATH.
+     * The constant DEPENDANT_FILE_PATH.
      */
-    public static final String DEPENDENT_FILE_PATH = "src/File/dependentData.txt";
+    public static final String DEPENDANT_FILE_PATH = "src/File/dependantData.txt";
     private List<Customer> customers = new ArrayList<>();
     private int lastCustomerId = 0;
 
@@ -29,7 +29,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
      */
     public CustomerProcessManagerImplement() {
         try {
-            loadFromFile(CUSTOMER_FILE_PATH, DEPENDENT_FILE_PATH);
+            loadFromFile(CUSTOMER_FILE_PATH, DEPENDANT_FILE_PATH);
         } catch (Exception e) {
             System.out.println("Error loading customers from file: " + e.getMessage());
         }
@@ -61,13 +61,13 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
 
         InsuranceCard insuranceCard = new InsuranceCard(insuranceCardNumber);
         PolicyHolder policyHolder = new PolicyHolder(id, fullName, insuranceCard);
-        policyHolder.setDependentIDs(new HashSet<>(dependentIds));
+        policyHolder.setDependantIDs(new HashSet<>(dependentIds));
         customers.add(policyHolder);
-        saveToFile(CUSTOMER_FILE_PATH, DEPENDENT_FILE_PATH);
+        saveToFile(CUSTOMER_FILE_PATH, DEPENDANT_FILE_PATH);
     }
 
     @Override
-    public void addDependent(String fullName, String policyHolderId) throws Exception {
+    public void addDependant(String fullName, String policyHolderId) throws Exception {
         String id = generateCustomerID();
         validateCustomerID(id);
 
@@ -77,17 +77,17 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
         }
 
         InsuranceCard insuranceCard = new InsuranceCard(policyHolder.getInsuranceCard().getCardNumber());
-        Dependent dependent = new Dependent(id, fullName, insuranceCard, policyHolderId);
-        customers.add(dependent);
-        ((PolicyHolder) policyHolder).getDependentIDs().add(id);
-        saveToFile(CUSTOMER_FILE_PATH, DEPENDENT_FILE_PATH);
+        Dependant dependant = new Dependant(id, fullName, insuranceCard, policyHolderId);
+        customers.add(dependant);
+        ((PolicyHolder) policyHolder).getDependantIDs().add(id);
+        saveToFile(CUSTOMER_FILE_PATH, DEPENDANT_FILE_PATH);
     }
     @Override
-    public void delete(String customerID) {
+    public void remove(String customerID) {
         Customer existingCustomer = getOne(customerID);
         if (existingCustomer != null) {
             customers.remove(existingCustomer);
-            saveToFile(CUSTOMER_FILE_PATH, DEPENDENT_FILE_PATH);
+            saveToFile(CUSTOMER_FILE_PATH, DEPENDANT_FILE_PATH);
         } else {
             throw new IllegalArgumentException("Customer not found.");
         }
@@ -104,7 +104,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
             }
 
             policyHolder.getInsuranceCard().setCardNumber(insuranceCardNumber);
-            saveToFile(CUSTOMER_FILE_PATH, DEPENDENT_FILE_PATH);
+            saveToFile(CUSTOMER_FILE_PATH, DEPENDANT_FILE_PATH);
         } else {
             throw new IllegalArgumentException("Policy Holder not found.");
         }
@@ -112,11 +112,11 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
 
     @Override
     public void updateDependent(String id, String fullName, String policyHolderId) {
-        Dependent dependent = (Dependent) getOne(id);
-        if (dependent != null) {
-            dependent.setFullName(fullName);
-            dependent.setPolicyHolderID(policyHolderId);
-            saveToFile(CUSTOMER_FILE_PATH, DEPENDENT_FILE_PATH);
+        Dependant dependant = (Dependant) getOne(id);
+        if (dependant != null) {
+            dependant.setFullName(fullName);
+            dependant.setPolicyHolderID(policyHolderId);
+            saveToFile(CUSTOMER_FILE_PATH, DEPENDANT_FILE_PATH);
         } else {
             throw new IllegalArgumentException("Dependent not found.");
         }
@@ -147,7 +147,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
                     if ("PolicyHolder".equalsIgnoreCase(type) && customer instanceof PolicyHolder) {
                         return true;
                     }
-                    return "Dependent".equalsIgnoreCase(type) && customer instanceof Dependent;
+                    return "Dependent".equalsIgnoreCase(type) && customer instanceof Dependant;
                 })
                 .collect(Collectors.toList());
     }
@@ -157,9 +157,9 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
         Customer policyHolder = getOne(policyHolderID);
         if (policyHolder instanceof PolicyHolder) {
             List<Customer> dependents = new ArrayList<>();
-            for (String dependentID : ((PolicyHolder) policyHolder).getDependentIDs()) {
+            for (String dependentID : ((PolicyHolder) policyHolder).getDependantIDs()) {
                 Customer dependent = getOne(dependentID);
-                if (dependent instanceof Dependent) {
+                if (dependent instanceof Dependant) {
                     dependents.add(dependent);
                 }
             }
@@ -175,18 +175,18 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
 
             for (Customer customer : customers) {
                 if (customer instanceof PolicyHolder) {
-                    String dependentIDs = ((PolicyHolder) customer).getDependentIDs().isEmpty() ? "null" :
-                            String.join(", ", ((PolicyHolder) customer).getDependentIDs());
+                    String dependentIDs = ((PolicyHolder) customer).getDependantIDs().isEmpty() ? "null" :
+                            String.join(", ", ((PolicyHolder) customer).getDependantIDs());
                     customerWriter.println(customer.getCustomerID() + ", " +
                             customer.getFullName() + ", " +
                             customer.getInsuranceCard().getCardNumber() + ", " +
                             "PolicyHolder, " +
                             dependentIDs);
-                } else if (customer instanceof Dependent) {
+                } else if (customer instanceof Dependant) {
                     dependentWriter.println(customer.getCustomerID() + ", " +
                             customer.getFullName() + ", " +
                             customer.getInsuranceCard().getCardNumber() + ", " +
-                            ((Dependent) customer).getPolicyHolderID());
+                            ((Dependant) customer).getPolicyHolderID());
                 }
             }
 
@@ -227,7 +227,7 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
 
                 InsuranceCard insuranceCard = new InsuranceCard(cardNumber);
                 PolicyHolder policyHolder = new PolicyHolder(id, fullName, insuranceCard);
-                policyHolder.setDependentIDs(dependentIDs);
+                policyHolder.setDependantIDs(dependentIDs);
                 tempCustomers.add(policyHolder);
 
                 // Update lastCustomerId based on loaded IDs
@@ -255,12 +255,12 @@ public class CustomerProcessManagerImplement implements CustomerProcessManager {
                 String policyHolderID = parts[3].trim();
 
                 InsuranceCard insuranceCard = new InsuranceCard(cardNumber);
-                Dependent dependent = new Dependent(dependentID, dependentName, insuranceCard, policyHolderID);
-                customers.add(dependent);
+                Dependant dependant = new Dependant(dependentID, dependentName, insuranceCard, policyHolderID);
+                customers.add(dependant);
 
                 PolicyHolder policyHolder = (PolicyHolder) getOne(policyHolderID);
                 if (policyHolder != null) {
-                    policyHolder.getDependentIDs().add(dependentID);
+                    policyHolder.getDependantIDs().add(dependentID);
                 }
 
                 // Update lastCustomerId based on loaded IDs

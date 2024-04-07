@@ -27,7 +27,7 @@ public interface ClaimProcessManager {
      *
      * @param claimID the claim id
      */
-    void delete(String claimID);
+    void remove(String claimID);
 
     /**
      * Gets one.

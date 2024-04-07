@@ -12,7 +12,7 @@ import java.util.Set;
  * The type Policy holder.
  */
 public class PolicyHolder extends Customer {
-    private Set<String> dependentIDs;
+    private Set<String> dependantIDs;
 
     /**
      * Instantiates a new Policy holder.
@@ -23,7 +23,7 @@ public class PolicyHolder extends Customer {
      */
     public PolicyHolder(String customerID, String fullName, InsuranceCard insuranceCard) {
         super(customerID, fullName, insuranceCard);
-        this.dependentIDs = new HashSet<>();  // Initialize the dependentIDs set
+        this.dependantIDs = new HashSet<>();  // Initialize the dependantIDs set
     }
 
     /**
@@ -32,29 +32,29 @@ public class PolicyHolder extends Customer {
      * @param customerID    the customer id
      * @param fullName      the full name
      * @param insuranceCard the insurance card
-     * @param dependentIDs  the dependent i ds
+     * @param dependantIDs  the dependant i ds
      */
-    public PolicyHolder(String customerID, String fullName, InsuranceCard insuranceCard, Set<String> dependentIDs) {
+    public PolicyHolder(String customerID, String fullName, InsuranceCard insuranceCard, Set<String> dependantIDs) {
         super(customerID, fullName, insuranceCard);
-        this.dependentIDs = dependentIDs != null ? dependentIDs : new HashSet<>();
+        this.dependantIDs = dependantIDs != null ? dependantIDs : new HashSet<>();
     }
 
     /**
-     * Gets dependent i ds.
+     * Gets dependant i ds.
      *
-     * @return the dependent i ds
+     * @return the dependant i ds
      */
-    public Set<String> getDependentIDs() {
-        return dependentIDs;
+    public Set<String> getDependantIDs() {
+        return dependantIDs;
     }
 
     /**
-     * Sets dependent i ds.
+     * Sets dependant i ds.
      *
-     * @param dependentIDs the dependent i ds
+     * @param dependantIDs the dependant i ds
      */
-    public void setDependentIDs(Set<String> dependentIDs) {
-        this.dependentIDs = dependentIDs;
+    public void setDependantIDs(Set<String> dependantIDs) {
+        this.dependantIDs = dependantIDs;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class PolicyHolder extends Customer {
                 "customerID='" + getCustomerID() + '\'' +
                 ", fullName='" + getFullName() + '\'' +
                 ", insuranceCard=" + getInsuranceCard() +
-                ", dependentIDs=" + (dependentIDs != null ? String.join(", ", dependentIDs) : "") +
+                ", dependantIDs=" + (dependantIDs != null ? String.join(", ", dependantIDs) : "") +
                 '}';
     }
 }

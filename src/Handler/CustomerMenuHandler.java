@@ -7,7 +7,7 @@
 package Handler;
 
 import Classes.Customer;
-import Classes.Dependent;
+import Classes.Dependant;
 import Classes.PolicyHolder;
 import ProcessManager.CustomerProcessManagerImplement;
 
@@ -26,41 +26,41 @@ public class CustomerMenuHandler {
         try {
             String fullName = getInput(scanner, "Enter Full Name: ");
             String insuranceCardNumber = getInput(scanner, "Enter Insurance Card: ");
-            String dependents = getInput(scanner, "Enter dependent IDs separated by commas (if none, enter 'null'): ");
-            List<String> dependentIds = dependents.equals("null") ? List.of() : List.of(dependents.split(", "));
+            String dependants = getInput(scanner, "Enter a Dependant ID (if none, enter 'null'): ");
+            List<String> dependantIds = dependants.equals("null") ? List.of() : List.of(dependants.split(", "));
 
-            customerProcessManager.addPolicyHolder(fullName, insuranceCardNumber, dependentIds);
+            customerProcessManager.addPolicyHolder(fullName, insuranceCardNumber, dependantIds);
             System.out.println("PolicyHolder added successfully.");
         } catch (Exception e) {
             handleException("Error adding PolicyHolder: ", e);
         }
     }
 
-    public void addDependent(Scanner scanner) {
+    public void addDependant(Scanner scanner) {
         try {
             String fullName = getInput(scanner, "Enter Full Name: ");
             String policyHolderId = getInput(scanner, "Enter the PolicyHolder ID: ");
 
-            customerProcessManager.addDependent(fullName, policyHolderId);
-            System.out.println("Dependent added successfully.");
+            customerProcessManager.addDependant(fullName, policyHolderId);
+            System.out.println("Dependant added successfully.");
         } catch (Exception e) {
-            handleException("Error adding Dependent: ", e);
+            handleException("Error adding Dependant: ", e);
         }
     }
 
-    public void deleteCustomer(Scanner scanner) {
+    public void removeCustomer(Scanner scanner) {
         try {
-            String id = getInput(scanner, "Enter the customer ID to delete: ");
+            String id = getInput(scanner, "Enter the customer ID to remove: ");
 
             if (!customerProcessManager.exists(id)) {
                 System.out.println("Customer not found.");
                 return;
             }
 
-            customerProcessManager.delete(id);
-            System.out.println("Customer deleted successfully.");
+            customerProcessManager.remove(id);
+            System.out.println("Customer removed successfully.");
         } catch (Exception e) {
-            handleException("Error deleting customer: ", e);
+            handleException("Error removing customer: ", e);
         }
     }
 
@@ -97,7 +97,7 @@ public class CustomerMenuHandler {
         }
     }
 
-    public void viewDependentsOfPolicyHolder(Scanner scanner) {
+    public void viewDependantsOfPolicyHolder(Scanner scanner) {
         try {
             String policyHolderId = getInput(scanner, "Enter Policy Holder ID: ");
 
@@ -112,19 +112,19 @@ public class CustomerMenuHandler {
                 return;
             }
 
-            Set<String> dependentIDs = ((PolicyHolder) policyHolder).getDependentIDs();
-            if (dependentIDs.isEmpty()) {
-                System.out.println("No dependents found for this Policy Holder.");
+            Set<String> dependantIDs = ((PolicyHolder) policyHolder).getDependantIDs();
+            if (dependantIDs.isEmpty()) {
+                System.out.println("No dependants found for this Policy Holder.");
                 return;
             }
 
-            System.out.println("Dependents of Policy Holder " + policyHolder.getFullName() + ":");
-            dependentIDs.stream()
+            System.out.println("Dependants of Policy Holder " + policyHolder.getFullName() + ":");
+            dependantIDs.stream()
                     .map(customerProcessManager::getOne)
-                    .filter(customer -> customer instanceof Dependent)
+                    .filter(customer -> customer instanceof Dependant)
                     .forEach(System.out::println);
         } catch (Exception e) {
-            handleException("Error viewing dependents: ", e);
+            handleException("Error viewing dependants: ", e);
         }
     }
 
@@ -136,8 +136,8 @@ public class CustomerMenuHandler {
     private void printCustomerDetails(Customer customer) {
         if (customer instanceof PolicyHolder) {
             System.out.println("PolicyHolder: " + customer);
-        } else if (customer instanceof Dependent) {
-            System.out.println("Dependent: " + customer);
+        } else if (customer instanceof Dependant) {
+            System.out.println("Dependant: " + customer);
         }
         System.out.println("-------------------------------------------");
     }
@@ -149,7 +149,7 @@ public class CustomerMenuHandler {
 
     public void saveAndExit() {
         try {
-            customerProcessManager.saveToFile(CustomerProcessManagerImplement.CUSTOMER_FILE_PATH, CustomerProcessManagerImplement.DEPENDENT_FILE_PATH);
+            customerProcessManager.saveToFile(CustomerProcessManagerImplement.CUSTOMER_FILE_PATH, CustomerProcessManagerImplement.DEPENDANT_FILE_PATH);
             System.out.println("Customer data saved. Exiting program...");
             System.exit(0);  // Exit the program
         } catch (Exception e) {
